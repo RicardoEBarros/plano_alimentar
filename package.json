@@ -1,0 +1,16 @@
+{
+  "name": "plano_alimentar",
+  "version": "1.0.0",
+  "description": "O projeto se trata de um aplicativo de plano alimentar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ricardo_barros",
+  "license": "ISC",
+  "type": "module",
+  "engine": {
+    "node": "v20.14.0"
+  }
+}

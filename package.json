@@ -12,5 +12,9 @@
   "engines": {
     "node": "20.14.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
 }

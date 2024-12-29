@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",

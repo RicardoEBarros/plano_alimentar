@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
     "outDir": "dist",
     "module": "CommonJS",
     "target": "ES2019",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "paths": {
+      "@controllers/*": ["src/presentation/controllers/*"]
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "include": ["src/**/*", "tests/**/*"]
 }

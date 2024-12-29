@@ -1,7 +1,6 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)
 ![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-023430?logo=mongodb&logoColor=white)
 

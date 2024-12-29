@@ -7,7 +7,7 @@ module.exports = [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   { 
-    files: ["src/**/*.ts"],
+    files: ["src/**/*.ts", 'tests/**/*.ts'],
     ignores: ["node_modules", "dist", "coverage"],
     plugins: {
       '@stylistic/js': stylisticJs

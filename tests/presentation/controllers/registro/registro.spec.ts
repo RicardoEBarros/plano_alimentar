@@ -18,6 +18,7 @@ describe('Registro Controller', () => {
     }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: nome'))
 
   })
 

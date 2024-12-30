@@ -5,13 +5,12 @@ import { HttpResponse, HttpRequest } from '../protocols/http'
 export class ControleRegistro {
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
-
-    if (!httpRequest.body.nome) {
-      return Promise.resolve(badRequest(new ParametroAusenteError('nome')))
-    }
-
-    if (!httpRequest.body.email) {
-      return Promise.resolve(badRequest(new ParametroAusenteError('email')))
+    
+    const camposObrigatorios = [ 'nome', 'email' ]
+    for (const campo of camposObrigatorios) {
+      if (!httpRequest.body[campo]) {
+        return Promise.resolve(badRequest(new ParametroAusenteError(campo)))
+      }
     }
 
     return {

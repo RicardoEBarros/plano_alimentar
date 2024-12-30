@@ -41,4 +41,23 @@ describe('Controle Registro Suíte', () => {
 
   })
 
+  test('Deve retornar 400 se sexo não for informado', async () => {
+
+    const sut = new ControleRegistro()
+    const httpRequest = {
+      body: {
+        nome: 'nome_valido',
+        email: 'email_valido',
+        idade: 20,
+        altura: 1.80,
+        peso: 80,
+        objetivo_final: 'definição'
+      }
+    }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: sexo'))
+
+  })
+
 })

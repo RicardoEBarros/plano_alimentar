@@ -1,6 +1,8 @@
+import { HttpResponse, HttpRequest } from '../protocols/http'
+
 export class RegistroController {
 
-  async manipular(httpRequest: any): Promise<any> {
+  async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
 
     if (!httpRequest.body.nome) {
       return Promise.resolve({
@@ -15,7 +17,12 @@ export class RegistroController {
         body: new Error('Parâmetro ausente: email')
       })
     }
-    
+
+    return {
+      statusCode: 200,
+      body: {}
+    }
+
   }
 
 }

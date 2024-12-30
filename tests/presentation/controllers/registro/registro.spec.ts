@@ -1,5 +1,6 @@
 import { describe, test } from '@jest/globals'
 import { RegistroController } from '@controllers/registro'
+import { ParametroAusenteError } from '@controllers/../errors/parametro-ausente-error'
 
 describe('Registro Controller', () => {
 
@@ -18,7 +19,7 @@ describe('Registro Controller', () => {
     }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: nome'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('nome'))
 
   })
 
@@ -37,7 +38,7 @@ describe('Registro Controller', () => {
     }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: email'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('email'))
 
   })
 

@@ -1,3 +1,4 @@
+import { ParametroAusenteError } from '../errors/parametro-ausente-error'
 import { HttpResponse, HttpRequest } from '../protocols/http'
 
 export class RegistroController {
@@ -7,14 +8,14 @@ export class RegistroController {
     if (!httpRequest.body.nome) {
       return Promise.resolve({
         statusCode: 400,
-        body: new Error('Parâmetro ausente: nome')
+        body: new ParametroAusenteError('nome')
       })
     }
 
     if (!httpRequest.body.email) {
       return Promise.resolve({
         statusCode: 400,
-        body: new Error('Parâmetro ausente: email')
+        body: new ParametroAusenteError('email')
       })
     }
 

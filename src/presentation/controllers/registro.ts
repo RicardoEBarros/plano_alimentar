@@ -6,7 +6,7 @@ export class ControleRegistro {
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
     
-    const camposObrigatorios = [ 'nome', 'email' ]
+    const camposObrigatorios = [ 'nome', 'email', 'sexo' ]
     for (const campo of camposObrigatorios) {
       if (!httpRequest.body[campo]) {
         return Promise.resolve(badRequest(new ParametroAusenteError(campo)))

@@ -19,6 +19,11 @@ export class ControleRegistro {
       return Promise.resolve(badRequest(new ParametroInvalidoError('sexo')))
     }
 
+    const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
+    if (!definicoesValidas.includes(httpRequest.body['objetivo_final'])) {
+      return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
+    }
+
     return {
       statusCode: 200,
       body: {}

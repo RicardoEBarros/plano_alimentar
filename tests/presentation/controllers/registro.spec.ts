@@ -156,4 +156,24 @@ describe('Controle Registro Suíte', () => {
 
   })
 
+  test('Deve retornar 400 se valor do objetivo_final for inválido', async () => {
+
+    const sut = new ControleRegistro()
+    const httpRequest = {
+      body: {
+        nome: 'nome_valido',
+        email: 'email_valido',
+        sexo: 'masculino',
+        altura: 1.80,
+        peso: 80,
+        idade: 20,
+        objetivo_final: 'definição_inválida'
+      }
+    }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new Error('Parâmetro inválido: objetivo_final'))
+
+  })
+
 })

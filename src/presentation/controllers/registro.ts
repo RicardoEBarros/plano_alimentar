@@ -31,6 +31,10 @@ export class RegistroController implements Controller {
       if (!emailValido) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
       }
+
+      if (httpRequest.body.password !== httpRequest.body.confirmar_password) {
+        return badRequest(new ParametroInvalidoError('confirmar_password'))
+      }
   
       return {
         statusCode: 200,

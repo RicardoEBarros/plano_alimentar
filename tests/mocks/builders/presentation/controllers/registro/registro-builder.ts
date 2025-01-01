@@ -4,6 +4,7 @@ export class RegistroBuilder {
 
   constructor() {
     this.registroFake = {
+      id: 'id_valido',
       nome: 'nome_valido',
       email: 'email_valido',
       sexo: 'masculino',

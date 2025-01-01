@@ -175,7 +175,17 @@ describe('Controle Registro Suíte', () => {
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new InternalServerError())
-    
+
+  })
+
+  test('Deve retornar 200 se dados válidos forem informados', async () => {
+
+    const { sut } = makeRegistroController()
+    const httpRequest = { body: RegistroObjectMother.valido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({ id: 'id_valido', ...RegistroObjectMother.confirmarPasswordAusente() })
+
   })
 
 })

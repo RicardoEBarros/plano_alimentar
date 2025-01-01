@@ -3,8 +3,11 @@ import { ParametroInvalidoError } from '../errors/parametro-invalido-error'
 import { badRequest } from '../helpers/http-helper'
 import { Controller } from '../protocols/controller'
 import { HttpResponse, HttpRequest } from '../protocols/http'
+import { ValidadorEmail } from '../protocols/validador-email'
 
 export class ControleRegistro implements Controller {
+
+  constructor(private readonly validadorEmail: ValidadorEmail) {}
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
     
@@ -23,6 +26,11 @@ export class ControleRegistro implements Controller {
     const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
     if (!definicoesValidas.includes(httpRequest.body['objetivo_final'])) {
       return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
+    }
+
+    const emailValido = this.validadorEmail.emailValido(httpRequest.body['email'])
+    if (!emailValido) {
+      return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
     }
 
     return {

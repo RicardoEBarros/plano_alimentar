@@ -1,4 +1,4 @@
-import { ValidadorEmail } from '@controllers/../protocols'
+import { ValidadorEmail } from '@controllers/../protocols/validador-email'
 import { ValidadorEmailStub } from '../../stubs/utils/validador-email-stub'
 
 export const makeValidadorEmail = (): ValidadorEmail => {

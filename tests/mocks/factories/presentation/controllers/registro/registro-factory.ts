@@ -1,8 +1,7 @@
 import { RegistroController } from '@controllers/registro/registro-controller'
-import { ValidadorEmail } from '@controllers/../protocols'
+import { CriadorConta, ValidadorEmail } from '@controllers/registro/registro-protocols'
 import { makeValidadorEmail } from '../../../utils/email-factory'
 import { CriadorContaStub } from '../../../../stubs/presentation/controllers/registro/criador-conta-stub'
-import { CriadorConta } from '@domain/usecases/criador-conta'
 
 interface SutRegistroTypes {
   sut: RegistroController,

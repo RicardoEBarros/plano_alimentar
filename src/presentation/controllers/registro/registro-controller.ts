@@ -1,7 +1,6 @@
-import { CriadorConta } from '@domain/usecases/criador-conta'
 import { ParametroInvalidoError, ParametroAusenteError } from '../../errors'
 import { badRequest, internalServerError } from '../../helpers/http-helper'
-import { Controller, ValidadorEmail, HttpResponse, HttpRequest } from '../../protocols'
+import { Controller, ValidadorEmail, HttpResponse, HttpRequest, CriadorConta } from './registro-protocols'
 
 export class RegistroController implements Controller {
 

@@ -1,8 +1,7 @@
 import { describe, test } from '@jest/globals'
 import { RegistroObjectMother } from '../../object-mothers/presentation/controllers/registro-object-mother'
 import { makeRegistroController } from '../../factories/presentation/controllers/registro-factory'
-import { ParametroInvalidoError } from '@controllers/../errors/parametro-invalido-error'
-import { InternalServerError } from '@controllers/../errors/internal-server-error'
+import { ParametroInvalidoError, InternalServerError } from '@controllers/../errors'
 
 describe('Controle Registro Suíte', () => {
 

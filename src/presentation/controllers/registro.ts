@@ -1,5 +1,4 @@
-import { ParametroAusenteError } from '../errors/parametro-ausente-error'
-import { ParametroInvalidoError } from '../errors/parametro-invalido-error'
+import { ParametroInvalidoError, ParametroAusenteError } from '../errors'
 import { badRequest, internalServerError } from '../helpers/http-helper'
 import { Controller } from '../protocols/controller'
 import { HttpResponse, HttpRequest } from '../protocols/http'

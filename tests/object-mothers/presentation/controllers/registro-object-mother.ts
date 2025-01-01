@@ -65,4 +65,11 @@ export class RegistroObjectMother {
       .build()
   }
 
+  static passwordAusente(): object {
+    return RegistroBuilder
+      .aRegistro()
+      .passwordAusente()
+      .build()
+  }
+
 }

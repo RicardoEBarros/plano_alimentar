@@ -10,7 +10,9 @@ export class RegistroBuilder {
       idade: 20,
       altura: 1.80,
       peso: 80,
-      objetivo_final: 'definição'
+      objetivo_final: 'definição',
+      password: 'password_valido',
+      confirmar_password: 'confirmar_password_valido'
     }
   }
 
@@ -60,6 +62,11 @@ export class RegistroBuilder {
 
   objetivoFinalInvalido(): RegistroBuilder {
     Reflect.set(this.registroFake, 'objetivo_final', 'objetivo_final_invalido')
+    return this
+  }
+
+  passwordAusente(): RegistroBuilder {
+    Reflect.deleteProperty(this.registroFake, 'password')
     return this
   }
 

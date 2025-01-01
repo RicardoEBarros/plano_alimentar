@@ -5,7 +5,7 @@ import { Controller } from '../protocols/controller'
 import { HttpResponse, HttpRequest } from '../protocols/http'
 import { ValidadorEmail } from '../protocols/validador-email'
 
-export class ControleRegistro implements Controller {
+export class RegistroController implements Controller {
 
   constructor(private readonly validadorEmail: ValidadorEmail) {}
 

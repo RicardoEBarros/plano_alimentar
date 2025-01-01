@@ -12,7 +12,7 @@ export class RegistroBuilder {
       peso: 80,
       objetivo_final: 'definição',
       password: 'password_valido',
-      confirmar_password: 'confirmar_password_valido'
+      confirmar_password: 'password_valido'
     }
   }
 
@@ -77,6 +77,11 @@ export class RegistroBuilder {
 
   emailInvalido(): RegistroBuilder {
     Reflect.set(this.registroFake, 'email', 'email_invalido')
+    return this
+  }
+
+  confirmarPasswordInvalido(): RegistroBuilder {
+    Reflect.set(this.registroFake, 'confirmar_password', 'password_invalido')
     return this
   }
 

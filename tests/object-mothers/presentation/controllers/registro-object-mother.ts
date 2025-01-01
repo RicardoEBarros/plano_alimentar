@@ -92,4 +92,11 @@ export class RegistroObjectMother {
       .build()
   }
 
+  static confirmarPasswordInvalido(): object {
+    return RegistroBuilder
+      .aRegistro()
+      .confirmarPasswordInvalido()
+      .build()
+  }
+
 }

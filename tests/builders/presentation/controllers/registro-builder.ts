@@ -70,6 +70,11 @@ export class RegistroBuilder {
     return this
   }
 
+  confirmarPasswordAusente(): RegistroBuilder {
+    Reflect.deleteProperty(this.registroFake, 'confirmar_password')
+    return this
+  }
+
   build(): object {
     return this.registroFake
   }

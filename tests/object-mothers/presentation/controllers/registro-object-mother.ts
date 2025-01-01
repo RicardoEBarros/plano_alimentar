@@ -72,4 +72,11 @@ export class RegistroObjectMother {
       .build()
   }
 
+  static confirmarPasswordAusente(): object {
+    return RegistroBuilder
+      .aRegistro()
+      .confirmarPasswordAusente()
+      .build()
+  }
+
 }

@@ -104,4 +104,14 @@ describe('Controle Registro Suíte', () => {
 
   })
 
+  test('Deve retornar 400 se confirmar_password não for informado', async () => {
+
+    const sut = new ControleRegistro()
+    const httpRequest = { body: RegistroObjectMother.confirmarPasswordAusente() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: confirmar_password'))
+
+  })
+
 })

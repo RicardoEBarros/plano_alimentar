@@ -2,6 +2,7 @@ import { describe, test } from '@jest/globals'
 import { RegistroObjectMother } from '../../object-mothers/presentation/controllers/registro-object-mother'
 import { makeRegistroController } from '../../factories/presentation/controllers/registro-factory'
 import { ParametroInvalidoError } from '@controllers/../errors/parametro-invalido-error'
+import { InternalServerError } from '@controllers/../errors/internal-server-error'
 
 describe('Controle Registro Suíte', () => {
 
@@ -133,6 +134,17 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.valido() }
     await sut.manipular(httpRequest)
     expect(emailValidoSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'))
+
+  })
+  
+  test('Deve retornar 500 se ValidadorEmail lançar uma exceção', async () => {
+
+    const { sut, validadorEmailStub } = makeRegistroController()
+    jest.spyOn(validadorEmailStub, 'emailValido').mockImplementationOnce(() => { throw new Error() })
+    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
 
   })
 

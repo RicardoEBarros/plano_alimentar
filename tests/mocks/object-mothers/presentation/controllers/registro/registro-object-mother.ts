@@ -1,4 +1,4 @@
-import { RegistroBuilder } from '../../../builders/presentation/controllers/registro-builder'
+import { RegistroBuilder } from '../../../../builders/presentation/controllers/registro/registro-builder'
 
 export class RegistroObjectMother {
 

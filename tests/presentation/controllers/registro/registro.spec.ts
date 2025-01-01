@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals'
-import { RegistroObjectMother } from '../../object-mothers/presentation/controllers/registro-object-mother'
-import { makeRegistroController } from '../../factories/presentation/controllers/registro-factory'
+import { RegistroObjectMother } from '../../../mocks/object-mothers/presentation/controllers/registro/registro-object-mother'
+import { makeRegistroController } from '../../../mocks/factories/presentation/controllers/registro/registro-factory'
 import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@controllers/../errors'
 
 describe('Controle Registro Suíte', () => {
@@ -154,6 +154,16 @@ describe('Controle Registro Suíte', () => {
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new InternalServerError())
+
+  })
+
+  test('Deve chamar CriadorConta com os valores corretos', async () => {
+
+    const { sut, criadorContaStub } = makeRegistroController()
+    const adicionarSpy = jest.spyOn(criadorContaStub, 'criar')
+    const httpRequest = { body: RegistroObjectMother.valido() }
+    await sut.manipular(httpRequest)
+    expect(adicionarSpy).toHaveBeenNthCalledWith(1, RegistroObjectMother.confirmarPasswordAusente())
 
   })
 

@@ -1,6 +1,6 @@
 import { RegistroController } from '@controllers/registro'
 import { ValidadorEmailStub } from '../../../stubs/presentation/controllers/validador-email-stub'
-import { ValidadorEmail } from '@controllers/../protocols/validador-email'
+import { ValidadorEmail } from '@controllers/../protocols'
 
 interface SutRegistroTypes {
   sut: RegistroController,

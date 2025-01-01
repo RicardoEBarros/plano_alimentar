@@ -1,8 +1,6 @@
 import { ParametroInvalidoError, ParametroAusenteError } from '../errors'
 import { badRequest, internalServerError } from '../helpers/http-helper'
-import { Controller } from '../protocols/controller'
-import { HttpResponse, HttpRequest } from '../protocols/http'
-import { ValidadorEmail } from '../protocols/validador-email'
+import { Controller, ValidadorEmail, HttpResponse, HttpRequest } from '../protocols'
 
 export class RegistroController implements Controller {
 

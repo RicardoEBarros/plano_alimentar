@@ -79,4 +79,11 @@ export class RegistroObjectMother {
       .build()
   }
 
+  static emailInvalido(): object {
+    return RegistroBuilder
+      .aRegistro()
+      .emailInvalido()
+      .build()
+  }
+
 }

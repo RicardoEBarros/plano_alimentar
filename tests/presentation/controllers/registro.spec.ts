@@ -1,12 +1,13 @@
 import { describe, test } from '@jest/globals'
 import { RegistroObjectMother } from '../../object-mothers/presentation/controllers/registro-object-mother'
 import { makeControleRegistro } from '../../factories/presentation/controllers/registro-factory'
+import { ParametroInvalidoError } from '@controllers/../errors/parametro-invalido-error'
 
 describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se nome não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.nomeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -16,7 +17,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se email não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.emailAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -26,7 +27,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se sexo não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.sexoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -36,7 +37,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se valor de sexo for inválido', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.sexoInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -46,7 +47,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se idade não for informada', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.idadeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -56,7 +57,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se altura não for informada', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.alturaAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -66,7 +67,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se peso não for informada', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.pesoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -76,7 +77,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se objetivo_final não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.objetivoFinalAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -86,7 +87,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se valor do objetivo_final for inválido', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.objetivoFinalInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -96,7 +97,7 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se password não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.passwordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
@@ -106,11 +107,22 @@ describe('Controle Registro Suíte', () => {
 
   test('Deve retornar 400 se confirmar_password não for informado', async () => {
 
-    const sut = makeControleRegistro()
+    const { sut } = makeControleRegistro()
     const httpRequest = { body: RegistroObjectMother.confirmarPasswordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: confirmar_password'))
+
+  })
+
+  test('Deve retornar 400 se um email inválido for fornecido', async () => {
+
+    const { sut, validadorEmailStub } = makeControleRegistro()
+    jest.spyOn(validadorEmailStub, 'emailValido').mockReturnValueOnce(false)
+    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new ParametroInvalidoError('email'))
 
   })
 

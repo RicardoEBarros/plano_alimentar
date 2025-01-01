@@ -75,6 +75,11 @@ export class RegistroBuilder {
     return this
   }
 
+  emailInvalido(): RegistroBuilder {
+    Reflect.set(this.registroFake, 'email', 'email_invalido')
+    return this
+  }
+
   build(): object {
     return this.registroFake
   }

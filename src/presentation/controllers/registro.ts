@@ -10,6 +10,8 @@ export class RegistroController implements Controller {
     
     try {
       
+      const { sexo, objetivo_final, email, password, confirmar_password } = httpRequest.body
+
       const camposObrigatorios = [ 'nome', 'email', 'sexo', 'idade', 'altura', 'peso', 'objetivo_final', 'password', 'confirmar_password' ]
       for (const campo of camposObrigatorios) {
         if (!httpRequest.body[campo]) {
@@ -18,21 +20,21 @@ export class RegistroController implements Controller {
       }
   
       const sexosValidos = [ 'masculino', 'feminino' ]
-      if (!sexosValidos.includes(httpRequest.body['sexo'])) {
+      if (!sexosValidos.includes(sexo)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('sexo')))
       }
   
       const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
-      if (!definicoesValidas.includes(httpRequest.body['objetivo_final'])) {
+      if (!definicoesValidas.includes(objetivo_final)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
       }
   
-      const emailValido = this.validadorEmail.emailValido(httpRequest.body['email'])
+      const emailValido = this.validadorEmail.emailValido(email)
       if (!emailValido) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
       }
 
-      if (httpRequest.body.password !== httpRequest.body.confirmar_password) {
+      if (password !== confirmar_password) {
         return badRequest(new ParametroInvalidoError('confirmar_password'))
       }
   

@@ -1,7 +1,7 @@
 import { describe, test } from '@jest/globals'
 import { RegistroObjectMother } from '../../object-mothers/presentation/controllers/registro-object-mother'
 import { makeRegistroController } from '../../factories/presentation/controllers/registro-factory'
-import { ParametroInvalidoError, InternalServerError } from '@controllers/../errors'
+import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@controllers/../errors'
 
 describe('Controle Registro Suíte', () => {
 
@@ -11,7 +11,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.nomeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: nome'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('nome'))
 
   })
 
@@ -21,7 +21,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.emailAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: email'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('email'))
 
   })
 
@@ -31,7 +31,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.sexoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: sexo'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('sexo'))
 
   })
 
@@ -41,7 +41,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.sexoInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro inválido: sexo'))
+    expect(httpResponse.body).toEqual(new ParametroInvalidoError('sexo'))
 
   })
 
@@ -51,7 +51,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.idadeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: idade'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('idade'))
 
   })
 
@@ -61,7 +61,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.alturaAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: altura'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('altura'))
 
   })
 
@@ -71,7 +71,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.pesoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: peso'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('peso'))
 
   })
 
@@ -81,7 +81,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.objetivoFinalAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: objetivo_final'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('objetivo_final'))
 
   })
 
@@ -91,7 +91,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.objetivoFinalInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro inválido: objetivo_final'))
+    expect(httpResponse.body).toEqual(new ParametroInvalidoError('objetivo_final'))
 
   })
 
@@ -101,7 +101,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.passwordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: password'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('password'))
 
   })
 
@@ -111,7 +111,7 @@ describe('Controle Registro Suíte', () => {
     const httpRequest = { body: RegistroObjectMother.confirmarPasswordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new Error('Parâmetro ausente: confirmar_password'))
+    expect(httpResponse.body).toEqual(new ParametroAusenteError('confirmar_password'))
 
   })
 

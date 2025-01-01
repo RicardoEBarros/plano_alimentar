@@ -1,7 +1,6 @@
-import { InternalServerError } from '../errors/internal-server-error'
 import { ParametroAusenteError } from '../errors/parametro-ausente-error'
 import { ParametroInvalidoError } from '../errors/parametro-invalido-error'
-import { badRequest } from '../helpers/http-helper'
+import { badRequest, internalServerError } from '../helpers/http-helper'
 import { Controller } from '../protocols/controller'
 import { HttpResponse, HttpRequest } from '../protocols/http'
 import { ValidadorEmail } from '../protocols/validador-email'
@@ -42,10 +41,7 @@ export class RegistroController implements Controller {
       }
 
     } catch (error) {
-      return {
-        statusCode: 500,
-        body: new InternalServerError()
-      }
+      return internalServerError()
     }
 
   }

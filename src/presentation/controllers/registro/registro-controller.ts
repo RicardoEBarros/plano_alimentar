@@ -39,11 +39,11 @@ export class RegistroController implements Controller {
       }
 
       Reflect.deleteProperty(dadosConta, 'confirmar_password')
-      await this.criadorContaStub.criar(dadosConta)
+      const conta = await this.criadorContaStub.criar(dadosConta)
   
       return {
         statusCode: 200,
-        body: {}
+        body: conta
       }
 
     } catch (error) {

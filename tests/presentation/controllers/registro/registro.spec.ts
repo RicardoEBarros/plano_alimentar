@@ -167,4 +167,15 @@ describe('Controle Registro Suíte', () => {
 
   })
 
+  test('Deve retornar 500 se CriarConta lançar uma exceção', async () => {
+
+    const { sut, criadorContaStub } = makeRegistroController()
+    jest.spyOn(criadorContaStub, 'criar').mockImplementationOnce(() => { throw new Error() })
+    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
+    
+  })
+
 })

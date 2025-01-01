@@ -9,7 +9,10 @@
     "moduleResolution": "node",
     "strict": true,
     "paths": {
-      "@controllers/*": ["src/presentation/controllers/*"]
+      "@controllers/*": ["src/presentation/controllers/*"],
+      "@domain/*": ["src/domain/*"],
+      "@models/*": ["src/domain/models/*"],
+      "@usecases/*": ["src/domain/usecases/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

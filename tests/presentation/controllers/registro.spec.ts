@@ -126,4 +126,14 @@ describe('Controle Registro Suíte', () => {
 
   })
 
+  test('Deve chamar ValidadorEmail com o email correto', async () => {
+
+    const { sut, validadorEmailStub } = makeRegistroController()
+    const emailValidoSpy = jest.spyOn(validadorEmailStub, 'emailValido')
+    const httpRequest = { body: RegistroObjectMother.valido() }
+    await sut.manipular(httpRequest)
+    expect(emailValidoSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'))
+
+  })
+
 })

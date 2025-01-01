@@ -2,6 +2,12 @@ import { RegistroBuilder } from '../../../builders/presentation/controllers/regi
 
 export class RegistroObjectMother {
 
+  static valido(): object {
+    return RegistroBuilder
+      .aRegistro()
+      .build()
+  }
+
   static nomeAusente(): object {
     return RegistroBuilder
       .aRegistro()

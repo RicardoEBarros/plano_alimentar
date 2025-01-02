@@ -44,6 +44,7 @@ export class RegistroController implements Controller {
       return ok(conta)
 
     } catch (error) {
+      console.error(error)
       return internalServerError()
     }
 

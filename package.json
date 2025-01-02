@@ -5,8 +5,10 @@
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
-    "test:unit": "npm test -- --watch",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
+    "test:verbose": "jest --passWithNoTests --runInBand",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky"
   },

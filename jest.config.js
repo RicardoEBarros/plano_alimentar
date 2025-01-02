@@ -1,7 +1,7 @@
 const { pathsToModuleNameMapper } = require("ts-jest");
 
 module.exports = {
-  roots: ['<rootDir>/tests'],
+  roots: ['<rootDir>/tests', '<rootDir>/src'],
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
     '!**/protocols/**',

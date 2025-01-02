@@ -12,7 +12,8 @@
       "@controllers/*": ["src/presentation/controllers/*"],
       "@domain/*": ["src/domain/*"],
       "@models/*": ["src/domain/models/*"],
-      "@usecases/*": ["src/domain/usecases/*"]
+      "@usecases/*": ["src/domain/usecases/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

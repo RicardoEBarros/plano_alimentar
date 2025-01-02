@@ -16,6 +16,7 @@ module.exports = {
     '^@controllers/(.*)$': '<rootDir>/src/presentation/controllers/$1',
     '^@domain/(.*)$': '<rootDir>/src/domain/$1',
     '^@models/(.*)$': '<rootDir>/src/domain/models/$1',
-    '^@usecases/(.*)$': '<rootDir>/src/domain/usecases/$1'
+    '^@usecases/(.*)$': '<rootDir>/src/domain/usecases/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1'
   }
 }

@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals'
-import { ContaModel } from '@domain/models/conta'
+import { ContaModel } from '@data/usecases/registrador-conta/registrador-conta-db-protocols'
 import { RegistroObjectMother } from '../../../mocks/object-mothers/presentation/controllers/registro/registro-object-mother'
 import { makeRegistroContaDb } from '../../../mocks/factories/data/usecases/registrador-conta/registrador-conta-db-factory'
 

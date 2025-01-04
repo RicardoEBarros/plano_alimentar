@@ -1,6 +1,4 @@
-import { RegistradorConta, RegistradorContaModel } from '@domain/usecases/registrador-conta'
-import { Encriptador } from '@data/protocols/encriptador'
-import { ContaModel } from '@domain/models/conta'
+import { RegistradorConta, RegistradorContaModel, Encriptador, ContaModel } from './registrador-conta-db-protocols'
 
 export class RegistradorContaDb implements RegistradorConta {
 

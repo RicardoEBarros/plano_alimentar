@@ -13,7 +13,8 @@
       "@domain/*": ["src/domain/*"],
       "@models/*": ["src/domain/models/*"],
       "@usecases/*": ["src/domain/usecases/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@data/*": ["src/data/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

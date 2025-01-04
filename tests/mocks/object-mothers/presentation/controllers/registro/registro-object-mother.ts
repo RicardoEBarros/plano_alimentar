@@ -1,3 +1,4 @@
+import { ContaModel } from '@domain/models/conta'
 import { RegistroBuilder } from '../../../../builders/presentation/controllers/registro/registro-builder'
 
 export class RegistroObjectMother {

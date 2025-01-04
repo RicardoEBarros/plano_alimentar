@@ -157,20 +157,20 @@ describe('Controle Registro Suíte', () => {
 
   })
 
-  test('Deve chamar CriadorConta com os valores corretos', async () => {
+  test('Deve chamar RegistradorConta com os valores corretos', async () => {
 
-    const { sut, criadorContaStub } = makeRegistroController()
-    const adicionarSpy = jest.spyOn(criadorContaStub, 'criar')
+    const { sut, registradorContaStub } = makeRegistroController()
+    const adicionarSpy = jest.spyOn(registradorContaStub, 'registrar')
     const httpRequest = { body: RegistroObjectMother.valido() }
     await sut.manipular(httpRequest)
     expect(adicionarSpy).toHaveBeenNthCalledWith(1, RegistroObjectMother.confirmarPasswordAusente())
 
   })
 
-  test('Deve retornar 500 se CriarConta lançar uma exceção', async () => {
+  test('Deve retornar 500 se RegistrarConta lançar uma exceção', async () => {
 
-    const { sut, criadorContaStub } = makeRegistroController()
-    jest.spyOn(criadorContaStub, 'criar').mockImplementationOnce(() => { throw new Error() })
+    const { sut, registradorContaStub } = makeRegistroController()
+    jest.spyOn(registradorContaStub, 'registrar').mockImplementationOnce(() => { throw new Error() })
     const httpRequest = { body: RegistroObjectMother.emailInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(500)

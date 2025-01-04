@@ -1,10 +1,10 @@
 import { ParametroInvalidoError, ParametroAusenteError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
-import { Controller, ValidadorEmail, HttpResponse, HttpRequest, CriadorConta } from './registro-protocols'
+import { Controller, ValidadorEmail, HttpResponse, HttpRequest, RegistradorConta } from './registro-protocols'
 
 export class RegistroController implements Controller {
 
-  constructor(private readonly validadorEmail: ValidadorEmail, private readonly criadorContaStub: CriadorConta) {}
+  constructor(private readonly validadorEmail: ValidadorEmail, private readonly registradorContaStub: RegistradorConta) {}
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
     
@@ -39,7 +39,7 @@ export class RegistroController implements Controller {
       }
 
       Reflect.deleteProperty(dadosConta, 'confirmar_password')
-      const conta = await this.criadorContaStub.criar(dadosConta)
+      const conta = await this.registradorContaStub.registrar(dadosConta)
   
       return ok(conta)
 

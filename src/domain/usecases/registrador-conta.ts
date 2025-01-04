@@ -8,7 +8,7 @@ import {
   Sexo 
 } from '@domain/types/conta'
 
-export interface CriadorContaModel {
+export interface RegistradorContaModel {
   nome: string,
   email: string,
   idade: number,
@@ -29,6 +29,6 @@ export interface CriadorContaModel {
   data_alcancar_objetivo?: string
 }
 
-export interface CriadorConta {
-  criar(conta: CriadorContaModel): Promise<ContaModel>
+export interface RegistradorConta {
+  registrar(conta: RegistradorContaModel): Promise<ContaModel>
 }

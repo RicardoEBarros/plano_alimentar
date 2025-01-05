@@ -3,9 +3,16 @@ import { RegistradorObjectMother } from '../../../../object-mothers/presentation
 
 export class RegistradorContaRepositoryObjectMother extends RegistradorObjectMother {
 
-  static valido(): RegistradorContaRepositoryObjectMother {
+  static valido(): object {
     return RegistradorContaRepositoryBuilder
       .aRegistro()
+      .build()
+  }
+
+  static confirmarPasswordAusente(): object {
+    return RegistradorContaRepositoryBuilder
+      .aRegistro()
+      .confirmarPasswordAusente()
       .build()
   }
 

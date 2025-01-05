@@ -1,6 +1,6 @@
-import { describe, test, jest, expect } from '@jest/globals'
-import { BcryptAdapter } from '@infra/criptografia/bcrypt-adapter'
 import bcrypt from 'bcrypt'
+import { describe, test, jest, expect } from '@jest/globals'
+import { makeBcryptAdapter } from '@mocks/factories/infra/criptografia/bcrypt-adapter-factory'
 
 jest.mock('bcrypt', () => ({
   async hash(): Promise<string> {
@@ -9,11 +9,12 @@ jest.mock('bcrypt', () => ({
 }))
 
 describe('BcryptAdapter Suíte', () => {
+  
+  const salt = 12
 
   test('Deve chamar bcrypt com os valores corretos ', async () => {
 
-    const salt = 12
-    const sut = new BcryptAdapter(salt)
+    const sut = makeBcryptAdapter(salt)
     const hashSpy = jest.spyOn(bcrypt, 'hash')
     await sut.encriptar('valor_sem_encriptação')
     expect(hashSpy).toHaveBeenNthCalledWith(1, 'valor_sem_encriptação', salt)
@@ -22,8 +23,7 @@ describe('BcryptAdapter Suíte', () => {
 
   test('Deve retornar uma hash se tudo der certo', async () => {
 
-    const salt = 12
-    const sut = new BcryptAdapter(salt)
+    const sut = makeBcryptAdapter(salt)
     const encriptado = await sut.encriptar('valor_sem_encriptação')
     expect(encriptado).toBe('hash')
 

@@ -19,6 +19,7 @@ module.exports = {
     '^@models/(.*)$': '<rootDir>/src/domain/models/$1',
     '^@usecases/(.*)$': '<rootDir>/src/domain/usecases/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
-    '^@data/(.*)$': '<rootDir>/src/data/$1'
+    '^@data/(.*)$': '<rootDir>/src/data/$1',
+    '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1'
   }
 }

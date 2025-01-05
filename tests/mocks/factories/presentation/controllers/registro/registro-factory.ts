@@ -1,5 +1,5 @@
-import { RegistroController } from '@controllers/registro/registro-controller'
-import { RegistradorConta, ValidadorEmail } from '@controllers/registro/registro-protocols'
+import { RegistroController } from '@controllers/registrador-conta/registro-controller'
+import { RegistradorConta, ValidadorEmail } from '@controllers/registrador-conta/registro-protocols'
 import { makeValidadorEmail } from '@mocks/factories/utils/validador-email-factory'
 import { RegistradorContaStub } from '@mocks/stubs/presentation/controllers/registro/registrador-conta-stub'
 

@@ -38,5 +38,15 @@ describe('RegistradorContaDb Suíte', () => {
 
   })
 
+  test('Deve lançar exceção se ocorrer erro no Encriptador', async () => {
+
+    const { sut, registradorContaRepositoryStub } = makeRegistroContaDb()
+    jest.spyOn(registradorContaRepositoryStub, 'registrar').mockReturnValueOnce(Promise.reject(new Error()))
+    const conta = RegistradorObjectMother.confirmarPasswordAusente() as ContaModel
+    const promise = sut.registrar(conta)
+    await expect(promise).rejects.toThrow() 
+
+  })
+
 })
 

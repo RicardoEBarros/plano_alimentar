@@ -1,5 +1,5 @@
 import { describe, test } from '@jest/globals'
-import { RegistroObjectMother } from '../../../mocks/object-mothers/presentation/controllers/registro/registro-object-mother'
+import { RegistradorObjectMother } from '../../../mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { makeRegistroController } from '../../../mocks/factories/presentation/controllers/registro/registro-factory'
 import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@controllers/../errors'
 
@@ -8,7 +8,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se nome não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.nomeAusente() }
+    const httpRequest = { body: RegistradorObjectMother.nomeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('nome'))
@@ -18,7 +18,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se email não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.emailAusente() }
+    const httpRequest = { body: RegistradorObjectMother.emailAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('email'))
@@ -28,7 +28,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se sexo não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.sexoAusente() }
+    const httpRequest = { body: RegistradorObjectMother.sexoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('sexo'))
@@ -38,7 +38,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se valor de sexo for inválido', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.sexoInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.sexoInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroInvalidoError('sexo'))
@@ -48,7 +48,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se idade não for informada', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.idadeAusente() }
+    const httpRequest = { body: RegistradorObjectMother.idadeAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('idade'))
@@ -58,7 +58,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se altura não for informada', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.alturaAusente() }
+    const httpRequest = { body: RegistradorObjectMother.alturaAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('altura'))
@@ -68,7 +68,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se peso não for informada', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.pesoAusente() }
+    const httpRequest = { body: RegistradorObjectMother.pesoAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('peso'))
@@ -78,7 +78,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se objetivo final não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.objetivoFinalAusente() }
+    const httpRequest = { body: RegistradorObjectMother.objetivoFinalAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('objetivo_final'))
@@ -88,7 +88,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se valor do objetivo final for inválido', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.objetivoFinalInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.objetivoFinalInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroInvalidoError('objetivo_final'))
@@ -98,7 +98,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se password não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.passwordAusente() }
+    const httpRequest = { body: RegistradorObjectMother.passwordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('password'))
@@ -108,7 +108,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se confirmação do password não for informado', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.confirmarPasswordAusente() }
+    const httpRequest = { body: RegistradorObjectMother.confirmarPasswordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroAusenteError('confirmar_password'))
@@ -118,7 +118,7 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 400 se confirmação do password falhar', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.confirmarPasswordInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.confirmarPasswordInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroInvalidoError('confirmar_password'))
@@ -129,7 +129,7 @@ describe('Controle Registro Suíte', () => {
 
     const { sut, validadorEmailStub } = makeRegistroController()
     jest.spyOn(validadorEmailStub, 'emailValido').mockReturnValueOnce(false)
-    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.emailInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroInvalidoError('email'))
@@ -140,7 +140,7 @@ describe('Controle Registro Suíte', () => {
 
     const { sut, validadorEmailStub } = makeRegistroController()
     const emailValidoSpy = jest.spyOn(validadorEmailStub, 'emailValido')
-    const httpRequest = { body: RegistroObjectMother.valido() }
+    const httpRequest = { body: RegistradorObjectMother.valido() }
     await sut.manipular(httpRequest)
     expect(emailValidoSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'))
 
@@ -150,7 +150,7 @@ describe('Controle Registro Suíte', () => {
 
     const { sut, validadorEmailStub } = makeRegistroController()
     jest.spyOn(validadorEmailStub, 'emailValido').mockImplementationOnce(() => { throw new Error() })
-    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.emailInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new InternalServerError())
@@ -161,9 +161,9 @@ describe('Controle Registro Suíte', () => {
 
     const { sut, registradorContaStub } = makeRegistroController()
     const adicionarSpy = jest.spyOn(registradorContaStub, 'registrar')
-    const httpRequest = { body: RegistroObjectMother.valido() }
+    const httpRequest = { body: RegistradorObjectMother.valido() }
     await sut.manipular(httpRequest)
-    expect(adicionarSpy).toHaveBeenNthCalledWith(1, RegistroObjectMother.confirmarPasswordAusente())
+    expect(adicionarSpy).toHaveBeenNthCalledWith(1, RegistradorObjectMother.confirmarPasswordAusente())
 
   })
 
@@ -171,7 +171,7 @@ describe('Controle Registro Suíte', () => {
 
     const { sut, registradorContaStub } = makeRegistroController()
     jest.spyOn(registradorContaStub, 'registrar').mockImplementationOnce(() => { throw new Error() })
-    const httpRequest = { body: RegistroObjectMother.emailInvalido() }
+    const httpRequest = { body: RegistradorObjectMother.emailInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new InternalServerError())
@@ -181,10 +181,10 @@ describe('Controle Registro Suíte', () => {
   test('Deve retornar 200 se dados válidos forem informados', async () => {
 
     const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistroObjectMother.valido() }
+    const httpRequest = { body: RegistradorObjectMother.valido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(200)
-    expect(httpResponse.body).toEqual({ id: 'id_valido', ...RegistroObjectMother.confirmarPasswordAusente() })
+    expect(httpResponse.body).toEqual({ id: 'id_valido', ...RegistradorObjectMother.confirmarPasswordAusente() })
 
   })
 

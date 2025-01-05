@@ -1,22 +1,30 @@
 import { Encriptador } from '@data/protocols/encriptador'
 import { RegistradorContaDb } from '@data/usecases/registrador-conta/registrador-conta-db'
-import { RegistradorConta } from '@domain/usecases/registrador-conta'
 import { EncriptadorStub } from '../../../../stubs/data/usecases/registrador-conta/encriptador-stub'
+import { RegistradorContaRepositoryStub } from '../../../../stubs/data/usecases/registrador-conta/registrador-conta-repositoty-stub'
+import { RegistradorContaRepository, RegistradorConta } from '@data/usecases/registrador-conta/registrador-conta-db-protocols'
 
 interface SutRegistradorContaDbTypes {
   sut: RegistradorConta,
-  encriptadorStub: Encriptador
+  encriptadorStub: Encriptador,
+  registradorContaRepositoryStub: RegistradorContaRepository
 }
 
 export const makeEncriptadorStub = (): Encriptador => {
   return new EncriptadorStub()
 }
 
+export const makeRegistradorContaRepository = (): RegistradorContaRepository => {
+  return new RegistradorContaRepositoryStub()
+}
+
 export const makeRegistroContaDb = (): SutRegistradorContaDbTypes => {
   const encriptadorStub = makeEncriptadorStub()
-  const sut = new RegistradorContaDb(encriptadorStub)
+  const registradorContaRepositoryStub = makeRegistradorContaRepository()
+  const sut = new RegistradorContaDb(encriptadorStub, registradorContaRepositoryStub)
   return {
     sut, 
-    encriptadorStub
+    encriptadorStub,
+    registradorContaRepositoryStub
   }
 }

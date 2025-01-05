@@ -1,6 +1,6 @@
-export class RegistroBuilder {
+export class RegistradorBuilder {
 
-  private registroFake = {}
+  protected registroFake = {}
 
   constructor() {
     this.registroFake = {
@@ -17,71 +17,71 @@ export class RegistroBuilder {
     }
   }
 
-  static aRegistro(): RegistroBuilder {
-    return new RegistroBuilder()
+  static aRegistro(): RegistradorBuilder {
+    return new RegistradorBuilder()
   }
 
-  nomeAusente(): RegistroBuilder {
+  nomeAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'nome')
     return this
   }
   
-  emailAusente(): RegistroBuilder {
+  emailAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'email')
     return this
   }
 
-  sexoAusente(): RegistroBuilder {
+  sexoAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'sexo')
     return this
   }
 
-  sexoInvalido(): RegistroBuilder {
+  sexoInvalido(): RegistradorBuilder {
     Reflect.set(this.registroFake, 'sexo', 'sexo_invalido')
     return this
   }
 
-  idadeAusente(): RegistroBuilder {
+  idadeAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'idade')
     return this
   }
 
-  alturaAusente(): RegistroBuilder {
+  alturaAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'altura')
     return this
   }
 
-  pesoAusente(): RegistroBuilder {
+  pesoAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'peso')
     return this
   }
 
-  objetivoFinalAusente(): RegistroBuilder {
+  objetivoFinalAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'objetivo_final')
     return this
   }
 
-  objetivoFinalInvalido(): RegistroBuilder {
+  objetivoFinalInvalido(): RegistradorBuilder {
     Reflect.set(this.registroFake, 'objetivo_final', 'objetivo_final_invalido')
     return this
   }
 
-  passwordAusente(): RegistroBuilder {
+  passwordAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'password')
     return this
   }
 
-  confirmarPasswordAusente(): RegistroBuilder {
+  confirmarPasswordAusente(): RegistradorBuilder {
     Reflect.deleteProperty(this.registroFake, 'confirmar_password')
     return this
   }
 
-  emailInvalido(): RegistroBuilder {
+  emailInvalido(): RegistradorBuilder {
     Reflect.set(this.registroFake, 'email', 'email_invalido')
     return this
   }
 
-  confirmarPasswordInvalido(): RegistroBuilder {
+  confirmarPasswordInvalido(): RegistradorBuilder {
     Reflect.set(this.registroFake, 'confirmar_password', 'password_invalido')
     return this
   }

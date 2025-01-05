@@ -1,100 +1,99 @@
-import { ContaModel } from '@domain/models/conta'
-import { RegistroBuilder } from '../../../../builders/presentation/controllers/registro/registro-builder'
+import { RegistradorBuilder } from '../../../../builders/presentation/controllers/registro/registrador-builder'
 
-export class RegistroObjectMother {
+export class RegistradorObjectMother {
 
   static valido(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .build()
   }
 
   static nomeAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .nomeAusente()
       .build()
   }
 
   static emailAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .emailAusente()
       .build()
   }
 
   static sexoAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .sexoAusente()
       .build()
   }
 
   static sexoInvalido(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .sexoInvalido()
       .build()
   }
 
   static idadeAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .idadeAusente()
       .build()
   }
 
   static alturaAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .alturaAusente()
       .build()
   }
 
   static pesoAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .pesoAusente()
       .build()
   }
 
   static objetivoFinalAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .objetivoFinalAusente()
       .build()
   }
 
   static objetivoFinalInvalido(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .objetivoFinalInvalido()
       .build()
   }
 
   static passwordAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .passwordAusente()
       .build()
   }
 
   static confirmarPasswordAusente(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .confirmarPasswordAusente()
       .build()
   }
 
   static emailInvalido(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .emailInvalido()
       .build()
   }
 
   static confirmarPasswordInvalido(): object {
-    return RegistroBuilder
+    return RegistradorBuilder
       .aRegistro()
       .confirmarPasswordInvalido()
       .build()

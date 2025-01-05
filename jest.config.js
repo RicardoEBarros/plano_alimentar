@@ -1,6 +1,7 @@
 const { pathsToModuleNameMapper } = require("ts-jest");
 
 module.exports = {
+  injectGlobals: false,
   roots: ['<rootDir>/tests', '<rootDir>/src'],
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
@@ -20,6 +21,7 @@ module.exports = {
     '^@usecases/(.*)$': '<rootDir>/src/domain/usecases/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@data/(.*)$': '<rootDir>/src/data/$1',
+    '^@infra/(.*)$': '<rootDir>/src/infra/$1',
     '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1'
   }
 }

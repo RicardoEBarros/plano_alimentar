@@ -15,6 +15,7 @@
       "@usecases/*": ["src/domain/usecases/*"],
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
+      "@infra/*": ["src/infra/*"],
       "@mocks/*": ["tests/mocks/*"] 
     }
   },

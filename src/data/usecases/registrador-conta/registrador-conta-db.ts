@@ -12,8 +12,8 @@ export class RegistradorContaDb implements RegistradorConta {
 
   async registrar(dadosConta: RegistradorContaModel): Promise<ContaModel> {
     const hashPassword = await this.encriptador.encriptar(dadosConta.password)
-    await this.registradorContaRepository.registrar(Object.assign({}, dadosConta, { password: hashPassword }))
-    return Promise.resolve({} as ContaModel)
+    const conta = await this.registradorContaRepository.registrar(Object.assign({}, dadosConta, { password: hashPassword }))
+    return conta
   }
   
 }

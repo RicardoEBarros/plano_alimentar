@@ -1,4 +1,4 @@
-import { describe, test, expect } from '@jest/globals'
+import { describe, test, expect, jest } from '@jest/globals'
 import { ContaModel } from '@data/usecases/registrador-conta/registrador-conta-db-protocols'
 import { RegistradorObjectMother } from '@mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { makeRegistroContaDb } from '@mocks/factories/data/usecases/registrador-conta/registrador-conta-db-factory'

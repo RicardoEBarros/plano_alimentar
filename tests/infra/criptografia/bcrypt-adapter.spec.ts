@@ -12,7 +12,7 @@ describe('BcryptAdapter Suíte', () => {
   
   const salt = 12
 
-  test('Deve chamar bcrypt com os valores corretos ', async () => {
+  test('Deve chamar bcrypt com os valores corretos', async () => {
 
     const sut = makeBcryptAdapter(salt)
     const hashSpy = jest.spyOn(bcrypt, 'hash')
@@ -26,6 +26,15 @@ describe('BcryptAdapter Suíte', () => {
     const sut = makeBcryptAdapter(salt)
     const encriptado = await sut.encriptar('valor_sem_encriptação')
     expect(encriptado).toBe('hash')
+
+  })
+
+  test('Deve lançar exceção se bcrypt lançar um erro', async () => {
+
+    const sut = makeBcryptAdapter(salt)
+    jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => { throw new Error() })
+    const promise = sut.encriptar('valor_sem_encriptação')
+    expect(promise).rejects.toThrow()
 
   })
 

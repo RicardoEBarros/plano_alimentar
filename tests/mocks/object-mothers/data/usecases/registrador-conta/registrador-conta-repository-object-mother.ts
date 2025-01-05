@@ -1,5 +1,5 @@
-import { RegistradorContaRepositoryBuilder } from '../../../../builders/data/usecases/registrador-conta/registrador-conta-repository-builder'
-import { RegistradorObjectMother } from '../../../../object-mothers/presentation/controllers/registro/registrador-object-mother'
+import { RegistradorContaRepositoryBuilder } from '@mocks/builders/data/usecases/registrador-conta/registrador-conta-repository-builder'
+import { RegistradorObjectMother } from '@mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 
 export class RegistradorContaRepositoryObjectMother extends RegistradorObjectMother {
 

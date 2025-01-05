@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach } from '@jest/globals'
-import { ValidadorEmailObjectMother } from '../../mocks/object-mothers/utils/validador-email-object-mother'
-import { makeValidadorEmailAdapter } from '../../mocks/factories/utils/validador-email-factory'
+import { ValidadorEmailObjectMother } from '@mocks/object-mothers/utils/validador-email-object-mother'
+import { makeValidadorEmailAdapter } from '@mocks/factories/utils/validador-email-factory'
 import validator from 'validator'
 
 jest.mock('validator', () => ({

@@ -1,7 +1,7 @@
 import { Encriptador } from '@data/protocols/encriptador'
 import { RegistradorContaDb } from '@data/usecases/registrador-conta/registrador-conta-db'
-import { EncriptadorStub } from '../../../../stubs/data/usecases/registrador-conta/encriptador-stub'
-import { RegistradorContaRepositoryStub } from '../../../../stubs/data/usecases/registrador-conta/registrador-conta-repositoty-stub'
+import { EncriptadorStub } from '@mocks/stubs/data/usecases/registrador-conta/encriptador-stub'
+import { RegistradorContaRepositoryStub } from '@mocks/stubs/data/usecases/registrador-conta/registrador-conta-repositoty-stub'
 import { RegistradorContaRepository, RegistradorConta } from '@data/usecases/registrador-conta/registrador-conta-db-protocols'
 
 interface SutRegistradorContaDbTypes {

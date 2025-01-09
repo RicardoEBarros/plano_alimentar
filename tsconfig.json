@@ -14,7 +14,8 @@
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
       "@infra/*": ["src/infra/*"],
-      "@mocks/*": ["tests/mocks/*"] 
+      "@main/*": ["src/main/*"], 
+      "@mocks/*": ["tests/mocks/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

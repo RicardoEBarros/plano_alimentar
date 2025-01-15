@@ -1,7 +1,7 @@
-import { RegistroController } from '@controllers/registrador-conta/registro-controller'
-import { RegistradorConta, ValidadorEmail } from '@controllers/registrador-conta/registro-protocols'
-import { makeValidadorEmail } from '@mocks/factories/utils/validador-email-factory'
-import { RegistradorContaStub } from '@mocks/stubs/presentation/controllers/registro/registrador-conta-stub'
+import { RegistroController } from '@/src/presentation/controllers/registrador-conta/registro-controller'
+import { RegistradorConta, ValidadorEmail } from '@/src/presentation/controllers/registrador-conta/registro-protocols'
+import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
+import { RegistradorContaStub } from '@/tests/mocks/stubs/presentation/controllers/registro/registrador-conta-stub'
 
 interface SutRegistroTypes {
   sut: RegistroController,

@@ -1,4 +1,4 @@
-import { ContaModel } from '@domain/models/conta'
+import { ContaModel } from '@/src/domain/models/conta'
 import { 
   AtividadeFisica, 
   DietaAlimentar, 
@@ -6,7 +6,7 @@ import {
   ObjetivoFinal, 
   RestricaoAlimentar, 
   Sexo 
-} from '@domain/types/conta'
+} from '@/src/domain/types/conta'
 
 export interface RegistradorContaModel {
   nome: string,

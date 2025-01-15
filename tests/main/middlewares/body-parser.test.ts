@@ -1,6 +1,6 @@
-import { describe, test, expect } from '@jest/globals'
+import { describe, test } from '@jest/globals'
+import app from '@/src/main/config/app'
 import request from 'supertest'
-import app from '@main/config/app'
 
 describe('Body Parser Middleware Suíte', () => {
 

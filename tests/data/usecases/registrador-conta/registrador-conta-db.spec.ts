@@ -1,8 +1,8 @@
 import { describe, test, expect, jest } from '@jest/globals'
-import { ContaModel } from '@data/usecases/registrador-conta/registrador-conta-db-protocols'
-import { RegistradorObjectMother } from '@mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
-import { makeRegistroContaDb } from '@mocks/factories/data/usecases/registrador-conta/registrador-conta-db-factory'
-import { RegistradorContaRepositoryObjectMother } from '@mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
+import { ContaModel } from '@/src/data/usecases/registrador-conta/registrador-conta-db-protocols'
+import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
+import { makeRegistroContaDb } from '@/tests/mocks/factories/data/usecases/registrador-conta/registrador-conta-db-factory'
+import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 
 describe('RegistradorContaDb Suíte', () => {
 

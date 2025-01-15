@@ -9,14 +9,11 @@
     "moduleResolution": "node",
     "strict": true,
     "paths": {
-      "@controllers/*": ["src/presentation/controllers/*"],
-      "@domain/*": ["src/domain/*"],
-      "@utils/*": ["src/utils/*"],
-      "@data/*": ["src/data/*"],
-      "@infra/*": ["src/infra/*"],
-      "@main/*": ["src/main/*"], 
-      "@mocks/*": ["tests/mocks/*"]
+      "@/*": ["*"]
     }
   },
-  "include": ["src/**/*", "tests/**/*"]
+  "include": [
+    "src/**/*", 
+    "tests/**/*"
+  ]
 }

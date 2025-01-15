@@ -1,8 +1,8 @@
 import { describe, test, expect, beforeAll, beforeEach, afterAll } from '@jest/globals'
-import { MongoHelper } from '@infra/db/mongodb/helpers/mongo-helper'
-import { RegistradorObjectMother } from '@mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
-import { makeContaRepositoryMongo } from '@mocks/factories/infra/db/mongodb/conta-repository/conta-factory'
-import { ContaModel } from '@domain/models/conta'
+import { MongoHelper } from '@/src/infra/db/mongodb/helpers/mongo-helper'
+import { ContaModel } from '@/src/domain/models/conta'
+import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
+import { makeContaRepositoryMongo } from '@/tests/mocks/factories/infra/db/mongodb/conta-repository/conta-factory'
 
 describe('Conta Repository MongoDb', () => {
 

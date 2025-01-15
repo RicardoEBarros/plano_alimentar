@@ -2,9 +2,10 @@
   "name": "plano_alimentar",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
-    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
@@ -20,7 +21,9 @@
   "engines": {
     "node": "v20.14.0"
   },
-  "type": "commonjs",
+  "_moduleAliases": {
+    "@/src": "./dist"
+  },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@shelf/jest-mongodb": "^4.3.2",
@@ -48,6 +51,8 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
+    "fast-glob": "^3.3.3",
+    "module-alias": "^2.2.3",
     "mongodb": "^6.12.0",
     "validator": "^13.12.0"
   }

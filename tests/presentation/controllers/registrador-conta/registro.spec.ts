@@ -1,7 +1,7 @@
 import { describe, test, expect, jest } from '@jest/globals'
-import { RegistradorObjectMother } from '@mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
-import { makeRegistroController } from '@mocks/factories/presentation/controllers/registro/registro-factory'
-import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@controllers/../errors'
+import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
+import { makeRegistroController } from '@/tests/mocks/factories/presentation/controllers/registro/registro-factory'
+import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@/src/presentation/controllers/../errors'
 
 describe('Controle Registro Suíte', () => {
 

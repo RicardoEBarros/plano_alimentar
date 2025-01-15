@@ -1,4 +1,4 @@
-import { ValidadorEmailBuilder } from '@mocks/builders/utils/validador-email-builder'
+import { ValidadorEmailBuilder } from '@/tests/mocks/builders/utils/validador-email-builder'
 
 export class ValidadorEmailObjectMother {
 

@@ -5,7 +5,7 @@ import {
   ObjetivoFinal, 
   RestricaoAlimentar, 
   Sexo 
-} from '@domain/types/conta'
+} from '@/src/domain/types/conta'
 
 export interface ContaModel {
     id: string,

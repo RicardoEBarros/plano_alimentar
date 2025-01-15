@@ -1,4 +1,4 @@
-import { RegistradorBuilder } from '@mocks/builders/presentation/controllers/registro/registrador-builder'
+import { RegistradorBuilder } from '@/tests/mocks/builders/presentation/controllers/registro/registrador-builder'
 
 export class RegistradorObjectMother {
 

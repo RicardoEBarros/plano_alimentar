@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { describe, test, jest, expect } from '@jest/globals'
-import { makeBcryptAdapter } from '@mocks/factories/infra/criptografia/bcrypt-adapter-factory'
+import { makeBcryptAdapter } from '@/tests/mocks/factories/infra/criptografia/bcrypt-adapter-factory'
 
 jest.mock('bcrypt', () => ({
   async hash(): Promise<string> {

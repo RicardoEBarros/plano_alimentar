@@ -1,5 +1,5 @@
-import { ContaRepositoryMongo } from '@/src/infra/db/mongodb/conta-repository/conta'
+import { ContaMongoRepository } from '@/src/infra/db/mongodb/conta-repository/conta'
 
-export const makeContaRepositoryMongo = (): ContaRepositoryMongo => {
-  return new ContaRepositoryMongo()
+export const makeContaMongoRepository = (): ContaMongoRepository => {
+  return new ContaMongoRepository()
 }

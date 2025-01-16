@@ -2,7 +2,7 @@ import { describe, test, expect, beforeAll, beforeEach, afterAll } from '@jest/g
 import { MongoHelper } from '@/src/infra/db/mongodb/helpers/mongo-helper'
 import { ContaModel } from '@/src/domain/models/conta'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
-import { makeContaRepositoryMongo } from '@/tests/mocks/factories/infra/db/mongodb/conta-repository/conta-factory'
+import { makeContaMongoRepository } from '@/tests/mocks/factories/infra/db/mongodb/conta-repository/conta-factory'
 
 describe('Conta Repository MongoDb', () => {
 
@@ -21,7 +21,7 @@ describe('Conta Repository MongoDb', () => {
 
   test('Deve retornar uma conta se tudo der certo', async () => {
 
-    const sut = makeContaRepositoryMongo()
+    const sut = makeContaMongoRepository()
     const { id, ...contaFake } = RegistradorObjectMother.confirmarPasswordAusente() as ContaModel
     const contaRegistrada = await sut.registrar(contaFake)   
     expect(contaRegistrada).toBeTruthy()

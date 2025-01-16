@@ -6,7 +6,7 @@ export class RegistradorBuilder {
     this.registroFake = {
       id: 'id_valido',
       nome: 'nome_valido',
-      email: 'email_valido',
+      email: 'email_valido@mail.com',
       sexo: 'masculino',
       idade: 20,
       altura: 1.80,
@@ -19,6 +19,11 @@ export class RegistradorBuilder {
 
   static aRegistro(): RegistradorBuilder {
     return new RegistradorBuilder()
+  }
+
+  idAusente(): RegistradorBuilder {
+    Reflect.deleteProperty(this.registroFake, 'id')
+    return this
   }
 
   nomeAusente(): RegistradorBuilder {

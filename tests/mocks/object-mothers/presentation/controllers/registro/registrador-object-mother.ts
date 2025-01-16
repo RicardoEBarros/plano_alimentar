@@ -8,6 +8,13 @@ export class RegistradorObjectMother {
       .build()
   }
 
+  static idAusente(): object {
+    return RegistradorBuilder
+      .aRegistro()
+      .idAusente()
+      .build()
+  }
+
   static nomeAusente(): object {
     return RegistradorBuilder
       .aRegistro()

@@ -21,8 +21,8 @@ describe('Registrar Rotas Suíte', () => {
 
   test('Deve retorna uma conta se tudo der certo', async () => {
 
-    const contaFake = RegistradorObjectMother.valido()
-
+    const contaFake = RegistradorObjectMother.idAusente()
+    
     await request(app)
       .post('/api/registrar')
       .send(contaFake)

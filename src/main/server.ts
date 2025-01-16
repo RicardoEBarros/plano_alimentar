@@ -1,4 +1,11 @@
 import 'module-alias/register'
-import app from './config/app'
+import { MongoHelper } from '../infra/db/mongodb/helpers/mongo-helper'
+import env from './config/env'
 
-app.listen(5050, () => console.log('Servidor executando em http://localhost:5050'))
+MongoHelper
+  .conectar(env.mongoUrl)
+  .then(async () => {
+    const app = (await import('./config/app')).default
+    app.listen(env.porta, () => console.log(`Servidor executando em http://localhost:${env.porta}`))
+  })
+  .catch(console.error)

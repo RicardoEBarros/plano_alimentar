@@ -7,7 +7,7 @@ import { makeContaMongoRepository } from '@/tests/mocks/factories/infra/db/mongo
 describe('Conta Repository MongoDb', () => {
 
   beforeEach(async () => {
-    const contaCollection = MongoHelper.getCollection('contas')
+    const contaCollection = await MongoHelper.getCollection('contas')
     await contaCollection.deleteMany({})
   })
 

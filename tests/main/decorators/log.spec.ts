@@ -34,7 +34,7 @@ describe('LogControllerDecorator Suíte', () => {
     const { sut, controllerStub, logErrorRepositoryStub } = makeLogControllerSut()
     const errorFake = new Error()
     errorFake.stack = 'stack_valida'
-    const logSpy = jest.spyOn(logErrorRepositoryStub, 'log')
+    const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
     jest.spyOn(controllerStub, 'manipular').mockReturnValueOnce(Promise.resolve(internalServerError(errorFake)))
     const contaFake = RegistradorObjectMother.idAusente()
     const httpRequest = { body: contaFake  }

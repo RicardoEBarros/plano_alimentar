@@ -1,3 +1,4 @@
+import env from '@/src/main/config/env'
 import { Collection, MongoClient } from 'mongodb'
 
 export const MongoHelper = {
@@ -5,7 +6,7 @@ export const MongoHelper = {
   client: null as unknown as MongoClient,
   uri: null as unknown as string,
 
-  async conectar(uri: string = 'mongodb://localhost:27017'): Promise<void> {
+  async conectar(uri: string = env.mongoUrl): Promise<void> {
     this.uri = uri
     this.client = await MongoClient.connect(this.uri)
   },

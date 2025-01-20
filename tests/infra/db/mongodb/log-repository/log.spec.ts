@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, beforeAll, afterAll } from '@jest/globals'
 import { MongoHelper } from '@/src/infra/db/mongodb/helpers/mongo-helper'
-import { LogMongoRepository } from '@/src/infra/db/mongodb/log-repository/log'
 import { Collection } from 'mongodb'
+import { makeLogRepository } from '@/tests/mocks/factories/infra/db/mongodb/log-repository/log-factory'
 
 describe('LogMongoRespository Suíte', () => {
 
@@ -22,7 +22,7 @@ describe('LogMongoRespository Suíte', () => {
 
   test('Deve criar um log de erro se tudo der certo', async () => {
 
-    const sut = new LogMongoRepository()
+    const sut = makeLogRepository()
     await sut.logError('msg_erro')
     const qtdDocumentos = await logErrosCollection.countDocuments()
 

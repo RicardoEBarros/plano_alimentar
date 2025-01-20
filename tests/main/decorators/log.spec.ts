@@ -31,10 +31,10 @@ describe('LogControllerDecorator Suíte', () => {
 
   test('Deve chamar LogErrorRepository com o erro correto se o controller retornar um internal server error', async () => {
 
-    const { sut, controllerStub, logErrorRepositoryStub } = makeLogControllerSut()
+    const { sut, controllerStub, logMongoRepositoryStub } = makeLogControllerSut()
     const errorFake = new Error()
     errorFake.stack = 'stack_valida'
-    const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
+    const logSpy = jest.spyOn(logMongoRepositoryStub, 'logError')
     jest.spyOn(controllerStub, 'manipular').mockReturnValueOnce(Promise.resolve(internalServerError(errorFake)))
     const contaFake = RegistradorObjectMother.idAusente()
     const httpRequest = { body: contaFake  }

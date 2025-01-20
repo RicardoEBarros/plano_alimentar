@@ -19,7 +19,7 @@ describe('Registrar Rotas Suíte', () => {
     await MongoHelper.disconectar()
   })
 
-  test('Deve retorna uma conta se tudo der certo', async () => {
+  test('Deve retornar uma conta se tudo der certo', async () => {
 
     const contaFake = RegistradorObjectMother.idAusente()
     

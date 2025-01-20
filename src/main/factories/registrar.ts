@@ -6,6 +6,7 @@ import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
 import { ContaMongoRepository } from '@/src/infra/db/mongodb/conta-repository/conta'
 import { LogControllerDecorator } from '../decorators/log'
 import { Controller } from '@/src/presentation/protocols'
+import { LogMongoRepository } from '@/src/infra/db/mongodb/log-repository/log'
 
 export const makeRegistroController = (): Controller => {
   const validadorEmail = new ValidadorEmailAdapter()
@@ -13,5 +14,6 @@ export const makeRegistroController = (): Controller => {
   const registradorContaRepository = new ContaMongoRepository()
   const registradorConta = new RegistradorContaDb(bcryptAdapter, registradorContaRepository)
   const registroController = new RegistroController(validadorEmail, registradorConta)
-  return new LogControllerDecorator(registroController)
+  const logMongoRepository = new LogMongoRepository()
+  return new LogControllerDecorator(registroController, logMongoRepository)
 }

@@ -9,13 +9,15 @@ export class LoginController implements Controller {
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
 
-    if (!httpRequest.body.email) {
+    const { email, password } = httpRequest.body
+
+    if (!email) {
       return Promise.resolve(badRequest(new ParametroAusenteError('email')))
-    } else if (!httpRequest.body.password) {
+    } else if (!password) {
       return Promise.resolve(badRequest(new ParametroAusenteError('password')))  
     }
 
-    const emailValido = this.validadorEmail.emailValido(httpRequest.body.email)
+    const emailValido = this.validadorEmail.emailValido(email)
     if (!emailValido) {
       return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
     }

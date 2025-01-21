@@ -1,6 +1,7 @@
 import { ParametroAusenteError, ParametroInvalidoError } from '@/src/presentation/errors'
 import { badRequest } from '@/src/presentation/helpers/http-helper'
 import { makeLoginController } from '@/tests/mocks/factories/presentation/controllers/login/login-factory'
+import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 import { describe, test, expect, jest } from '@jest/globals'
 
 describe('Login Controller Suíte', () => {
@@ -8,11 +9,7 @@ describe('Login Controller Suíte', () => {
   test('Deve retornar 400 se um email não for fornecido', async () => {
 
     const { sut } = makeLoginController()
-    const httpRequest = {
-      body: {
-        password: 'password_valido'
-      }
-    }
+    const httpRequest = { body: LoginObjectMother.emailAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse).toEqual(badRequest(new ParametroAusenteError('email')))
 
@@ -22,12 +19,7 @@ describe('Login Controller Suíte', () => {
 
     const { sut, validadorEmailStub } = makeLoginController()
     jest.spyOn(validadorEmailStub, 'emailValido').mockReturnValueOnce(false)
-    const httpRequest = {
-      body: {
-        email: 'email_invalido@mail.com',
-        password: 'password_valido'
-      }
-    }
+    const httpRequest = { body: LoginObjectMother.emailInvalido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse).toEqual(badRequest(new ParametroInvalidoError('email')))
 
@@ -36,11 +28,7 @@ describe('Login Controller Suíte', () => {
   test('Deve retornar 400 se um password não for fornecido', async () => {
 
     const { sut } = makeLoginController()
-    const httpRequest = {
-      body: {
-        email: 'email_valido@mail.com'
-      }
-    }
+    const httpRequest = { body: LoginObjectMother.passwordAusente() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse).toEqual(badRequest(new ParametroAusenteError('password')))
 
@@ -50,14 +38,9 @@ describe('Login Controller Suíte', () => {
 
     const { sut, validadorEmailStub } = makeLoginController()
     const emailValidoSpy = jest.spyOn(validadorEmailStub, 'emailValido')
-    const httpRequest = {
-      body: {
-        email: 'email_valido@mail.com',
-        password: 'password_valido'
-      }
-    }
+    const httpRequest = { body: LoginObjectMother.valido() }
     await sut.manipular(httpRequest)
-    expect(emailValidoSpy).toHaveBeenNthCalledWith(1, httpRequest.body.email)
+    expect(emailValidoSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'))
 
   })
 

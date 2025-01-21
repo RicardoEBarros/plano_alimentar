@@ -1,5 +1,5 @@
 import { ParametroAusenteError, ParametroInvalidoError } from '@/src/presentation/errors'
-import { badRequest, internalServerError } from '@/src/presentation/helpers/http-helper'
+import { badRequest, internalServerError, unauthorized } from '@/src/presentation/helpers/http-helper'
 import { makeLoginController } from '@/tests/mocks/factories/presentation/controllers/login/login-factory'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 import { describe, test, expect, jest } from '@jest/globals'
@@ -61,6 +61,16 @@ describe('Login Controller Suíte', () => {
     const httpRequest = { body: LoginObjectMother.valido() }
     await sut.manipular(httpRequest)
     expect(authSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'), Reflect.get(httpRequest.body, 'password'))
+
+  })
+
+  test('Deve retornar 401 se credenciais inválidas forem fornecidas', async () => {
+
+    const { sut, autenticadorStub } = makeLoginController()
+    jest.spyOn(autenticadorStub, 'autenticar').mockReturnValueOnce(Promise.resolve(''))
+    const httpRequest = { body: LoginObjectMother.valido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(unauthorized())
 
   })
 

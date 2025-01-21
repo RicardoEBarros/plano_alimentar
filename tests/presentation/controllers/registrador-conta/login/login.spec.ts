@@ -74,4 +74,14 @@ describe('Login Controller Suíte', () => {
 
   })
 
+  test('Deve retornar 500 se Autenticador lançar uma exceção', async () => {
+
+    const { sut, autenticadorStub } = makeLoginController()
+    jest.spyOn(autenticadorStub, 'autenticar').mockReturnValueOnce(Promise.reject(new Error()))
+    const httpRequest = { body: LoginObjectMother.valido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(internalServerError(new Error()))
+
+  })
+
 })

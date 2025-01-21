@@ -1,8 +1,6 @@
-import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { ParametroAusenteError, ParametroInvalidoError } from '../../errors'
 import { badRequest, internalServerError, ok, unauthorized } from '../../helpers/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../protocols'
-import { ValidadorEmail } from '../registrador-conta/registro-protocols'
+import { Controller, HttpRequest, HttpResponse, ValidadorEmail, Autenticador} from './login-protocols'
 
 export class LoginController implements Controller {
 

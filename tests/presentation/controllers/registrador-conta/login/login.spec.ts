@@ -54,4 +54,14 @@ describe('Login Controller Suíte', () => {
 
   })
 
+  test('Deve chamar Autenticador com os valores corretos', async () => {
+
+    const { sut, autenticadorStub } = makeLoginController()
+    const authSpy = jest.spyOn(autenticadorStub, 'autenticar')
+    const httpRequest = { body: LoginObjectMother.valido() }
+    await sut.manipular(httpRequest)
+    expect(authSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'), Reflect.get(httpRequest.body, 'password'))
+
+  })
+
 })

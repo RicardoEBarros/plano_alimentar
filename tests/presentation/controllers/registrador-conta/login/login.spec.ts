@@ -1,5 +1,5 @@
 import { ParametroAusenteError, ParametroInvalidoError } from '@/src/presentation/errors'
-import { badRequest, internalServerError, unauthorized } from '@/src/presentation/helpers/http-helper'
+import { badRequest, internalServerError, ok, unauthorized } from '@/src/presentation/helpers/http-helper'
 import { makeLoginController } from '@/tests/mocks/factories/presentation/controllers/login/login-factory'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 import { describe, test, expect, jest } from '@jest/globals'
@@ -81,6 +81,15 @@ describe('Login Controller Suíte', () => {
     const httpRequest = { body: LoginObjectMother.valido() }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse).toEqual(internalServerError(new Error()))
+
+  })
+
+  test('Deve retornar 200 se credenciais válidas forem fornecidas', async () => {
+
+    const { sut } = makeLoginController()
+    const httpRequest = { body: LoginObjectMother.valido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(ok({ tokenAcesso: 'token_valido' }))
 
   })
 

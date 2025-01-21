@@ -18,4 +18,17 @@ describe('Login Controller Suíte', () => {
 
   })
 
+  test('Deve retornar 400 se um password não for fornecido', async () => {
+
+    const sut = new LoginController()
+    const httpRequest = {
+      body: {
+        email: 'email_valido@mail.com'
+      }
+    }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(badRequest(new ParametroAusenteError('password')))
+
+  })
+
 })

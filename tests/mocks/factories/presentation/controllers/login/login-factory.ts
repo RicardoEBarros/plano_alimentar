@@ -2,6 +2,7 @@ import { LoginController } from '@/src/presentation/controllers/login/login'
 import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
 import { makeValidadorEmail } from '../../../utils/validador-email-factory'
 import { Autenticador } from '@/src/domain/usecases/autenticador'
+import { AutenticadorStub } from '@/tests/mocks/stubs/data/usecases/autenticador/autenticador-stub'
 
 interface SutTypes {
   sut: LoginController,
@@ -10,11 +11,6 @@ interface SutTypes {
 }
 
 export const makeAutenticador = (): Autenticador => {
-  class AutenticadorStub implements Autenticador {
-    async autenticar(email: string, password: string): Promise<string> {
-      return Promise.resolve('token_valido')
-    }
-  }
   return new AutenticadorStub()
 }
 

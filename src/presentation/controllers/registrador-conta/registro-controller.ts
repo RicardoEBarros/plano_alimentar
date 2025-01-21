@@ -1,14 +1,20 @@
 import { ParametroInvalidoError, ParametroAusenteError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
-import { Controller, ValidadorEmail, HttpResponse, HttpRequest, RegistradorConta } from './registro-protocols'
+import { Controller, ValidadorEmail, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
 
 export class RegistroController implements Controller {
 
-  constructor(private readonly validadorEmail: ValidadorEmail, private readonly registradorContaStub: RegistradorConta) {}
+  constructor(
+    private readonly validadorEmail: ValidadorEmail, 
+    private readonly registradorContaStub: RegistradorConta,
+    private readonly validador: Validador
+  ) {}
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
     
     try {
+      
+      this.validador.validar(httpRequest.body)
       
       const dadosConta = httpRequest.body
 

@@ -26,7 +26,7 @@ module.exports = [
       "@stylistic/js/function-call-spacing": ["error", "never"],
       "@stylistic/js/array-bracket-spacing": ["error", "always"],
       "@stylistic/js/eol-last": ["error", "always"],
-      "@stylistic/js/function-paren-newline": ["error", { minItems: 5 }],
+      "@stylistic/js/function-paren-newline": ["error", { minItems: 3 }],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": "off"
     },

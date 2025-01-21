@@ -1,4 +1,4 @@
-import { ParametroAusenteError } from '@/src/presentation/errors'
+import { ParametroAusenteError, ParametroInvalidoError } from '@/src/presentation/errors'
 import { badRequest } from '@/src/presentation/helpers/http-helper'
 import { makeLoginController } from '@/tests/mocks/factories/presentation/controllers/login/login-factory'
 import { describe, test, expect, jest } from '@jest/globals'
@@ -15,6 +15,21 @@ describe('Login Controller Suíte', () => {
     }
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse).toEqual(badRequest(new ParametroAusenteError('email')))
+
+  })
+
+  test('Deve retornar 400 se um email inválido for fornecido', async () => {
+
+    const { sut, validadorEmailStub } = makeLoginController()
+    jest.spyOn(validadorEmailStub, 'emailValido').mockReturnValueOnce(false)
+    const httpRequest = {
+      body: {
+        email: 'email_invalido@mail.com',
+        password: 'password_valido'
+      }
+    }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(badRequest(new ParametroInvalidoError('email')))
 
   })
 

@@ -15,7 +15,10 @@ export class LoginController implements Controller {
       return Promise.resolve(badRequest(new ParametroAusenteError('password')))  
     }
 
-    this.validadorEmail.emailValido(httpRequest.body.email)
+    const emailValido = this.validadorEmail.emailValido(httpRequest.body.email)
+    if (!emailValido) {
+      return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
+    }
 
     return Promise.resolve(ok({}))
 

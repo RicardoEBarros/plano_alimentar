@@ -1,3 +1,4 @@
+import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { ParametroAusenteError, ParametroInvalidoError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
@@ -5,7 +6,7 @@ import { ValidadorEmail } from '../registrador-conta/registro-protocols'
 
 export class LoginController implements Controller {
 
-  constructor(private readonly validadorEmail: ValidadorEmail) {}
+  constructor(private readonly validadorEmail: ValidadorEmail, private readonly autenticador: Autenticador) {}
 
   async manipular(httpRequest: HttpRequest): Promise<HttpResponse> {
 
@@ -24,6 +25,8 @@ export class LoginController implements Controller {
         return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
       }
   
+      await this.autenticador.autenticar(email, password)
+
       return Promise.resolve(ok({}))
 
     } catch (error) {

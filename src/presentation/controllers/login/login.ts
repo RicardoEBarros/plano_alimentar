@@ -1,6 +1,6 @@
 import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { ParametroAusenteError, ParametroInvalidoError } from '../../errors'
-import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
+import { badRequest, internalServerError, ok, unauthorized } from '../../helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
 import { ValidadorEmail } from '../registrador-conta/registro-protocols'
 
@@ -26,7 +26,10 @@ export class LoginController implements Controller {
         return badRequest(new ParametroInvalidoError('email'))
       }
   
-      await this.autenticador.autenticar(email, password)
+      const tokenAcesso = await this.autenticador.autenticar(email, password)
+      if (!tokenAcesso) {
+        return unauthorized()
+      }
 
       return ok({})
 

@@ -6,7 +6,7 @@ export class RegistroController implements Controller {
 
   constructor(
     private readonly validadorEmail: ValidadorEmail, 
-    private readonly registradorContaStub: RegistradorConta,
+    private readonly registradorContaStub: RegistradorConta, 
     private readonly validador: Validador
   ) {}
 
@@ -14,7 +14,10 @@ export class RegistroController implements Controller {
     
     try {
       
-      this.validador.validar(httpRequest.body)
+      const error = this.validador.validar(httpRequest.body)
+      if (error) {
+        return badRequest(error)
+      }
       
       const dadosConta = httpRequest.body
 

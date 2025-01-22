@@ -28,11 +28,9 @@ export const makeRegistroController = (): SutRegistroTypes => {
   const validadorStub = makeValidador()
   const registradorContaStub = makeRegistradorConta()
   const validadorEmailStub = makeValidadorEmail()
-  const sut = new RegistroController(
-    validadorEmailStub, 
+  const sut = new RegistroController(validadorEmailStub, 
     registradorContaStub, 
-    validadorStub
-  )
+    validadorStub)
   return {
     sut, 
     validadorEmailStub,

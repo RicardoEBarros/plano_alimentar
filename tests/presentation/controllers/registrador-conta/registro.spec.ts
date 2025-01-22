@@ -2,8 +2,9 @@ import { describe, test, expect, jest } from '@jest/globals'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { makeRegistroController } from '@/tests/mocks/factories/presentation/controllers/registro/registro-factory'
 import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@/src/presentation/controllers/../errors'
+import { badRequest } from '@/src/presentation/helpers/http-helper'
 
-describe('Controle Registro Suíte', () => {
+describe('RegistroController Suíte', () => {
 
   test('Deve retornar 400 se nome não for informado', async () => {
 
@@ -187,5 +188,26 @@ describe('Controle Registro Suíte', () => {
     expect(httpResponse.body).toEqual({ id: 'id_valido', ...RegistradorObjectMother.confirmarPasswordAusente() })
 
   })
+
+  test('Deve chamar Validador com os valores corretos', async () => {
+
+    const { sut, validadorStub } = makeRegistroController()
+    const validarSpy = jest.spyOn(validadorStub, 'validar')
+    const httpRequest = { body: RegistradorObjectMother.valido() }
+    await sut.manipular(httpRequest)
+    expect(validarSpy).toHaveBeenNthCalledWith(1, httpRequest.body)
+
+  })
+
+  test('Deve retornar 400 se Validador retornar um erro', async () => {
+
+    const { sut, validadorStub } = makeRegistroController()
+    jest.spyOn(validadorStub, 'validar').mockReturnValueOnce(new ParametroAusenteError('valor_valido'))
+    const httpRequest = { body: RegistradorObjectMother.valido() }
+    const httpResponse = await sut.manipular(httpRequest)
+    expect(httpResponse).toEqual(badRequest(new ParametroAusenteError('valor_valido')))
+
+  })
+
 
 })

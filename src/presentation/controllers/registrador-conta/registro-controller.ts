@@ -1,4 +1,4 @@
-import { ParametroInvalidoError, ParametroAusenteError } from '../../errors'
+import { ParametroInvalidoError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
 import { Controller, ValidadorEmail, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
 
@@ -20,13 +20,6 @@ export class RegistroController implements Controller {
       }
       
       const dadosConta = httpRequest.body
-
-      const camposObrigatorios = [ 'nome', 'email', 'sexo', 'idade', 'altura', 'peso', 'objetivo_final', 'password', 'confirmar_password' ]
-      for (const campo of camposObrigatorios) {
-        if (!httpRequest.body[campo]) {
-          return Promise.resolve(badRequest(new ParametroAusenteError(campo)))
-        }
-      }
   
       const sexosValidos = [ 'masculino', 'feminino' ]
       if (!sexosValidos.includes(dadosConta.sexo)) {

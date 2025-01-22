@@ -6,36 +6,6 @@ import { badRequest } from '@/src/presentation/helpers/http-helper'
 
 describe('RegistroController Suíte', () => {
 
-  test('Deve retornar 400 se nome não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.nomeAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('nome'))
-
-  })
-
-  test('Deve retornar 400 se email não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.emailAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('email'))
-
-  })
-
-  test('Deve retornar 400 se sexo não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.sexoAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('sexo'))
-
-  })
-
   test('Deve retornar 400 se valor de sexo for inválido', async () => {
 
     const { sut } = makeRegistroController()
@@ -46,46 +16,6 @@ describe('RegistroController Suíte', () => {
 
   })
 
-  test('Deve retornar 400 se idade não for informada', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.idadeAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('idade'))
-
-  })
-
-  test('Deve retornar 400 se altura não for informada', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.alturaAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('altura'))
-
-  })
-
-  test('Deve retornar 400 se peso não for informada', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.pesoAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('peso'))
-
-  })
-
-  test('Deve retornar 400 se objetivo final não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.objetivoFinalAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('objetivo_final'))
-
-  })
-
   test('Deve retornar 400 se valor do objetivo final for inválido', async () => {
 
     const { sut } = makeRegistroController()
@@ -93,26 +23,6 @@ describe('RegistroController Suíte', () => {
     const httpResponse = await sut.manipular(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new ParametroInvalidoError('objetivo_final'))
-
-  })
-
-  test('Deve retornar 400 se password não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.passwordAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('password'))
-
-  })
-
-  test('Deve retornar 400 se confirmação do password não for informado', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.confirmarPasswordAusente() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroAusenteError('confirmar_password'))
 
   })
 

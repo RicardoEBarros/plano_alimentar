@@ -1,7 +1,7 @@
 import { ParametroAusenteError } from '../../errors'
 import { Validador } from './validador'
 
-export class ValidadorCampoObrigatorio implements Validador {
+export class ValidacaoCampoObrigatorio implements Validador {
 
   constructor(private readonly nomeCampo: string) {}
 

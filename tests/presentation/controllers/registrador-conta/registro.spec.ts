@@ -26,38 +26,6 @@ describe('RegistroController Suíte', () => {
 
   })
 
-  test('Deve retornar 400 se um email inválido for fornecido', async () => {
-
-    const { sut, validadorEmailStub } = makeRegistroController()
-    jest.spyOn(validadorEmailStub, 'emailValido').mockReturnValueOnce(false)
-    const httpRequest = { body: RegistradorObjectMother.emailInvalido() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroInvalidoError('email'))
-
-  })
-
-  test('Deve chamar ValidadorEmail com o email correto', async () => {
-
-    const { sut, validadorEmailStub } = makeRegistroController()
-    const emailValidoSpy = jest.spyOn(validadorEmailStub, 'emailValido')
-    const httpRequest = { body: RegistradorObjectMother.valido() }
-    await sut.manipular(httpRequest)
-    expect(emailValidoSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'))
-
-  })
-  
-  test('Deve retornar 500 se ValidadorEmail lançar uma exceção', async () => {
-
-    const { sut, validadorEmailStub } = makeRegistroController()
-    jest.spyOn(validadorEmailStub, 'emailValido').mockImplementationOnce(() => { throw new Error() })
-    const httpRequest = { body: RegistradorObjectMother.emailInvalido() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(500)
-    expect(httpResponse.body).toEqual(new InternalServerError())
-
-  })
-
   test('Deve chamar RegistradorConta com os valores corretos', async () => {
 
     const { sut, registradorContaStub } = makeRegistroController()

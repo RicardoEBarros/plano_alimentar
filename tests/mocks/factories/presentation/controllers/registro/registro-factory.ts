@@ -1,11 +1,9 @@
 import { RegistroController } from '@/src/presentation/controllers/registrador-conta/registro-controller'
-import { RegistradorConta, Validador, ValidadorEmail } from '@/src/presentation/controllers/registrador-conta/registro-protocols'
-import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
+import { RegistradorConta, Validador } from '@/src/presentation/controllers/registrador-conta/registro-protocols'
 import { RegistradorContaStub } from '@/tests/mocks/stubs/presentation/controllers/registro/registrador-conta-stub'
 
 interface SutRegistroTypes {
   sut: RegistroController,
-  validadorEmailStub: ValidadorEmail,
   registradorContaStub: RegistradorConta,
   validadorStub: Validador
 }
@@ -27,13 +25,9 @@ export const makeValidador = (): Validador => {
 export const makeRegistroController = (): SutRegistroTypes => {
   const validadorStub = makeValidador()
   const registradorContaStub = makeRegistradorConta()
-  const validadorEmailStub = makeValidadorEmail()
-  const sut = new RegistroController(validadorEmailStub, 
-    registradorContaStub, 
-    validadorStub)
+  const sut = new RegistroController(registradorContaStub, validadorStub)
   return {
     sut, 
-    validadorEmailStub,
     registradorContaStub,
     validadorStub
   }

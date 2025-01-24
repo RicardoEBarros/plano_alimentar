@@ -1,11 +1,10 @@
 import { ParametroInvalidoError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
-import { Controller, ValidadorEmail, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
+import { Controller, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
 
 export class RegistroController implements Controller {
 
-  constructor(
-    private readonly validadorEmail: ValidadorEmail, 
+  constructor( 
     private readonly registradorContaStub: RegistradorConta, 
     private readonly validador: Validador
   ) {}
@@ -29,11 +28,6 @@ export class RegistroController implements Controller {
       const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
       if (!definicoesValidas.includes(conta.objetivo_final)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
-      }
-  
-      const emailValido = this.validadorEmail.emailValido(conta.email)
-      if (!emailValido) {
-        return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
       }
 
       Reflect.deleteProperty(conta, 'confirmar_password')

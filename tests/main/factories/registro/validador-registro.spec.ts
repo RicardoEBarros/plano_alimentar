@@ -1,9 +1,12 @@
-import { makeValidadorRegistro } from '@/src/main/factories/registro/validador-registro'
-import { ValidadorCampoObrigatorio } from '@/src/presentation/helpers/validadores/validador-campo-obrigatorio'
+import { makeValidadorRegistro } from '@/src/main/factories/registro/validacao-registro'
+import { ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadores/validacao-campo-obrigatorio'
 import { Validador } from '@/src/presentation/helpers/validadores/validador'
 import { ValidadorComposite } from '@/src/presentation/helpers/validadores/validador-composite'
 import { describe, test, expect, jest } from '@jest/globals'
-import { ValidadorComparaCampos } from '@/src/presentation/helpers/validadores/validador-compara-campos'
+import { ValidacaoComparaCampos } from '@/src/presentation/helpers/validadores/validacao-compara-campos'
+import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
+import { makeValidacaoEmail } from '@/tests/mocks/factories/presentation/helpers/validacao-email-factory'
+import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
 
 jest.mock('@/src/presentation/helpers/validadores/validador-composite')
 
@@ -19,10 +22,11 @@ describe('ValidadorRegistro Suíte', () => {
 
     const validadores: Validador[] = []
     for (const campo of camposObrigatorios) {
-      validadores.push(new ValidadorCampoObrigatorio(campo))
+      validadores.push(new ValidacaoCampoObrigatorio(campo))
     }
 
-    validadores.push(new ValidadorComparaCampos('password', 'confirmar_password'))
+    validadores.push(new ValidacaoComparaCampos('password', 'confirmar_password'))
+    validadores.push(new ValidacaoEmail('email', makeValidadorEmail()))
 
     expect(ValidadorComposite).toHaveBeenCalledWith(validadores)
 

@@ -26,16 +26,6 @@ describe('RegistroController Suíte', () => {
 
   })
 
-  test('Deve retornar 400 se confirmação do password falhar', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.confirmarPasswordInvalido() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroInvalidoError('confirmar_password'))
-
-  })
-
   test('Deve retornar 400 se um email inválido for fornecido', async () => {
 
     const { sut, validadorEmailStub } = makeRegistroController()

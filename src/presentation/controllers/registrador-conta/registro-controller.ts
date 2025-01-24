@@ -19,31 +19,27 @@ export class RegistroController implements Controller {
         return badRequest(error)
       }
       
-      const dadosConta = httpRequest.body
+      const conta = httpRequest.body
   
       const sexosValidos = [ 'masculino', 'feminino' ]
-      if (!sexosValidos.includes(dadosConta.sexo)) {
+      if (!sexosValidos.includes(conta.sexo)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('sexo')))
       }
   
       const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
-      if (!definicoesValidas.includes(dadosConta.objetivo_final)) {
+      if (!definicoesValidas.includes(conta.objetivo_final)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
       }
   
-      const emailValido = this.validadorEmail.emailValido(dadosConta.email)
+      const emailValido = this.validadorEmail.emailValido(conta.email)
       if (!emailValido) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('email')))
       }
 
-      if (dadosConta.password !== dadosConta.confirmar_password) {
-        return badRequest(new ParametroInvalidoError('confirmar_password'))
-      }
-
-      Reflect.deleteProperty(dadosConta, 'confirmar_password')
-      const conta = await this.registradorContaStub.registrar(dadosConta)
+      Reflect.deleteProperty(conta, 'confirmar_password')
+      const contaRegistrada = await this.registradorContaStub.registrar(conta)
   
-      return ok(conta)
+      return ok(contaRegistrada)
 
     } catch (error) {
       return internalServerError(error)

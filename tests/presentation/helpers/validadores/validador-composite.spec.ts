@@ -5,7 +5,7 @@ import { describe, test, expect, jest } from '@jest/globals'
 
 describe('Validador Composite Suíte', () => {
 
-  test('Deve retornar um erro se validação falhar', () => {
+  test('Deve retornar o erro correto se validação falhar', () => {
 
     const validadorSexo = makeValidacaoSexo()
     jest.spyOn(validadorSexo, 'validar').mockReturnValueOnce(new Error())
@@ -13,6 +13,16 @@ describe('Validador Composite Suíte', () => {
     const erro = validadorComposite.validar(RegistradorObjectMother.idAusente())
 
     expect(erro).toEqual(new Error())
+
+  })
+
+  test('Deve retornar nulo se validação não gerar erro', () => {
+
+    const validadorSexo = makeValidacaoSexo()
+    const validadorComposite = new ValidadorComposite([ validadorSexo ])
+    const resposta = validadorComposite.validar(RegistradorObjectMother.idAusente())
+
+    expect(resposta).toBeNull()
 
   })
 

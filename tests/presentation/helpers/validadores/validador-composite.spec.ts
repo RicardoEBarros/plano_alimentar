@@ -9,8 +9,8 @@ describe('Validador Composite Suíte', () => {
 
     const validadorSexo = makeValidacaoSexo()
     jest.spyOn(validadorSexo, 'validar').mockReturnValueOnce(new Error())
-    const validadorComposite = new ValidadorComposite([ validadorSexo ])
-    const erro = validadorComposite.validar(RegistradorObjectMother.idAusente())
+    const sut = new ValidadorComposite([ validadorSexo ])
+    const erro = sut.validar(RegistradorObjectMother.idAusente())
 
     expect(erro).toEqual(new Error())
 
@@ -19,8 +19,8 @@ describe('Validador Composite Suíte', () => {
   test('Deve retornar nulo se validação não gerar erro', () => {
 
     const validadorSexo = makeValidacaoSexo()
-    const validadorComposite = new ValidadorComposite([ validadorSexo ])
-    const resposta = validadorComposite.validar(RegistradorObjectMother.idAusente())
+    const sut = new ValidadorComposite([ validadorSexo ])
+    const resposta = sut.validar(RegistradorObjectMother.idAusente())
 
     expect(resposta).toBeNull()
 

@@ -9,8 +9,8 @@ describe('Validação Comparar Campos Suíte', () => {
     const nomeCampo = 'campo_1'
     const nomeCampoComparar = 'campo_2'
     const dados = { [nomeCampo]: 'valor_valido', [nomeCampoComparar]: 'valor_invalido' }
-    const validadorObjetivoFinal = new ValidacaoComparaCampos(nomeCampo, nomeCampoComparar)
-    const erro = validadorObjetivoFinal.validar(dados)
+    const sut = new ValidacaoComparaCampos(nomeCampo, nomeCampoComparar)
+    const erro = sut.validar(dados)
   
     expect(erro).toEqual(new ParametroInvalidoError(nomeCampoComparar))
 
@@ -21,8 +21,8 @@ describe('Validação Comparar Campos Suíte', () => {
     const nomeCampo = 'campo_1'
     const nomeCampoComparar = 'campo_2'
     const dados = { [nomeCampo]: 'valor_valido', [nomeCampoComparar]: 'valor_valido' }
-    const validadorObjetivoFinal = new ValidacaoComparaCampos(nomeCampo, nomeCampoComparar)
-    const resposta = validadorObjetivoFinal.validar(dados)
+    const sut = new ValidacaoComparaCampos(nomeCampo, nomeCampoComparar)
+    const resposta = sut.validar(dados)
   
     expect(resposta).toBeNull()
 

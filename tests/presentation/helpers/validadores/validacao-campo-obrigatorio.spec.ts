@@ -4,11 +4,11 @@ import { ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadore
 
 describe('Validação Campo Obrigatório Suíte', () => {
 
-  test('Deve retornar um erro se propriedade não for encontrada', () => {
+  test('Deve retornar um ParametroAusenteError validação falhar', () => {
 
     const nomeCampo = 'campo_inexistente'
-    const validadorCampoObrigatorio = new ValidacaoCampoObrigatorio(nomeCampo)
-    const erro = validadorCampoObrigatorio.validar({ campo_valido: 'valor' })
+    const sut = new ValidacaoCampoObrigatorio(nomeCampo)
+    const erro = sut.validar({ campo_valido: 'valor' })
 
     expect(erro).toEqual(new ParametroAusenteError(nomeCampo))
 
@@ -17,8 +17,8 @@ describe('Validação Campo Obrigatório Suíte', () => {
   test('Deve retornar nulo se propriedade for encontrada', () => {
 
     const nomeCampo = 'campo_existente'
-    const validadorCampoObrigatorio = new ValidacaoCampoObrigatorio(nomeCampo)
-    const erro = validadorCampoObrigatorio.validar({ campo_existente: 'valor' })
+    const sut = new ValidacaoCampoObrigatorio(nomeCampo)
+    const erro = sut.validar({ campo_existente: 'valor' })
 
     expect(erro).toBeNull()
 

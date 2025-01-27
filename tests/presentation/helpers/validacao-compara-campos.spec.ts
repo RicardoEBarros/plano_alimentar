@@ -16,4 +16,16 @@ describe('Validação Comparar Campos Suíte', () => {
 
   })
 
+  test('Deve retornar nulo se valores forem iguais', () => {
+
+    const nomeCampo = 'campo_1'
+    const nomeCampoComparar = 'campo_2'
+    const dados = { [nomeCampo]: 'valor_valido', [nomeCampoComparar]: 'valor_valido' }
+    const validadorObjetivoFinal = new ValidacaoComparaCampos(nomeCampo, nomeCampoComparar)
+    const resposta = validadorObjetivoFinal.validar(dados)
+  
+    expect(resposta).toBeNull()
+
+  })
+
 })

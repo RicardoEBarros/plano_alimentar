@@ -1,6 +1,5 @@
-import { Validador } from '@/src/presentation/helpers/validadores'
-import { ValidadorSexoStub } from '@/tests/mocks/stubs/presentation/helpers/validadores/validador-sexo-stub'
+import { ValidacaoSexo, Validador } from '@/src/presentation/helpers/validadores'
 
-export const makeValidacaoSexo = (): Validador => {
-  return new ValidadorSexoStub()
+export const makeValidacaoSexo = (nomeCampo: string): Validador => {
+  return new ValidacaoSexo(nomeCampo)
 }

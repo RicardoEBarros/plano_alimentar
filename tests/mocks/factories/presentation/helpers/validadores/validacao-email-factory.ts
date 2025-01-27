@@ -1,6 +1,6 @@
 import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
 import { ValidadorEmail } from '@/src/presentation/protocols/validador-email'
-import { makeValidadorEmail } from '../../utils/validador-email-factory'
+import { makeValidadorEmail } from '../../../utils/validador-email-factory'
 
 interface SutValidacaoTypes {
   sut: ValidacaoEmail,

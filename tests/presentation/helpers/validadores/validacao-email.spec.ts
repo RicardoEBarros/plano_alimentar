@@ -1,6 +1,6 @@
 import { describe, test, expect, jest } from '@jest/globals'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
-import { makeValidacaoEmail } from '@/tests/mocks/factories/presentation/helpers/validacao-email-factory'
+import { makeValidacaoEmail } from '@/tests/mocks/factories/presentation/helpers/validadores/validacao-email-factory'
 import { ContaModel } from '@/src/domain/models/conta'
 import { ParametroInvalidoError } from '@/src/presentation/errors'
 

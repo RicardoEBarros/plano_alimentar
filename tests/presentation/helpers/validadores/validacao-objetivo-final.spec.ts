@@ -1,6 +1,6 @@
+import { describe, test, expect } from '@jest/globals'
 import { ParametroInvalidoError } from '@/src/presentation/errors'
 import { ValidacaoObjetivoFinal } from '@/src/presentation/helpers/validadores'
-import { describe, test, expect } from '@jest/globals'
 
 describe('Validação Objetivo Final Suíte', () => {
 

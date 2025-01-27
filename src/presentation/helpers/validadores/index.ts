@@ -1,0 +1,7 @@
+export * from './validacao-campo-obrigatorio'
+export * from './validacao-compara-campos'
+export * from './validacao-email'
+export * from './validacao-objetivo-final'
+export * from './validacao-sexo'
+export * from './validador'
+export * from './validador-composite'

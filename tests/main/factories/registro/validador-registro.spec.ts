@@ -1,13 +1,8 @@
-import { makeValidadorRegistro } from '@/src/main/factories/registro/validacao-registro'
-import { ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadores/validacao-campo-obrigatorio'
-import { Validador } from '@/src/presentation/helpers/validadores/validador'
-import { ValidadorComposite } from '@/src/presentation/helpers/validadores/validador-composite'
 import { describe, test, expect, jest } from '@jest/globals'
-import { ValidacaoComparaCampos } from '@/src/presentation/helpers/validadores/validacao-compara-campos'
-import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
-import { makeValidacaoEmail } from '@/tests/mocks/factories/presentation/helpers/validacao-email-factory'
+import { makeValidadorRegistro } from '@/src/main/factories/registro/validacao-registro'
 import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
-import { ValidacaoSexo } from '@/src/presentation/helpers/validadores/validacao-sexo'
+import { ValidadorComposite, Validador } from '@/src/presentation/helpers/validadores'
+import { ValidacaoComparaCampos, ValidacaoEmail, ValidacaoSexo, ValidacaoObjetivoFinal, ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadores'
 
 jest.mock('@/src/presentation/helpers/validadores/validador-composite')
 
@@ -26,9 +21,10 @@ describe('ValidadorRegistro Suíte', () => {
       validadores.push(new ValidacaoCampoObrigatorio(campo))
     }
 
+    validadores.push(new ValidacaoSexo('sexo'))
     validadores.push(new ValidacaoComparaCampos('password', 'confirmar_password'))
     validadores.push(new ValidacaoEmail('email', makeValidadorEmail()))
-    validadores.push(new ValidacaoSexo('sexo'))
+    validadores.push(new ValidacaoObjetivoFinal('objetivo_final'))
 
     expect(ValidadorComposite).toHaveBeenCalledWith(validadores)
 

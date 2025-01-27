@@ -1,10 +1,7 @@
 import { ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadores/validacao-campo-obrigatorio'
-import { Validador } from '@/src/presentation/helpers/validadores/validador'
-import { ValidadorComposite } from '@/src/presentation/helpers/validadores/validador-composite'
-import { ValidacaoComparaCampos } from '@/src/presentation/helpers/validadores/validacao-compara-campos'
-import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
+import { Validador,ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidacaoComparaCampos, ValidacaoEmail, ValidacaoSexo, ValidacaoObjetivoFinal } from '@/src/presentation/helpers/validadores'
 import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
-import { ValidacaoSexo } from '@/src/presentation/helpers/validadores/validacao-sexo'
 
 export const makeValidadorRegistro = (): ValidadorComposite => {
 
@@ -17,9 +14,10 @@ export const makeValidadorRegistro = (): ValidadorComposite => {
     validadores.push(new ValidacaoCampoObrigatorio(campo))
   }
 
+  validadores.push(new ValidacaoSexo('sexo'))
   validadores.push(new ValidacaoComparaCampos('password', 'confirmar_password'))
   validadores.push(new ValidacaoEmail('email', new ValidadorEmailAdapter()))
-  validadores.push(new ValidacaoSexo('sexo'))
+  validadores.push(new ValidacaoObjetivoFinal('objetivo_final'))
 
   return new ValidadorComposite(validadores)
 

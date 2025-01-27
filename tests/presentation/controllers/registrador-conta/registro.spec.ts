@@ -6,16 +6,6 @@ import { badRequest } from '@/src/presentation/helpers/http-helper'
 
 describe('RegistroController Suíte', () => {
 
-  test('Deve retornar 400 se valor do objetivo final for inválido', async () => {
-
-    const { sut } = makeRegistroController()
-    const httpRequest = { body: RegistradorObjectMother.objetivoFinalInvalido() }
-    const httpResponse = await sut.manipular(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new ParametroInvalidoError('objetivo_final'))
-
-  })
-
   test('Deve chamar RegistradorConta com os valores corretos', async () => {
 
     const { sut, registradorContaStub } = makeRegistroController()

@@ -1,4 +1,3 @@
-import { ParametroInvalidoError } from '../../errors'
 import { badRequest, internalServerError, ok } from '../../helpers/http-helper'
 import { Controller, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
 
@@ -18,16 +17,8 @@ export class RegistroController implements Controller {
         return badRequest(error)
       }
       
-      const conta = httpRequest.body
-  
-      const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
-      if (!definicoesValidas.includes(conta.objetivo_final)) {
-        return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))
-      }
-
-      Reflect.deleteProperty(conta, 'confirmar_password')
+      const { confirmar_password, ...conta } = httpRequest.body
       const contaRegistrada = await this.registradorContaStub.registrar(conta)
-  
       return ok(contaRegistrada)
 
     } catch (error) {

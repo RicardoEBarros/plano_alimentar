@@ -7,9 +7,10 @@ export class ValidacaoSexo implements Validador {
 
   constructor(private readonly nomeCampo: string) {}
 
-  validar(dados: any): null | Error {
+  validar(dados: object): null | Error {
     
-    if (!this.opcoesSexoValidas.includes(dados[this.nomeCampo])) {
+    const valorCampo = Reflect.get(dados, this.nomeCampo)
+    if (!this.opcoesSexoValidas.includes(valorCampo)) {
       return new ParametroInvalidoError(this.nomeCampo)
     }
 

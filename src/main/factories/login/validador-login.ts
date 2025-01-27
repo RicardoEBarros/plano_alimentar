@@ -1,0 +1,17 @@
+import { ValidacaoCampoObrigatorio, ValidacaoEmail, Validador, ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
+
+export const makeValidadorLogin = (): ValidadorComposite => {
+
+  const camposObrigatorios = [ 'email', 'password' ]
+
+  const validadores: Array<Validador> = []
+  for (const campo of camposObrigatorios) {
+    validadores.push(new ValidacaoCampoObrigatorio(campo))
+  }
+
+  validadores.push(new ValidacaoEmail('email', new ValidadorEmailAdapter()))
+
+  return new ValidadorComposite(validadores)
+
+}

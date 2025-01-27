@@ -1,12 +1,12 @@
 import { LoginController } from '@/src/presentation/controllers/login/login'
-import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
-import { makeValidadorEmail } from '../../../utils/validador-email-factory'
 import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { AutenticadorStub } from '@/tests/mocks/stubs/data/usecases/autenticador/autenticador-stub'
+import { Validador } from '@/src/presentation/helpers/validadores'
+import { ValidadorStub } from '@/tests/mocks/stubs/presentation/helpers/validadores/validador-stub'
 
 interface SutTypes {
   sut: LoginController,
-  validadorEmailStub: ValidadorEmailAdapter,
+  validadorStub: Validador,
   autenticadorStub: Autenticador
 }
 
@@ -14,13 +14,17 @@ export const makeAutenticador = (): Autenticador => {
   return new AutenticadorStub()
 }
 
+export const makeValidador = (): Validador => {
+  return new ValidadorStub('sexo')
+}
+
 export const makeLoginController = (): SutTypes => {
-  const validadorEmailStub = makeValidadorEmail()
+  const validadorStub = makeValidador()
   const autenticadorStub = makeAutenticador()
-  const sut = new LoginController(validadorEmailStub, autenticadorStub)
+  const sut = new LoginController(validadorStub, autenticadorStub)
   return {
     sut,
-    validadorEmailStub,
+    validadorStub,
     autenticadorStub
   }
 }

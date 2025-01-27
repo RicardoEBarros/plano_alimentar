@@ -6,7 +6,7 @@ import { ValidacaoComparaCampos, ValidacaoEmail, ValidacaoSexo, ValidacaoObjetiv
 
 jest.mock('@/src/presentation/helpers/validadores/validador-composite')
 
-describe('ValidadorRegistro Suíte', () => {
+describe('Validador Registro Suíte', () => {
 
   test('Deve chamar ValidadorComposite com todos os validadores', () => {
 

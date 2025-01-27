@@ -1,6 +1,6 @@
 import { Validador } from '@/src/presentation/helpers/validadores'
 
-export class ValidadorSexoStub implements Validador {
+export class ValidadorStub implements Validador {
 
   constructor(private readonly nomeCampo: string) {}
 

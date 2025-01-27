@@ -18,7 +18,7 @@ describe('LogControllerDecorator Suíte', () => {
 
   })
 
-  test('Deve retorne o mesmo resultado do controller', async () => {
+  test('Deve retornar o mesmo resultado do controller', async () => {
 
     const { sut } = makeLogControllerSut()
     const contaFake = RegistradorObjectMother.idAusente()

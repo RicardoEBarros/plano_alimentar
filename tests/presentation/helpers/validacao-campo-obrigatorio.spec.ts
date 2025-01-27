@@ -8,9 +8,19 @@ describe('Validação Campo Obrigatório Suíte', () => {
 
     const nomeCampo = 'campo_inexistente'
     const validadorCampoObrigatorio = new ValidacaoCampoObrigatorio(nomeCampo)
-    const error = validadorCampoObrigatorio.validar({ campo: 'campo_valido' })
+    const error = validadorCampoObrigatorio.validar({ campo_valido: 'valor' })
 
     expect(error).toEqual(new ParametroAusenteError(nomeCampo))
+
+  })
+
+  test('Deve retornar nulo se propriedade for encontrada', () => {
+
+    const nomeCampo = 'campo_existente'
+    const validadorCampoObrigatorio = new ValidacaoCampoObrigatorio(nomeCampo)
+    const error = validadorCampoObrigatorio.validar({ campo_existente: 'valor' })
+
+    expect(error).toBeNull()
 
   })
   

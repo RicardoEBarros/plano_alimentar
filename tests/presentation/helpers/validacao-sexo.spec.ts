@@ -1,6 +1,6 @@
+import { describe, test, expect } from '@jest/globals'
 import { ParametroInvalidoError } from '@/src/presentation/errors'
 import { ValidacaoSexo } from '@/src/presentation/helpers/validadores'
-import { describe, test, expect } from '@jest/globals'
 
 describe('Validação Sexo Suíte', () => {
 
@@ -8,7 +8,7 @@ describe('Validação Sexo Suíte', () => {
 
     const nomeCampo = 'sexo'
     const validadorSexo = new ValidacaoSexo(nomeCampo)
-    const erro = validadorSexo.validar({ [nomeCampo]: 'valor' })
+    const erro = validadorSexo.validar({ [nomeCampo]: 'valor_invalido' })
 
     expect(erro).toEqual(new ParametroInvalidoError(nomeCampo))
 
@@ -18,11 +18,11 @@ describe('Validação Sexo Suíte', () => {
 
     const nomeCampo = 'sexo'
     const validadorSexo = new ValidacaoSexo(nomeCampo)
-    const resposta_1 = validadorSexo.validar({ [nomeCampo]: 'masculino' })
-    const resposta_2 = validadorSexo.validar({ [nomeCampo]: 'feminino' })
+    const respostaSexo_1 = validadorSexo.validar({ [nomeCampo]: 'masculino' })
+    const respostaSexo_2 = validadorSexo.validar({ [nomeCampo]: 'feminino' })
 
-    expect(resposta_1).toBeNull()
-    expect(resposta_2).toBeNull()
+    expect(respostaSexo_1).toBeNull()
+    expect(respostaSexo_2).toBeNull()
 
   })
 

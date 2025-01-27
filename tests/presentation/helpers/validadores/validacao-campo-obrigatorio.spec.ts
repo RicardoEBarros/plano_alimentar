@@ -14,7 +14,7 @@ describe('Validação Campo Obrigatório Suíte', () => {
 
   })
 
-  test('Deve retornar nulo se propriedade for encontrada', () => {
+  test('Deve retornar nulo se validação for sucedida', () => {
 
     const nomeCampo = 'campo_existente'
     const sut = makeValidacaoCampoObrigatorio(nomeCampo)

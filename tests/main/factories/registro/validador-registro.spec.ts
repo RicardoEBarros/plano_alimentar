@@ -7,6 +7,7 @@ import { ValidacaoComparaCampos } from '@/src/presentation/helpers/validadores/v
 import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
 import { makeValidacaoEmail } from '@/tests/mocks/factories/presentation/helpers/validacao-email-factory'
 import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
+import { ValidacaoSexo } from '@/src/presentation/helpers/validadores/validacao-sexo'
 
 jest.mock('@/src/presentation/helpers/validadores/validador-composite')
 
@@ -27,6 +28,7 @@ describe('ValidadorRegistro Suíte', () => {
 
     validadores.push(new ValidacaoComparaCampos('password', 'confirmar_password'))
     validadores.push(new ValidacaoEmail('email', makeValidadorEmail()))
+    validadores.push(new ValidacaoSexo('sexo'))
 
     expect(ValidadorComposite).toHaveBeenCalledWith(validadores)
 

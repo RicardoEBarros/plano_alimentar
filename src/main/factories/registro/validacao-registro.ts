@@ -4,6 +4,7 @@ import { ValidadorComposite } from '@/src/presentation/helpers/validadores/valid
 import { ValidacaoComparaCampos } from '@/src/presentation/helpers/validadores/validacao-compara-campos'
 import { ValidacaoEmail } from '@/src/presentation/helpers/validadores/validacao-email'
 import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
+import { ValidacaoSexo } from '@/src/presentation/helpers/validadores/validacao-sexo'
 
 export const makeValidadorRegistro = (): ValidadorComposite => {
 
@@ -18,6 +19,7 @@ export const makeValidadorRegistro = (): ValidadorComposite => {
 
   validadores.push(new ValidacaoComparaCampos('password', 'confirmar_password'))
   validadores.push(new ValidacaoEmail('email', new ValidadorEmailAdapter()))
+  validadores.push(new ValidacaoSexo('sexo'))
 
   return new ValidadorComposite(validadores)
 

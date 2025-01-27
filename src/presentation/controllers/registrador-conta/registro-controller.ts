@@ -20,11 +20,6 @@ export class RegistroController implements Controller {
       
       const conta = httpRequest.body
   
-      const sexosValidos = [ 'masculino', 'feminino' ]
-      if (!sexosValidos.includes(conta.sexo)) {
-        return Promise.resolve(badRequest(new ParametroInvalidoError('sexo')))
-      }
-  
       const definicoesValidas = [ 'perder peso', 'ganho de massa muscular', 'definição' ]
       if (!definicoesValidas.includes(conta.objetivo_final)) {
         return Promise.resolve(badRequest(new ParametroInvalidoError('objetivo_final')))

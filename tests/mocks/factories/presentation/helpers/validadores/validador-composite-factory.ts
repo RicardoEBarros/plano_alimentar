@@ -1,16 +1,20 @@
-import { ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidacaoSexo, Validador, ValidadorComposite } from '@/src/presentation/helpers/validadores'
 import { ValidadorSexoStub } from '@/tests/mocks/stubs/presentation/helpers/validadores/validador-sexo-stub'
 
 interface SutValidadorCompositeTypes {
   sut: ValidadorComposite,
-  validadorSexoStub: ValidadorSexoStub
+  validadoresSexoStub: Array<Validador>
+}
+
+const makeValidacaoSexo = (): Validador => {
+  return new ValidadorSexoStub('sexo')
 }
 
 export const makeValidadorComposite = (): SutValidadorCompositeTypes => {
-  const validadorSexoStub = new ValidadorSexoStub()
-  const sut = new ValidadorComposite([ validadorSexoStub ])
+  const validadoresSexoStub = [ makeValidacaoSexo(), makeValidacaoSexo() ]
+  const sut = new ValidadorComposite(validadoresSexoStub)
   return {
     sut, 
-    validadorSexoStub
+    validadoresSexoStub
   }
 }

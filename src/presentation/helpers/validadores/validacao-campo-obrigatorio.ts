@@ -5,13 +5,14 @@ export class ValidacaoCampoObrigatorio implements Validador {
 
   constructor(private readonly nomeCampo: string) {}
 
-  validar(dados: any): null | Error {
+  validar(dados: object): null | Error {
     
     if (!Reflect.has(dados, this.nomeCampo)) {
       return new ParametroAusenteError(this.nomeCampo)
     }
 
     return null
+    
   }
 
 }

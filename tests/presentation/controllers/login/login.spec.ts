@@ -1,6 +1,6 @@
 import { describe, test, expect, jest } from '@jest/globals'
 import { ParametroAusenteError } from '@/src/presentation/errors'
-import { badRequest, internalServerError, ok, unauthorized } from '@/src/presentation/helpers/http-helper'
+import { badRequest, internalServerError, ok, unauthorized } from '@/src/presentation/helpers/http/http-helper'
 import { makeLoginController } from '@/tests/mocks/factories/presentation/controllers/login/login-factory'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 

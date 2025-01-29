@@ -2,7 +2,7 @@ import { describe, test, expect, jest } from '@jest/globals'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { makeRegistroController } from '@/tests/mocks/factories/presentation/controllers/registro/registro-factory'
 import { ParametroInvalidoError, InternalServerError, ParametroAusenteError } from '@/src/presentation/controllers/../errors'
-import { badRequest } from '@/src/presentation/helpers/http-helper'
+import { badRequest } from '@/src/presentation/helpers/http/http-helper'
 
 describe('RegistroController Suíte', () => {
 

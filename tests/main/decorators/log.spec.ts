@@ -2,7 +2,7 @@ import { describe, test, expect, jest } from '@jest/globals'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { makeLogControllerSut } from '@/tests/mocks/factories/main/decorators/log-factory'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
-import { internalServerError } from '@/src/presentation/helpers/http-helper'
+import { internalServerError } from '@/src/presentation/helpers/http/http-helper'
 
 describe('LogControllerDecorator Suíte', () => {
 

@@ -1,4 +1,4 @@
-import { badRequest, internalServerError, ok, unauthorized } from '../../helpers/http-helper'
+import { badRequest, internalServerError, ok, unauthorized } from '../../helpers/http/http-helper'
 import { Validador } from '../registrador-conta/registro-protocols'
 import { Controller, HttpRequest, HttpResponse, Autenticador} from './login-protocols'
 

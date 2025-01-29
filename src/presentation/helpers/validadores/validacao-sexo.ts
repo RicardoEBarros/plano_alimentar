@@ -1,5 +1,5 @@
 import { ParametroInvalidoError } from '../../errors'
-import { Validador } from './validador'
+import { Validador } from '../../protocols/validador'
 
 export class ValidacaoSexo implements Validador {
 

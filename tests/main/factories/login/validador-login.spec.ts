@@ -1,7 +1,8 @@
 import { describe, test, expect, jest } from '@jest/globals'
 import { makeValidadorLogin } from '@/src/main/factories/login/validador-login'
-import { ValidacaoCampoObrigatorio, ValidacaoEmail, Validador, ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidacaoCampoObrigatorio, ValidacaoEmail, ValidadorComposite } from '@/src/presentation/helpers/validadores'
 import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
+import { Validador } from '@/src/presentation/protocols/validador'
 
 jest.mock('@/src/presentation/helpers/validadores/validador-composite')
 

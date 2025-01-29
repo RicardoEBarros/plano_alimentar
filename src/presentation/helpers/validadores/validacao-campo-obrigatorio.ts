@@ -1,5 +1,5 @@
 import { ParametroAusenteError } from '../../errors'
-import { Validador } from './validador'
+import { Validador } from '../../protocols/validador'
 
 export class ValidacaoCampoObrigatorio implements Validador {
 

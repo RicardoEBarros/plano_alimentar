@@ -1,4 +1,5 @@
-import { Validador, ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { Validador } from '@/src/presentation/protocols/validador'
 import { ValidadorStub } from '@/tests/mocks/stubs/presentation/helpers/validadores/validador-stub'
 
 interface SutValidadorCompositeTypes {

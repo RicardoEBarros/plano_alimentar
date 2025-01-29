@@ -1,4 +1,4 @@
-import { Validador } from '@/src/presentation/helpers/validadores'
+import { Validador } from '@/src/presentation/protocols/validador'
 
 export class ValidadorStub implements Validador {
 

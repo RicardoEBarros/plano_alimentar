@@ -1,6 +1,6 @@
 import { ParametroInvalidoError } from '../../errors'
 import { ValidadorEmail } from '../../protocols/validador-email'
-import { Validador } from './validador'
+import { Validador } from '../../protocols/validador'
 
 export class ValidacaoEmail implements Validador {
 

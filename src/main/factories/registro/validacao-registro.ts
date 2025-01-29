@@ -1,7 +1,8 @@
 import { ValidacaoCampoObrigatorio } from '@/src/presentation/helpers/validadores/validacao-campo-obrigatorio'
-import { Validador,ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidadorComposite } from '@/src/presentation/helpers/validadores'
 import { ValidacaoComparaCampos, ValidacaoEmail, ValidacaoSexo, ValidacaoObjetivoFinal } from '@/src/presentation/helpers/validadores'
 import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
+import { Validador } from '@/src/presentation/protocols/validador'
 
 export const makeValidadorRegistro = (): ValidadorComposite => {
 

@@ -1,4 +1,5 @@
-import { ValidacaoCampoObrigatorio, ValidacaoEmail, Validador, ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { ValidacaoCampoObrigatorio, ValidacaoEmail, ValidadorComposite } from '@/src/presentation/helpers/validadores'
+import { Validador } from '@/src/presentation/protocols/validador'
 import { ValidadorEmailAdapter } from '@/src/utils/validador-email-adapter'
 
 export const makeValidadorLogin = (): ValidadorComposite => {

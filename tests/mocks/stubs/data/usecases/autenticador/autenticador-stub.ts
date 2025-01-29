@@ -1,7 +1,7 @@
-import { Autenticador } from '@/src/domain/usecases/autenticador'
+import { Autenticador, AutenticadorModel } from '@/src/domain/usecases/autenticador'
 
 export class AutenticadorStub implements Autenticador {
-  async autenticar(email: string, password: string): Promise<string> {
+  async autenticar(autenticacao: AutenticadorModel): Promise<string> {
     return Promise.resolve('token_valido')
   }
 }

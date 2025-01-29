@@ -12,7 +12,10 @@ describe('Login Controller Suíte', () => {
     const authSpy = jest.spyOn(autenticadorStub, 'autenticar')
     const httpRequest = { body: LoginObjectMother.valido() }
     await sut.manipular(httpRequest)
-    expect(authSpy).toHaveBeenNthCalledWith(1, Reflect.get(httpRequest.body, 'email'), Reflect.get(httpRequest.body, 'password'))
+    expect(authSpy).toHaveBeenNthCalledWith(1, {
+      email: Reflect.get(httpRequest.body, 'email'),
+      password: Reflect.get(httpRequest.body, 'password')
+    })
 
   })
 

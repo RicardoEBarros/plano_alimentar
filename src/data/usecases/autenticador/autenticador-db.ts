@@ -16,8 +16,10 @@ export class AutenticadorDb implements Autenticador {
     const conta = await this.buscarContaPorEmailRepository.buscar(autenticacao.email)
 
     if (conta) {
-      await this.comparadorHash.comparar(autenticacao.password, conta.password)
-      await this.geradorToken.gerar(conta.id)
+      const passwordValido = await this.comparadorHash.comparar(autenticacao.password, conta.password)
+      if (passwordValido) {
+        return await this.geradorToken.gerar(conta.id)
+      }
     }
 
     return ''

@@ -1,4 +1,4 @@
-import { BuscarContaPorEmailRepository } from '@/src/data/protocols/buscar-conta-por-email-repository'
+import { BuscarContaPorEmailRepository } from '@/src/data/protocols/db/buscar-conta-por-email-repository'
 import { AutenticadorDb } from '@/src/data/usecases/autenticador/autenticador-db'
 import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { BuscarContaPorEmailRepositoryStub } from '@/tests/mocks/stubs/data/usecases/autenticador/buscar-conta-por-email-repository-stub'

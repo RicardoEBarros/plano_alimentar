@@ -1,5 +1,5 @@
 import { Autenticador, AutenticadorModel } from '@/src/domain/usecases/autenticador'
-import { BuscarContaPorEmailRepository } from '../../protocols/buscar-conta-por-email-repository'
+import { BuscarContaPorEmailRepository } from '../../protocols/db/buscar-conta-por-email-repository'
 
 export class AutenticadorDb implements Autenticador {
 

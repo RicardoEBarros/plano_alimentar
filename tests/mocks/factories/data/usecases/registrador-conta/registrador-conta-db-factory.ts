@@ -1,4 +1,4 @@
-import { Encriptador } from '@/src/data/protocols/encriptador'
+import { Encriptador } from '@/src/data/protocols/criptografia/encriptador'
 import { RegistradorContaDb } from '@/src/data/usecases/registrador-conta/registrador-conta-db'
 import { EncriptadorStub } from '@/tests/mocks/stubs/data/usecases/registrador-conta/encriptador-stub'
 import { RegistradorContaRepositoryStub } from '@/tests/mocks/stubs/data/usecases/registrador-conta/registrador-conta-repositoty-stub'

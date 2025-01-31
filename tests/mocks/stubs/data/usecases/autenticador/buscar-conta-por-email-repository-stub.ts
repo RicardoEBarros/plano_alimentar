@@ -1,4 +1,4 @@
-import { BuscarContaPorEmailRepository } from '@/src/data/protocols/buscar-conta-por-email-repository'
+import { BuscarContaPorEmailRepository } from '@/src/data/protocols/db/buscar-conta-por-email-repository'
 import { ContaModel } from '@/src/domain/models/conta'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 

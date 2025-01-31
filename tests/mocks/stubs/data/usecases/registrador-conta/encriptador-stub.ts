@@ -1,4 +1,4 @@
-import { Encriptador } from '@/src/data/protocols/encriptador'
+import { Encriptador } from '@/src/data/protocols/criptografia/encriptador'
 
 export class EncriptadorStub implements Encriptador {
 

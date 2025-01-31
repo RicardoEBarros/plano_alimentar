@@ -1,4 +1,4 @@
-import { LogErrorRepository } from '@/src/data/protocols/log-error-repository'
+import { LogErrorRepository } from '@/src/data/protocols/db/log-error-repository'
 import { LogControllerDecorator } from '@/src/main/decorators/log'
 import { Controller } from '@/src/presentation/protocols'
 import { ControllerStub } from '@/tests/mocks/stubs/main/decorators/log-stub'

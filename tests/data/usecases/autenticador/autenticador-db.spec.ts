@@ -74,4 +74,16 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
+  test('Deve chamar GeradorToken com o id correto', async () => {
+
+    const { sut, geradorTokenStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    const dadosContaFake = RegistradorContaRepositoryObjectMother.valido()
+    const gerarSpy = jest.spyOn(geradorTokenStub, 'gerar')
+    await sut.autenticar(dadosLoginFake)
+
+    expect(gerarSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosContaFake, 'id'))
+
+  })
+
 })

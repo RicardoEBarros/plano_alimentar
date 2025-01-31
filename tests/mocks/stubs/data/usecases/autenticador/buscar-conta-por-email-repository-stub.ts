@@ -4,7 +4,7 @@ import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mot
 
 export class BuscarContaPorEmailRepositoryStub implements BuscarContaPorEmailRepository {
 
-  async buscar(email: string): Promise<ContaModel> {
+  async buscar(email: string): Promise<null | ContaModel> {
     const conta = RegistradorContaRepositoryObjectMother.confirmarPasswordAusente() as ContaModel
     return Promise.resolve(conta)
   }

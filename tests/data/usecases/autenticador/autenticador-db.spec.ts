@@ -27,4 +27,15 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
+  test('Deve retornar null se BuscarContaPorEmailRepository retornar null', async () => {
+
+    const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar').mockReturnValueOnce(Promise.resolve(null))
+    const conta = await sut.autenticar(dadosLoginFake)
+
+    expect(conta).toBeNull()
+
+  })
+
 })

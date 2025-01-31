@@ -5,8 +5,11 @@ export class AutenticadorDb implements Autenticador {
 
   constructor(private readonly buscarContaPorEmailRepository: BuscarContaPorEmailRepository) {}
   
-  async autenticar(autenticacao: AutenticadorModel): Promise<string> {
-    await this.buscarContaPorEmailRepository.buscar(autenticacao.email)
+  async autenticar(autenticacao: AutenticadorModel): Promise<null | string> {
+    const conta = await this.buscarContaPorEmailRepository.buscar(autenticacao.email)
+    if (!conta) {
+      return null
+    }
     return ''
   }
   

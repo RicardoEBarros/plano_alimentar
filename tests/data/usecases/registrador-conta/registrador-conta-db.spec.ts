@@ -4,7 +4,7 @@ import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentati
 import { makeRegistroContaDb } from '@/tests/mocks/factories/data/usecases/registrador-conta/registrador-conta-db-factory'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 
-describe('RegistradorContaDb Suíte', () => {
+describe('UseCase Registrador Conta Db Suíte', () => {
 
   test('Deve chamar Encriptador com o password correto', async () => {
 

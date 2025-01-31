@@ -97,4 +97,14 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
+  test('Deve chamar GeradorToken com o id correto', async () => {
+
+    const { sut } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    const tokenAcesso = await sut.autenticar(dadosLoginFake)
+
+    expect(tokenAcesso).toBe('token_valido')
+
+  })
+
 })

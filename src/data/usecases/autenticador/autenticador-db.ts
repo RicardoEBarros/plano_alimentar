@@ -1,8 +1,11 @@
-import { Autenticador, AutenticadorModel } from '@/src/domain/usecases/autenticador'
-import { BuscarContaPorEmailRepository } from '../../protocols/db/buscar-conta-por-email-repository'
-import { ComparadorHash } from '../../protocols/criptografia/comparador-hash'
-import { GeradorToken } from '../../protocols/criptografia/gerador-token'
-import { AtualizadorTokenAcessoRepository } from '../../protocols/db/atualizador-token-acesso-repository'
+import { 
+  Autenticador, 
+  AutenticadorModel, 
+  BuscarContaPorEmailRepository, 
+  ComparadorHash, 
+  GeradorToken, 
+  AtualizadorTokenAcessoRepository 
+} from './autenticador-db-protocols'
 
 export class AutenticadorDb implements Autenticador {
 

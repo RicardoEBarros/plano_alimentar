@@ -1,0 +1,5 @@
+export * from './atualizador-token-acesso-repository-stub'
+export * from './autenticador-stub'
+export * from './buscar-conta-por-email-repository-stub'
+export * from './comparador-hash-stub'
+export * from './gerador-token-stub'

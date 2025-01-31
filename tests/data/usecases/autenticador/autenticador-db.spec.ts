@@ -1,9 +1,8 @@
-import { ContaModel } from '@/src/domain/models/conta'
+import { describe, test, expect, jest } from '@jest/globals'
 import { AutenticadorModel } from '@/src/domain/usecases/autenticador'
 import { makeBuscadorContaPorEmail } from '@/tests/mocks/factories/data/usecases/autenticador/buscar-conta-por-email-repository-factory'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
-import { describe, test, expect, jest } from '@jest/globals'
 
 describe('UseCase Autenticador Db Suíte', () => {
 

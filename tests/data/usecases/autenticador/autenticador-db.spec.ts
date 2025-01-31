@@ -34,9 +34,9 @@ describe('UseCase Autenticador Db Suíte', () => {
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
     jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar').mockReturnValueOnce(Promise.resolve(null))
-    const conta = await sut.autenticar(dadosLoginFake)
+    const tokenAcesso = await sut.autenticar(dadosLoginFake)
 
-    expect(conta).toBe('')
+    expect(tokenAcesso).toBe('')
 
   })
 
@@ -60,6 +60,17 @@ describe('UseCase Autenticador Db Suíte', () => {
     const promise = sut.autenticar(dadosLoginFake)
 
     await expect(promise).rejects.toThrow()
+
+  })
+
+  test('Deve retornar vazio se ComparadorHash retornar false', async () => {
+
+    const { sut, comparadorHashStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    jest.spyOn(comparadorHashStub, 'comparar').mockReturnValueOnce(Promise.resolve(false))
+    const tokenAcesso = await sut.autenticar(dadosLoginFake)
+
+    expect(tokenAcesso).toBe('')
 
   })
 

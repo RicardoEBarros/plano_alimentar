@@ -86,7 +86,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
-  test('Deve lançar uma exceção se ocorrer um erro em ComparadorHash', async () => {
+  test('Deve lançar uma exceção se ocorrer um erro em GeradorToken', async () => {
 
     const { sut, geradorTokenStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
@@ -97,7 +97,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
-  test('Deve chamar GeradorToken com o id correto', async () => {
+  test('Deve retornar o token de acesso se tudo der certo', async () => {
 
     const { sut } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
@@ -116,6 +116,17 @@ describe('UseCase Autenticador Db Suíte', () => {
     await sut.autenticar(dadosLoginFake)
 
     expect(atualizarSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosContaFake, 'id'), 'token_valido')
+
+  })
+  
+  test('Deve lançar uma exceção se ocorrer um erro em AtualizadorTokenAcessoRepository', async () => {
+
+    const { sut, atualizadorTokenAcessoRepositoryStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizar').mockReturnValueOnce(Promise.reject(new Error()))
+    const promise = sut.autenticar(dadosLoginFake)
+
+    await expect(promise).rejects.toThrow()
 
   })
 

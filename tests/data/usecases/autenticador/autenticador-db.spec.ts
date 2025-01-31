@@ -107,4 +107,16 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
+  test('Deve chamar AtualizadorTokenAcessoRepository com os valores corretos', async () => {
+
+    const { sut, atualizadorTokenAcessoRepositoryStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    const dadosContaFake = RegistradorContaRepositoryObjectMother.valido()
+    const atualizarSpy = jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizar')
+    await sut.autenticar(dadosLoginFake)
+
+    expect(atualizarSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosContaFake, 'id'), 'token_valido')
+
+  })
+
 })

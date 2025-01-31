@@ -86,4 +86,15 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
+  test('Deve lançar uma exceção se ocorrer um erro em ComparadorHash', async () => {
+
+    const { sut, geradorTokenStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    jest.spyOn(geradorTokenStub, 'gerar').mockReturnValueOnce(Promise.reject(new Error()))
+    const promise = sut.autenticar(dadosLoginFake)
+
+    await expect(promise).rejects.toThrow()
+
+  })
+
 })

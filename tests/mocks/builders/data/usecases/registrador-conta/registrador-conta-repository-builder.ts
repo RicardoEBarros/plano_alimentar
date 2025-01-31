@@ -6,5 +6,9 @@ export class RegistradorContaRepositoryBuilder extends RegistradorBuilder {
     super()
     Reflect.set(this.registroFake, 'password', 'hashed_password')
   } 
+
+  static aRegistro(): RegistradorContaRepositoryBuilder {
+    return new RegistradorContaRepositoryBuilder()
+  }
     
 }

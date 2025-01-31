@@ -1,5 +1,7 @@
+import { ContaModel } from '@/src/domain/models/conta'
 import { AutenticadorModel } from '@/src/domain/usecases/autenticador'
 import { makeBuscadorContaPorEmail } from '@/tests/mocks/factories/data/usecases/autenticador/buscar-conta-por-email-repository-factory'
+import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 import { describe, test, expect, jest } from '@jest/globals'
 
@@ -27,14 +29,26 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
-  test('Deve retornar null se BuscarContaPorEmailRepository retornar null', async () => {
+  test('Deve retornar vazio se BuscarContaPorEmailRepository retornar vazio', async () => {
 
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
     jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar').mockReturnValueOnce(Promise.resolve(null))
     const conta = await sut.autenticar(dadosLoginFake)
 
-    expect(conta).toBeNull()
+    expect(conta).toBe('')
+
+  })
+
+  test('Deve chamar ComparadorHash com o password values', async () => {
+
+    const { sut, comparadorHashStub } = makeBuscadorContaPorEmail()
+    const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
+    const dadosContaFake = RegistradorContaRepositoryObjectMother.valido()
+    const compararSpy = jest.spyOn(comparadorHashStub, 'comparar')
+    await sut.autenticar(dadosLoginFake)
+
+    expect(compararSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosLoginFake, 'password'), Reflect.get(dadosContaFake, 'password'))
 
   })
 

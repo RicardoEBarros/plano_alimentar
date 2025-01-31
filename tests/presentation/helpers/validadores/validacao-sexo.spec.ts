@@ -15,7 +15,7 @@ describe('Validação Sexo Suíte', () => {
 
   })
 
-  test('Deve retornar nulo se for um sexo válido', () => {
+  test('Deve retornar null se for um sexo válido', () => {
 
     const nomeCampo = 'sexo'
     const sut = makeValidacaoSexo(nomeCampo)

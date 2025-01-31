@@ -25,7 +25,7 @@ describe('Validador Composite Suíte', () => {
 
   })
 
-  test('Deve retornar nulo se a validação for bem sucedida', () => {
+  test('Deve retornar null se a validação for bem sucedida', () => {
 
     const { sut } = makeValidadorComposite()
     const resposta = sut.validar({ campo: 'valor' })

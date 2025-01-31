@@ -16,7 +16,7 @@ describe('Validação Comparar Campos Suíte', () => {
 
   })
 
-  test('Deve retornar nulo se valores forem iguais', () => {
+  test('Deve retornar null se valores forem iguais', () => {
 
     const nomeCampo = 'campo'
     const nomeParaComparar = 'campoParaComparar'

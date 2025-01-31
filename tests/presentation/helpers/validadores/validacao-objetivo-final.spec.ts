@@ -15,7 +15,7 @@ describe('Validação Objetivo Final Suíte', () => {
 
   })
 
-  test('Deve retornar nulo se for um objetivo final válido' , () => {
+  test('Deve retornar null se for um objetivo final válido' , () => {
 
     const nomeCampo = 'objetivo_final'
     const sut = makeValidacaoObjetivoFinal(nomeCampo)

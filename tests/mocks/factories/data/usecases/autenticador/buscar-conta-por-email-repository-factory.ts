@@ -1,14 +1,14 @@
 import { AutenticadorDb } from '@/src/data/usecases/autenticador/autenticador-db'
 import { 
-  GeradorTokenStub, ComparadorHashStub, BuscarContaPorEmailRepositoryStub, AtualizadorTokenAcessoRepositoryStub 
+  EncriptadorStub, ComparadorHashStub, BuscarContaPorEmailRepositoryStub, AtualizadorTokenAcessoRepositoryStub 
 } from '@/tests/mocks/stubs/data/usecases/autenticador'
 import { 
-  Autenticador, AtualizadorTokenAcessoRepository, BuscarContaPorEmailRepository, GeradorToken, ComparadorHash
+  Autenticador, AtualizadorTokenAcessoRepository, BuscarContaPorEmailRepository, Encriptador, ComparadorHash
 } from '@/src/data/usecases/autenticador/autenticador-db-protocols'
 
 interface SutBuscadorContaPorEmailTypes {
   sut: Autenticador,
-  geradorTokenStub: GeradorToken,
+  encriptadorStub: Encriptador,
   comparadorHashStub: ComparadorHash,
   atualizadorTokenAcessoRepositoryStub: AtualizadorTokenAcessoRepository,
   buscarContaPorEmailRepositoryStub: BuscarContaPorEmailRepository
@@ -17,20 +17,20 @@ interface SutBuscadorContaPorEmailTypes {
 export const makeBuscadorContaPorEmail = (): SutBuscadorContaPorEmailTypes => {
 
   const comparadorHashStub = new ComparadorHashStub()
-  const geradorTokenStub = new GeradorTokenStub()
+  const encriptadorStub = new EncriptadorStub()
   const atualizadorTokenAcessoRepositoryStub = new AtualizadorTokenAcessoRepositoryStub()
   const buscarContaPorEmailRepositoryStub = new BuscarContaPorEmailRepositoryStub()
 
   const sut = new AutenticadorDb(
     buscarContaPorEmailRepositoryStub, 
     comparadorHashStub, 
-    geradorTokenStub, 
+    encriptadorStub, 
     atualizadorTokenAcessoRepositoryStub
   )
   
   return {
     sut, 
-    geradorTokenStub,
+    encriptadorStub,
     comparadorHashStub,
     buscarContaPorEmailRepositoryStub,
     atualizadorTokenAcessoRepositoryStub

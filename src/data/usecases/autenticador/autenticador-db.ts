@@ -3,7 +3,7 @@ import {
   AutenticadorModel, 
   BuscarContaPorEmailRepository, 
   ComparadorHash, 
-  GeradorToken, 
+  Encriptador, 
   AtualizadorTokenAcessoRepository 
 } from './autenticador-db-protocols'
 
@@ -12,7 +12,7 @@ export class AutenticadorDb implements Autenticador {
   constructor(
     private readonly buscarContaPorEmailRepository: BuscarContaPorEmailRepository,
     private readonly comparadorHash: ComparadorHash,
-    private readonly geradorToken: GeradorToken,
+    private readonly encriptador: Encriptador,
     private readonly atualizadorTokenAcessoRepository: AtualizadorTokenAcessoRepository
   ) {}
   
@@ -23,7 +23,7 @@ export class AutenticadorDb implements Autenticador {
     if (conta) {
       const passwordValido = await this.comparadorHash.comparar(autenticacao.password, conta.password)
       if (passwordValido) {
-        const tokenAcesso = await this.geradorToken.gerar(conta.id)
+        const tokenAcesso = await this.encriptador.gerar(conta.id)
         await this.atualizadorTokenAcessoRepository.atualizar(conta.id, tokenAcesso)
         return tokenAcesso
       }

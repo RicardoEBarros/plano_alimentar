@@ -73,23 +73,23 @@ describe('UseCase Autenticador Db Suíte', () => {
 
   })
 
-  test('Deve chamar GeradorToken com o id correto', async () => {
+  test('Deve chamar Encriptador com o id correto', async () => {
 
-    const { sut, geradorTokenStub } = makeBuscadorContaPorEmail()
+    const { sut, encriptadorStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
     const dadosContaFake = RegistradorContaRepositoryObjectMother.valido()
-    const gerarSpy = jest.spyOn(geradorTokenStub, 'gerar')
+    const gerarSpy = jest.spyOn(encriptadorStub, 'gerar')
     await sut.autenticar(dadosLoginFake)
 
     expect(gerarSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosContaFake, 'id'))
 
   })
 
-  test('Deve lançar uma exceção se ocorrer um erro em GeradorToken', async () => {
+  test('Deve lançar uma exceção se ocorrer um erro em Encriptador', async () => {
 
-    const { sut, geradorTokenStub } = makeBuscadorContaPorEmail()
+    const { sut, encriptadorStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(geradorTokenStub, 'gerar').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(encriptadorStub, 'gerar').mockReturnValueOnce(Promise.reject(new Error()))
     const promise = sut.autenticar(dadosLoginFake)
 
     await expect(promise).rejects.toThrow()

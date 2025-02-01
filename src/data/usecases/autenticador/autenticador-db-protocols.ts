@@ -1,5 +1,5 @@
 export * from '@/src/domain/usecases/autenticador'
 export * from '../../protocols/db/buscar-conta-por-email-repository'
 export * from '../../protocols/criptografia/comparador-hash'
-export * from '../../protocols/criptografia/gerador-token'
+export * from '../../protocols/criptografia/encriptador'
 export * from '../../protocols/db/atualizador-token-acesso-repository'

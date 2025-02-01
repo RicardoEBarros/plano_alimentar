@@ -6,20 +6,20 @@ import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mot
 
 describe('UseCase Registrador Conta Db Suíte', () => {
 
-  test('Deve chamar Encriptador com o password correto', async () => {
+  test('Deve chamar Hasher com o password correto', async () => {
 
-    const { sut, encriptadorStub } = makeRegistroContaDb()
-    const encriptarSpy = jest.spyOn(encriptadorStub, 'encriptar')
+    const { sut, hasherStub } = makeRegistroContaDb()
+    const hashSpy = jest.spyOn(hasherStub, 'hash')
     const conta = RegistradorContaRepositoryObjectMother.confirmarPasswordAusente() as ContaModel
     await sut.registrar(conta)
-    expect(encriptarSpy).toHaveBeenNthCalledWith(1, Reflect.get(conta, 'password')) 
+    expect(hashSpy).toHaveBeenNthCalledWith(1, Reflect.get(conta, 'password')) 
 
   })
 
-  test('Deve lançar exceção se ocorrer erro no Encriptador', async () => {
+  test('Deve lançar exceção se ocorrer erro no Hasher', async () => {
 
-    const { sut, encriptadorStub } = makeRegistroContaDb()
-    jest.spyOn(encriptadorStub, 'encriptar').mockReturnValueOnce(Promise.reject(new Error()))
+    const { sut, hasherStub } = makeRegistroContaDb()
+    jest.spyOn(hasherStub, 'hash').mockReturnValueOnce(Promise.reject(new Error()))
     const conta = RegistradorContaRepositoryObjectMother.confirmarPasswordAusente() as ContaModel
     const promise = sut.registrar(conta)
     await expect(promise).rejects.toThrow() 
@@ -39,7 +39,7 @@ describe('UseCase Registrador Conta Db Suíte', () => {
 
   })
 
-  test('Deve lançar exceção se ocorrer erro no Encriptador', async () => {
+  test('Deve lançar exceção se ocorrer erro no RegistradorContaRepository', async () => {
 
     const { sut, registradorContaRepositoryStub } = makeRegistroContaDb()
     jest.spyOn(registradorContaRepositoryStub, 'registrar').mockReturnValueOnce(Promise.reject(new Error()))

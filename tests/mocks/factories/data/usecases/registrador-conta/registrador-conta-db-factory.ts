@@ -1,17 +1,17 @@
-import { Encriptador } from '@/src/data/protocols/criptografia/encriptador'
+import { Hasher } from '@/src/data/protocols/criptografia/hasher'
 import { RegistradorContaDb } from '@/src/data/usecases/registrador-conta/registrador-conta-db'
-import { EncriptadorStub } from '@/tests/mocks/stubs/data/usecases/registrador-conta/encriptador-stub'
+import { HasherStub } from '@/tests/mocks/stubs/data/usecases/registrador-conta/hasher-stub'
 import { RegistradorContaRepositoryStub } from '@/tests/mocks/stubs/data/usecases/registrador-conta/registrador-conta-repositoty-stub'
 import { RegistradorContaRepository, RegistradorConta } from '@/src/data/usecases/registrador-conta/registrador-conta-db-protocols'
 
 interface SutRegistradorContaDbTypes {
   sut: RegistradorConta,
-  encriptadorStub: Encriptador,
+  hasherStub: Hasher,
   registradorContaRepositoryStub: RegistradorContaRepository
 }
 
-export const makeEncriptadorStub = (): Encriptador => {
-  return new EncriptadorStub()
+export const makeHasherStub = (): Hasher => {
+  return new HasherStub()
 }
 
 export const makeRegistradorContaRepository = (): RegistradorContaRepository => {
@@ -19,12 +19,12 @@ export const makeRegistradorContaRepository = (): RegistradorContaRepository => 
 }
 
 export const makeRegistroContaDb = (): SutRegistradorContaDbTypes => {
-  const encriptadorStub = makeEncriptadorStub()
+  const hasherStub = makeHasherStub()
   const registradorContaRepositoryStub = makeRegistradorContaRepository()
-  const sut = new RegistradorContaDb(encriptadorStub, registradorContaRepositoryStub)
+  const sut = new RegistradorContaDb(hasherStub, registradorContaRepositoryStub)
   return {
     sut, 
-    encriptadorStub,
+    hasherStub,
     registradorContaRepositoryStub
   }
 }

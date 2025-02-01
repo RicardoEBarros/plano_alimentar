@@ -16,7 +16,7 @@ describe('BcryptAdapter Suíte', () => {
 
     const sut = makeBcryptAdapter(salt)
     const hashSpy = jest.spyOn(bcrypt, 'hash')
-    await sut.encriptar('valor_sem_encriptação')
+    await sut.hash('valor_sem_encriptação')
     expect(hashSpy).toHaveBeenNthCalledWith(1, 'valor_sem_encriptação', salt)
 
   })
@@ -24,7 +24,7 @@ describe('BcryptAdapter Suíte', () => {
   test('Deve retornar uma hash se tudo der certo', async () => {
 
     const sut = makeBcryptAdapter(salt)
-    const encriptado = await sut.encriptar('valor_sem_encriptação')
+    const encriptado = await sut.hash('valor_sem_encriptação')
     expect(encriptado).toBe('hash')
 
   })
@@ -33,7 +33,7 @@ describe('BcryptAdapter Suíte', () => {
 
     const sut = makeBcryptAdapter(salt)
     jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => { throw new Error() })
-    const promise = sut.encriptar('valor_sem_encriptação')
+    const promise = sut.hash('valor_sem_encriptação')
     expect(promise).rejects.toThrow()
 
   })

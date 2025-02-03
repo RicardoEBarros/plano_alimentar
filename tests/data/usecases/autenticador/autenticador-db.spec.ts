@@ -89,7 +89,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, encriptadorStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(encriptadorStub, 'gerar').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(encriptadorStub, 'gerar').mockImplementationOnce(() => { throw new Error() })
     const promise = sut.autenticar(dadosLoginFake)
 
     await expect(promise).rejects.toThrow()

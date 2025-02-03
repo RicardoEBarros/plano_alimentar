@@ -2,6 +2,12 @@ import { JwtAdapter } from '@/src/infra/criptografia/jwt-adapter/jwt-adapter'
 import { describe, test, expect, jest } from '@jest/globals'
 import jwt from 'jsonwebtoken'
 
+jest.mock('jsonwebtoken', () => ({
+  sign (): string {
+    return 'token_valido'
+  }
+}))
+
 describe('JWT Adapter Suíte', () => {
 
   test('Deve chamar sign com os valores corretos', () => {
@@ -11,6 +17,15 @@ describe('JWT Adapter Suíte', () => {
     sut.gerar('id_fake')
     
     expect(signSpy).toHaveBeenNthCalledWith(1, { id: 'id_fake' }, 'chave_secreta')
+    
+  })
+
+  test('Deve retornar um token de acesso quando sign der certo', () => {
+
+    const sut = new JwtAdapter('chave_secreta')
+    const tokenAcesso = sut.gerar('id_fake')
+    
+    expect(tokenAcesso).toBe('token_valido')
     
   })
 

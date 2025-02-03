@@ -29,4 +29,14 @@ describe('JWT Adapter Suíte', () => {
     
   })
 
+  test('Deve lançar um erro se ocorrer um erro no sign', () => {
+
+    const sut = new JwtAdapter('chave_secreta')
+    jest.spyOn(jwt, 'sign').mockImplementationOnce(() => { throw new Error() })
+    const gerarFn = () => sut.gerar('id_fake')
+
+    expect(gerarFn).toThrow()
+    
+  })
+
 })

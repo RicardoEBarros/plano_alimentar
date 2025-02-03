@@ -5,6 +5,9 @@ import { makeBcryptAdapter } from '@/tests/mocks/factories/infra/criptografia/bc
 jest.mock('bcrypt', () => ({
   async hash(): Promise<string> {
     return Promise.resolve('hash')
+  },
+  async compare(): Promise<boolean> {
+    return Promise.resolve(true)
   }
 }))
 
@@ -12,7 +15,7 @@ describe('BcryptAdapter Suíte', () => {
   
   const salt = 12
 
-  test('Deve chamar bcrypt com os valores corretos', async () => {
+  test('Deve chamar hash com os valores corretos', async () => {
 
     const sut = makeBcryptAdapter(salt)
     const hashSpy = jest.spyOn(bcrypt, 'hash')
@@ -21,7 +24,7 @@ describe('BcryptAdapter Suíte', () => {
 
   })
 
-  test('Deve retornar uma hash se tudo der certo', async () => {
+  test('Deve retornar uma válida hash se tudo der certo', async () => {
 
     const sut = makeBcryptAdapter(salt)
     const encriptado = await sut.hash('valor_sem_encriptação')
@@ -35,6 +38,15 @@ describe('BcryptAdapter Suíte', () => {
     jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => { throw new Error() })
     const promise = sut.hash('valor_sem_encriptação')
     expect(promise).rejects.toThrow()
+
+  })
+
+  test('Deve chamar comparar com os valores corretos', async () => {
+
+    const sut = makeBcryptAdapter(salt)
+    const compararSpy = jest.spyOn(bcrypt, 'compare')
+    await sut.comparar('valor', 'hash')
+    expect(compararSpy).toHaveBeenNthCalledWith(1, 'valor', 'hash')
 
   })
 

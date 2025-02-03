@@ -26,5 +26,6 @@ export interface ContaModel {
     restricoes_alimentares?: Array<RestricaoAlimentar>,
     orcamento_alimentar_semanal?: number,
     objetivo_final: ObjetivoFinal,
-    data_alcancar_objetivo?: string
+    data_alcancar_objetivo?: string,
+    token_acesso?: string
 }

@@ -10,7 +10,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    const buscarSpy = jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar')
+    const buscarSpy = jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscarPorEmail')
     await sut.autenticar(dadosLoginFake)
 
     expect(buscarSpy).toHaveBeenNthCalledWith(1, dadosLoginFake.email)
@@ -21,7 +21,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscarPorEmail').mockReturnValueOnce(Promise.reject(new Error()))
     const promise = sut.autenticar(dadosLoginFake)
 
     await expect(promise).rejects.toThrow()
@@ -32,7 +32,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscar').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscarPorEmail').mockReturnValueOnce(Promise.resolve(null))
     const tokenAcesso = await sut.autenticar(dadosLoginFake)
 
     expect(tokenAcesso).toBe('')

@@ -18,7 +18,7 @@ export class AutenticadorDb implements Autenticador {
   
   async autenticar(autenticacao: AutenticadorModel): Promise<string> {
 
-    const conta = await this.buscarContaPorEmailRepository.buscar(autenticacao.email)
+    const conta = await this.buscarContaPorEmailRepository.buscarPorEmail(autenticacao.email)
 
     if (conta) {
       const passwordValido = await this.comparadorHash.comparar(autenticacao.password, conta.password)

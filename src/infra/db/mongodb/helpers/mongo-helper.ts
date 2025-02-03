@@ -23,8 +23,14 @@ export const MongoHelper = {
   },
 
   map(collection: any): any {
+    
+    if (!collection) {
+      return null
+    }
+
     const { _id, ...collectionSemId } = collection
     return Object.assign({}, collectionSemId, { id: _id.toHexString() })
+    
   }
 
 }

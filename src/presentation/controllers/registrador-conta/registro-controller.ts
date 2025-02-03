@@ -1,5 +1,5 @@
 import { badRequest, internalServerError, ok } from '../../helpers/http/http-helper'
-import { Controller, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-protocols'
+import { Controller, HttpResponse, HttpRequest, RegistradorConta, Validador } from './registro-controller-protocols'
 
 export class RegistroController implements Controller {
 

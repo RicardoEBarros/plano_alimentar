@@ -3,6 +3,7 @@ import { AutenticadorModel } from '@/src/domain/usecases/autenticador'
 import { makeBuscadorContaPorEmail } from '@/tests/mocks/factories/data/usecases/autenticador/buscar-conta-por-email-repository-factory'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
+import { ContaModel } from '@/src/domain/models/conta'
 
 describe('UseCase Autenticador Db Suíte', () => {
 
@@ -32,7 +33,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, buscarContaPorEmailRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscarPorEmail').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(buscarContaPorEmailRepositoryStub, 'buscarPorEmail').mockReturnValueOnce(Promise.resolve({} as ContaModel))
     const tokenAcesso = await sut.autenticar(dadosLoginFake)
 
     expect(tokenAcesso).toBe('')

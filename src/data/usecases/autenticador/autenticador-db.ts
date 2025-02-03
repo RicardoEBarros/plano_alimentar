@@ -20,7 +20,7 @@ export class AutenticadorDb implements Autenticador {
 
     const conta = await this.buscarContaPorEmailRepository.buscarPorEmail(autenticacao.email)
 
-    if (conta) {
+    if (conta && Object.keys(conta).length > 0) {
       const passwordValido = await this.comparadorHash.comparar(autenticacao.password, conta.password)
       if (passwordValido) {
         const tokenAcesso = this.encriptador.gerar(conta.id)

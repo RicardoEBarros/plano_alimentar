@@ -1,5 +1,5 @@
 import { describe, test, expect, jest } from '@jest/globals'
-import { makeValidadorLogin } from '@/src/main/factories/login/validador-login'
+import { makeValidadorLogin } from '@/src/main/factories/login/validador-login-factory'
 import { ValidacaoCampoObrigatorio, ValidacaoEmail, ValidadorComposite } from '@/src/presentation/helpers/validadores'
 import { makeValidadorEmail } from '@/tests/mocks/factories/utils/validador-email-factory'
 import { Validador } from '@/src/presentation/protocols/validador'

@@ -1,5 +1,5 @@
 import { RegistroController } from '@/src/presentation/controllers/registrador-conta/registro-controller'
-import { RegistradorConta, Validador } from '@/src/presentation/controllers/registrador-conta/registro-protocols'
+import { RegistradorConta, Validador } from '@/src/presentation/controllers/registrador-conta/registro-controller-protocols'
 import { RegistradorContaStub } from '@/tests/mocks/stubs/presentation/controllers/registro/registrador-conta-stub'
 
 interface SutRegistroTypes {

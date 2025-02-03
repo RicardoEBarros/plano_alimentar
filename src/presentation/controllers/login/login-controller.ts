@@ -1,6 +1,6 @@
 import { badRequest, internalServerError, ok, unauthorized } from '../../helpers/http/http-helper'
-import { Validador } from '../registrador-conta/registro-protocols'
-import { Controller, HttpRequest, HttpResponse, Autenticador} from './login-protocols'
+import { Validador } from '../registrador-conta/registro-controller-protocols'
+import { Controller, HttpRequest, HttpResponse, Autenticador} from './login-controller-protocols'
 
 export class LoginController implements Controller {
 

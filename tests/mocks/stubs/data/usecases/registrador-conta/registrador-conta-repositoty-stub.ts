@@ -1,4 +1,4 @@
-import { RegistradorContaRepository } from '@/src/data/protocols/db/registrador-conta-repository'
+import { RegistradorContaRepository } from '@/src/data/protocols/db/conta/registrador-conta-repository'
 import { RegistradorContaModel } from '@/src/domain/usecases/registrador-conta'
 import { RegistradorContaRepositoryObjectMother } from '@/tests/mocks/object-mothers/data/usecases/registrador-conta/registrador-conta-repository-object-mother'
 import { ContaModel } from '@/src/domain/models/conta'

@@ -1,5 +1,5 @@
-import { LogErrorRepository } from '@/src/data/protocols/db/log-error-repository'
-import { LogControllerDecorator } from '@/src/main/decorators/log'
+import { LogErrorRepository } from '@/src/data/protocols/db/log/log-error-repository'
+import { LogControllerDecorator } from '@/src/main/decorators/log-controller-decorator'
 import { Controller } from '@/src/presentation/protocols'
 import { ControllerStub } from '@/tests/mocks/stubs/main/decorators/log-stub'
 import { LogMongoRepositoryStub } from '@/tests/mocks/stubs/infra/db/mongodb/log-repository/log-stub'

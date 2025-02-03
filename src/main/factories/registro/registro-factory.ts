@@ -2,11 +2,11 @@ import env from '../../config/env'
 import { RegistradorContaDb } from '@/src/data/usecases/registrador-conta/registrador-conta-db'
 import { BcryptAdapter } from '@/src/infra/criptografia/bcrypt-adapter/bcrypt-adapter'
 import { RegistroController } from '@/src/presentation/controllers/registrador-conta/registro-controller'
-import { ContaMongoRepository } from '@/src/infra/db/mongodb/conta-repository/conta'
-import { LogControllerDecorator } from '../../decorators/log'
+import { ContaMongoRepository } from '@/src/infra/db/mongodb/conta/conta-mongo-repository'
+import { LogControllerDecorator } from '../../decorators/log-controller-decorator'
 import { Controller } from '@/src/presentation/protocols'
-import { LogMongoRepository } from '@/src/infra/db/mongodb/log-repository/log'
-import { makeValidadorRegistro } from './validacao-registro'
+import { LogMongoRepository } from '@/src/infra/db/mongodb/log/log-mongo-repository'
+import { makeValidadorRegistro } from './validacao-registro-factory'
 
 export const makeRegistroController = (): Controller => {
   const bcryptAdapter = new BcryptAdapter(env.saltDoHasher) 

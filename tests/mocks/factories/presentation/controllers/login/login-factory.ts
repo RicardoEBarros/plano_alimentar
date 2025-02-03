@@ -1,4 +1,4 @@
-import { LoginController } from '@/src/presentation/controllers/login/login'
+import { LoginController } from '@/src/presentation/controllers/login/login-controller'
 import { Autenticador } from '@/src/domain/usecases/autenticador'
 import { AutenticadorStub } from '@/tests/mocks/stubs/data/usecases/autenticador/autenticador-stub'
 import { Validador } from '@/src/presentation/protocols/validador'

@@ -1,4 +1,4 @@
-import { LoginBuilder } from '@/tests/mocks/builders/presentation/controllers/login/login-builder'
+import { LoginBuilder } from '@/tests/mocks/builders/presentation/controllers/login/login-controller-builder'
 
 export class LoginObjectMother {
 

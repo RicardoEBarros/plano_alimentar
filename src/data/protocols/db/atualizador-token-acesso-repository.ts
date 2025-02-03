@@ -1,3 +1,3 @@
 export interface AtualizadorTokenAcessoRepository {
-  atualizar(id: string, tokenAcesso: string): Promise<void>
+  atualizarTokenAcesso(id: string, tokenAcesso: string): Promise<void>
 }

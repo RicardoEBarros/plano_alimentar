@@ -24,7 +24,7 @@ export class AutenticadorDb implements Autenticador {
       const passwordValido = await this.comparadorHash.comparar(autenticacao.password, conta.password)
       if (passwordValido) {
         const tokenAcesso = this.encriptador.gerar(conta.id)
-        await this.atualizadorTokenAcessoRepository.atualizar(conta.id, tokenAcesso)
+        await this.atualizadorTokenAcessoRepository.atualizarTokenAcesso(conta.id, tokenAcesso)
         return tokenAcesso
       }
     }

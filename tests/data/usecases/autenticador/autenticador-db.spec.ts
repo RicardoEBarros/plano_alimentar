@@ -111,7 +111,7 @@ describe('UseCase Autenticador Db Suíte', () => {
     const { sut, atualizadorTokenAcessoRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
     const dadosContaFake = RegistradorContaRepositoryObjectMother.valido()
-    const atualizarSpy = jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizar')
+    const atualizarSpy = jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizarTokenAcesso')
     await sut.autenticar(dadosLoginFake)
 
     expect(atualizarSpy).toHaveBeenNthCalledWith(1, Reflect.get(dadosContaFake, 'id'), 'token_valido')
@@ -122,7 +122,7 @@ describe('UseCase Autenticador Db Suíte', () => {
 
     const { sut, atualizadorTokenAcessoRepositoryStub } = makeBuscadorContaPorEmail()
     const dadosLoginFake = LoginObjectMother.valido() as AutenticadorModel
-    jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizar').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(atualizadorTokenAcessoRepositoryStub, 'atualizarTokenAcesso').mockReturnValueOnce(Promise.reject(new Error()))
     const promise = sut.autenticar(dadosLoginFake)
 
     await expect(promise).rejects.toThrow()

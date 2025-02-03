@@ -9,7 +9,7 @@ import { LogMongoRepository } from '@/src/infra/db/mongodb/log/log-mongo-reposit
 import { makeValidadorRegistro } from './validacao-registro-factory'
 
 export const makeRegistroController = (): Controller => {
-  const bcryptAdapter = new BcryptAdapter(env.saltDoHasher) 
+  const bcryptAdapter = new BcryptAdapter(env.salt) 
   const registradorContaRepository = new ContaMongoRepository()
   const registradorConta = new RegistradorContaDb(bcryptAdapter, registradorContaRepository)
   const registroController = new RegistroController(registradorConta, makeValidadorRegistro())

@@ -50,11 +50,20 @@ describe('BcryptAdapter Suíte', () => {
 
   })
 
-  test('Deve retornar true quando comparar der certo', async () => {
+  test('Deve retornar true quando comparação der certo', async () => {
 
     const sut = makeBcryptAdapter(salt)
     const comparacaoValida = await sut.comparar('valor', 'hash')
     expect(comparacaoValida).toBe(true)
+
+  })
+
+  test('Deve retornar false quando comparação falhar ', async () => {
+
+    const sut = makeBcryptAdapter(salt)
+    jest.spyOn(bcrypt, 'compare').mockImplementationOnce(() => Promise.resolve(false))
+    const comparacaoValida = await sut.comparar('valor', 'hash')
+    expect(comparacaoValida).toBe(false)
 
   })
 

@@ -1,13 +1,13 @@
+import env from '@/src/main/config/env'
 import { describe, test, beforeAll, beforeEach, afterAll } from '@jest/globals'
 import { RegistradorObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/registro/registrador-object-mother'
 import { MongoHelper } from '@/src/infra/db/mongodb/helpers/mongo-helper'
 import { LoginObjectMother } from '@/tests/mocks/object-mothers/presentation/controllers/login/login-object-mother'
 import { Collection } from 'mongodb'
-import app from '@/src/main/config/app'
-import request from 'supertest'
 import { hash } from 'bcrypt'
 import { ContaModel } from '@/src/domain/models/conta'
-import env from '@/src/main/config/env'
+import request from 'supertest'
+import app from '@/src/main/config/app'
 
 describe('Rotas Login Suíte', () => {
 

@@ -3,10 +3,10 @@ import { MongoHelper } from '../helpers/mongo-helper'
 
 export class LogMongoRepository implements LogErrorRepository {
   
-  async logError(pilhaErros: string): Promise<void> {
+  async logError(stack: string): Promise<void> {
     const logErrosCollection = await MongoHelper.getCollection('log-erros')
     await logErrosCollection.insertOne({
-      pilhaErros,
+      stack,
       date: new Date()
     })
   }

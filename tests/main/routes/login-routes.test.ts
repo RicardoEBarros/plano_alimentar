@@ -57,6 +57,17 @@ describe('Rotas Login Suíte', () => {
   
     })
 
+    test('Deve retornar 401 se as credenciais estiverem incorretas', async () => {
+
+      const loginFake = LoginObjectMother.valido()
+
+      await request(app)
+        .post('/api/login')
+        .send(loginFake)
+        .expect(401)
+  
+    })
+
   })
 
 })

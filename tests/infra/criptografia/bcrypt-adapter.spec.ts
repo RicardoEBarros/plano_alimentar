@@ -50,5 +50,13 @@ describe('BcryptAdapter Suíte', () => {
 
   })
 
+  test('Deve retornar true quando comparar der certo', async () => {
+
+    const sut = makeBcryptAdapter(salt)
+    const comparacaoValida = await sut.comparar('valor', 'hash')
+    expect(comparacaoValida).toBe(true)
+
+  })
+
 })
 

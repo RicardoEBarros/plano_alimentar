@@ -56,4 +56,14 @@ describe('Conta Repository MongoDb', () => {
 
   })
 
+  test('Deve retornar null se buscarPorEmail falhar', async () => {
+
+    const sut = makeContaMongoRepository()
+    const { id, ...contaInexistente } = RegistradorObjectMother.valido() as ContaModel
+    const conta = await sut.buscarPorEmail(contaInexistente.email)   
+
+    expect(conta).toBeFalsy()
+    
+  })
+
 })

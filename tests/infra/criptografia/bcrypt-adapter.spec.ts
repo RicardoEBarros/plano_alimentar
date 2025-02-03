@@ -32,7 +32,7 @@ describe('BcryptAdapter Suíte', () => {
 
   })
 
-  test('Deve lançar exceção se bcrypt lançar um erro', async () => {
+  test('Deve lançar exceção se hash lançar um erro', async () => {
 
     const sut = makeBcryptAdapter(salt)
     jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => { throw new Error() })
@@ -64,6 +64,15 @@ describe('BcryptAdapter Suíte', () => {
     jest.spyOn(bcrypt, 'compare').mockImplementationOnce(() => Promise.resolve(false))
     const comparacaoValida = await sut.comparar('valor', 'hash')
     expect(comparacaoValida).toBe(false)
+
+  })
+
+  test('Deve lançar exceção se comparar lançar um erro', async () => {
+
+    const sut = makeBcryptAdapter(salt)
+    jest.spyOn(bcrypt, 'compare').mockImplementationOnce(() => { throw new Error() })
+    const promise = sut.comparar('valor', 'hash')
+    expect(promise).rejects.toThrow()
 
   })
 

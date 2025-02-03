@@ -1,4 +1,5 @@
 import { JwtAdapter } from '@/src/infra/criptografia/jwt-adapter/jwt-adapter'
+import { makeJwtAdapter } from '@/tests/mocks/factories/infra/criptografia/jwt-adapter-factory'
 import { describe, test, expect, jest } from '@jest/globals'
 import jwt from 'jsonwebtoken'
 
@@ -22,7 +23,7 @@ describe('JWT Adapter Suíte', () => {
 
   test('Deve retornar um token de acesso quando sign der certo', () => {
 
-    const sut = new JwtAdapter('chave_secreta')
+    const sut = makeJwtAdapter()
     const tokenAcesso = sut.gerar('id_fake')
     
     expect(tokenAcesso).toBe('token_valido')
@@ -31,7 +32,7 @@ describe('JWT Adapter Suíte', () => {
 
   test('Deve lançar um erro se ocorrer um erro no sign', () => {
 
-    const sut = new JwtAdapter('chave_secreta')
+    const sut = makeJwtAdapter()
     jest.spyOn(jwt, 'sign').mockImplementationOnce(() => { throw new Error() })
     const gerarFn = () => sut.gerar('id_fake')
 

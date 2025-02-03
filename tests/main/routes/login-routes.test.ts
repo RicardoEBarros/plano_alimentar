@@ -4,7 +4,7 @@ import { MongoHelper } from '@/src/infra/db/mongodb/helpers/mongo-helper'
 import app from '@/src/main/config/app'
 import request from 'supertest'
 
-describe('Registrar Rotas Suíte', () => {
+describe('Rotas Login Suíte', () => {
 
   beforeAll(async () => {
     await MongoHelper.conectar(process.env.MONGO_URL)
@@ -19,14 +19,18 @@ describe('Registrar Rotas Suíte', () => {
     await MongoHelper.disconectar()
   })
 
-  test('Deve retornar uma conta se tudo der certo', async () => {
-
-    const contaFake = RegistradorObjectMother.idAusente()
+  describe('POST /registrar', () => {
     
-    await request(app)
-      .post('/api/registrar')
-      .send(contaFake)
-      .expect(200)
+    test('Deve retornar 200 ao registrar uma conta', async () => {
+
+      const contaFake = RegistradorObjectMother.idAusente()
+      
+      await request(app)
+        .post('/api/registrar')
+        .send(contaFake)
+        .expect(200)
+  
+    })
 
   })
 

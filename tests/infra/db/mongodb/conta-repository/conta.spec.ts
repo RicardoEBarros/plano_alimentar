@@ -42,16 +42,16 @@ describe('Conta Repository MongoDb', () => {
   test('Deve retornar uma conta se em buscarPorEmail der tudo certo', async () => {
 
     const sut = makeContaMongoRepository()
-    const { id, ...contaInexistente } = RegistradorObjectMother.valido() as ContaModel
-    await contaCollection.insertOne(Object.assign({}, contaInexistente))
-    const conta = await sut.buscarPorEmail(contaInexistente.email)   
+    const { id, ...contaFakeInexistente } = RegistradorObjectMother.valido() as ContaModel
+    await contaCollection.insertOne(Object.assign({}, contaFakeInexistente))
+    const contaFake = await sut.buscarPorEmail(contaFakeInexistente.email)   
 
-    expect(conta).toBeTruthy()
-    expect(conta.id).toBeTruthy()
+    expect(contaFake).toBeTruthy()
+    expect(contaFake.id).toBeTruthy()
 
-    Object.keys(contaInexistente)
+    Object.keys(contaFakeInexistente)
       .forEach((key: string) => {
-        expect(Reflect.get(conta, key)).toBe(Reflect.get(contaInexistente, key))
+        expect(Reflect.get(contaFake, key)).toBe(Reflect.get(contaFakeInexistente, key))
       })
 
   })
@@ -59,11 +59,29 @@ describe('Conta Repository MongoDb', () => {
   test('Deve retornar null se buscarPorEmail falhar', async () => {
 
     const sut = makeContaMongoRepository()
-    const { id, ...contaInexistente } = RegistradorObjectMother.valido() as ContaModel
-    const conta = await sut.buscarPorEmail(contaInexistente.email)   
+    const { id, ...contaFakeInexistente } = RegistradorObjectMother.valido() as ContaModel
+    const conta = await sut.buscarPorEmail(contaFakeInexistente.email)   
 
     expect(conta).toBeFalsy()
     
+  })
+
+  test('Deve atualizar a conta com o token de acesso se atualizarTokenAcesso der certo', async () => {
+
+    const sut = makeContaMongoRepository()
+    const { id, ...contaFakeInexistente } = RegistradorObjectMother.valido() as ContaModel
+    const { insertedId } = await contaCollection.insertOne(Object.assign({}, contaFakeInexistente))
+    const contaFake = MongoHelper.map(await contaCollection.findOne(insertedId))
+
+    // confirma que token_acesso não existia
+    expect(contaFake.token_acesso).toBeFalsy()
+
+    await sut.atualizarTokenAcesso(contaFake.id, 'token_valido')
+    const conta = await sut.buscarPorEmail(contaFakeInexistente.email)
+
+    expect(conta).toBeTruthy()
+    expect(conta.token_acesso).toBeTruthy()
+
   })
 
 })

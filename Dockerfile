@@ -2,10 +2,12 @@ FROM node:20.14
 
 WORKDIR /usr/src/plano_alimentar
 
-COPY package.json .
+COPY package.json package-lock.json ./
 
-RUN npm install --only=prod \
-      && npm run build
+RUN npm ci \
+    npm prune --omit=dev
+
+COPY ./dist ./dist
 
 EXPOSE 5000
 

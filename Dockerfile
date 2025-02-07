@@ -1,8 +1,7 @@
 FROM node:20.14
 
-WORKDIR /usr/src/plano_alimentar
+WORKDIR /usr/src/plano-alimentar
 
-COPY package.json package-lock.json ./
+COPY package.json ./
 
-RUN npm ci \
-    npm prune --omit=dev
+RUN npm install

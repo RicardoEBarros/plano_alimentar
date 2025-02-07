@@ -3,23 +3,33 @@ version: "3"
 services:
   mongo:
     container_name: mongo-container
-    image: mongo:3
+    image: mongo:5
     restart: always
     volumes:
-      - ./data:/data/db
+      - mongodb:/data/db
     ports: 
-      "27017:27017"
+      - "27017:27017"
+    networks:
+      - api_plano_alimentar
   api:
-    depends_on:
-    - mongo
     container_name: api-container
+    depends_on:
+      - mongo
     build: .
-    image: plano_alimentar
+    image: plano-alimentar
     restart: always
     command: npm start
     volumes:
-      - ./dist:/usr/src/plano_alimentar/dist
+      - ./dist:/usr/src/plano-alimentar/dist
     ports:
       - "5050:5050"
     links: 
       - mongo
+    networks:
+      - api_plano_alimentar
+
+networks:
+  api_plano_alimentar:
+
+volumes:
+  mongodb:

@@ -6,9 +6,3 @@ COPY package.json package-lock.json ./
 
 RUN npm ci \
     npm prune --omit=dev
-
-COPY ./dist ./dist
-
-EXPOSE 5000
-
-CMD ["npm", "start"]

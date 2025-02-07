@@ -19,9 +19,11 @@ O projeto se trata de um aplicativo de plano alimentar, onde o usuário poderá 
      git clone https://github.com/RicardoEBarros/plano-alimentar.git
   2. **Instale o Docker:** <br><br>
      acesse [Docker](https://www.docker.com/products/docker-desktop/) e faça a instalação <br><br>
-  4. **Inicialize o Docker e execute:**
+  4. **Execute a aplicação:**
      ``` sh
-     docker-compose up -d
+     abra o Vs Code (ou outro editor de código de sua preferência)
+     acesse a pasta da aplicação
+     no terminal, execute: npm run up
   5. **Acesse seu navegador (browser) e informe o caminho:**
      ``` sh
-     http://localhost:3000
+     http://localhost:5050

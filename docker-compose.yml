@@ -13,12 +13,10 @@ services:
       - api_plano_alimentar
   api:
     container_name: api-container
-    depends_on:
-      - mongo
-    build: .
-    image: plano-alimentar
+    image: node:20.14
+    working_dir: /usr/src/plano-alimentar
     restart: always
-    command: npm run debug
+    command: bash -c "npm install && npm run debug"
     volumes:
       - ./dist:/usr/src/plano-alimentar/dist
       - ./package.json:/usr/src/plano-alimentar/package.json
@@ -29,6 +27,8 @@ services:
       - mongo
     networks:
       - api_plano_alimentar
+    depends_on:
+      - mongo
 
 networks:
   api_plano_alimentar:

@@ -12,6 +12,10 @@ module.exports = [
     plugins: {
       '@stylistic/js': stylisticJs
     },
+    parserOptions: {
+      project: "tsconfig-eslint.json",
+      tsconfigRootDir: "."
+    },
     rules: {
       "semi": ["error", "never"],
       "eqeqeq": "error",

@@ -1,22 +1,10 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "dist",
-    "module": "CommonJS",
-    "target": "ES2019",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "strict": true,
-    "paths": {
-      "@/*": ["*"]
-    }
-  },
+  "extends": "tsconfig.json",
   "include": [
-    "src/**/*"
+    "src/**/*", 
+    "tests/**/*"
   ],
   "exclude": [
-    "tests", 
     "node_modules", 
     "coverage"
   ]

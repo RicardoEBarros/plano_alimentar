@@ -7,15 +7,10 @@
     "target": "ES2019",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "strict": true,
     "sourceMap": true,
     "noEmit": true,
     "paths": {
       "@/*": ["*"]
     }
-  },
-  "include": [
-    "src/**/*", 
-    "tests/**/*"
-  ]
+  }
 }

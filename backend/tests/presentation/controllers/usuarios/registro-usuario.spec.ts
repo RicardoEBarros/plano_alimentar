@@ -1,4 +1,4 @@
-import { internalServerError } from "@/src/presentation/helpers/http/http-helper"
+import { internalServerError, ok } from "@/src/presentation/helpers/http/http-helper"
 import { makeRegistroUsuarioControllerFactory } from "./mocks"
 
 describe("Registro Usuário Suíte", () => {
@@ -21,6 +21,15 @@ describe("Registro Usuário Suíte", () => {
     const httpResponse = await sut.handle(httpRequest)
 
     expect(httpResponse).toEqual(internalServerError())
+
+  })
+
+  test("Deve retornar 200 e o token de acesso se tudo der certo", async () => {
+
+    const { sut, httpRequest, registroUsuarioStub } = makeRegistroUsuarioControllerFactory()
+    const httpResponse = await sut.handle(httpRequest)
+
+    expect(httpResponse).toEqual(ok(registroUsuarioStub.tokenAcesso))
 
   })
 

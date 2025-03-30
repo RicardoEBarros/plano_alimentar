@@ -4,7 +4,8 @@
   "description": "![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)\r ![Node](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)\r ![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)\r ![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white)\r ![MongoDB](https://img.shields.io/badge/MongoDB-023430?logo=mongodb&logoColor=white)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "ricardo_barros",

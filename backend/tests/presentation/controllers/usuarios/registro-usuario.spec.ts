@@ -1,7 +1,7 @@
 import { internalServerError, ok } from "@/src/presentation/helpers/http/http-helper"
 import { makeRegistroUsuarioControllerFactory } from "./mocks"
 
-describe("Registro Usuário Suíte", () => {
+describe("Registro Usuário Controller Suíte", () => {
 
   test("Deve chamar RegistroUsuario com os parâmetros corretos", async () => {
 

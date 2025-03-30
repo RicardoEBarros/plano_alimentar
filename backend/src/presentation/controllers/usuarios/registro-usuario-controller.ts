@@ -1,8 +1,7 @@
 import { RegistrarUsuario } from "@/src/domain/usecases/usuarios/registrar-usuario"
 import { HttpRequest, HttpResponse } from "../../protocols/http"
 import { Controller } from "../../protocols/controller"
-import { StatusCodes } from "../../enums/status-codes"
-import { internalServerError } from "../../helpers/http/http-helper"
+import { internalServerError, ok } from "../../helpers/http/http-helper"
 
 export class RegistroUsuarioController implements Controller {
   
@@ -12,14 +11,10 @@ export class RegistroUsuarioController implements Controller {
 
     try {
       
-      await this.registradorUsuario.registrar(httpRequest.body)
+      const tokenAcesso = await this.registradorUsuario.registrar(httpRequest.body)
+      return ok(tokenAcesso)
 
-      return Promise.resolve({
-        statusCode: StatusCodes.ok,
-        body: {}
-      })
-
-    } catch (error) {
+    } catch {
       return internalServerError()
     }
  

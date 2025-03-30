@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "noEmit": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+}

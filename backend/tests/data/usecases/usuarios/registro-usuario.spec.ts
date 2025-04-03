@@ -2,21 +2,21 @@ import { makeRegistroUsuarioFactory } from "./mocks"
 
 describe("Registro Usuário Suíte", () => {
 
-  test("Deve chamar o Encriptador com os parâmetros corretos", async () => {
+  test("Deve chamar o GeradorDeHash com os parâmetros corretos", async () => {
 
-    const { sut, parametrosFake, encriptadorStub } = makeRegistroUsuarioFactory()
-    const encriptarSpy = jest.spyOn(encriptadorStub, "encriptar")
+    const { sut, parametrosFake, geradorDeHashStub } = makeRegistroUsuarioFactory()
+    const hashSpy = jest.spyOn(geradorDeHashStub, "hash")
     await sut.registrar(parametrosFake.usuario)
 
-    expect(encriptarSpy).toHaveBeenCalledTimes(1)
-    expect(encriptarSpy).toHaveBeenCalledWith(parametrosFake.usuario.password)
+    expect(hashSpy).toHaveBeenCalledTimes(1)
+    expect(hashSpy).toHaveBeenCalledWith(parametrosFake.usuario.password)
 
   })
 
-  test("Deve lançar uma exceção se Encriptador lançar um erro", async () => {
+  test("Deve lançar uma exceção se GeradorDeHash lançar um erro", async () => {
 
-    const { sut, parametrosFake, encriptadorStub } = makeRegistroUsuarioFactory()
-    jest.spyOn(encriptadorStub, "encriptar").mockImplementationOnce(() => { throw new Error() })
+    const { sut, parametrosFake, geradorDeHashStub } = makeRegistroUsuarioFactory()
+    jest.spyOn(geradorDeHashStub, "hash").mockImplementationOnce(() => { throw new Error() })
     const promise = sut.registrar(parametrosFake.usuario)
 
     await expect(promise).rejects.toThrow(new Error())
@@ -25,14 +25,14 @@ describe("Registro Usuário Suíte", () => {
 
   test("Deve chamar RegistradorUsuario com os parâmetros corretos", async () => {
 
-    const { sut, parametrosFake, encriptadorStub, registradorUsuarioRepositoryStub } = makeRegistroUsuarioFactory()
+    const { sut, parametrosFake, geradorDeHashStub, registradorUsuarioRepositoryStub } = makeRegistroUsuarioFactory()
     const registrarSpy = jest.spyOn(registradorUsuarioRepositoryStub, "registrar")
     await sut.registrar(parametrosFake.usuario)
 
     expect(registrarSpy).toHaveBeenCalledTimes(1)
     expect(registrarSpy).toHaveBeenCalledWith({ 
       ...parametrosFake.usuario, 
-      password: encriptadorStub.passwordEncriptado 
+      password: geradorDeHashStub.textoHasheado 
     })
 
   })

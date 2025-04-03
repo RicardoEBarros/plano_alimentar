@@ -85,7 +85,7 @@
         <mxCell id="zHC3E1AEztnNTuiyob_b-22" value="GeradorToken" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;gradientColor=none;fillColor=default;strokeColor=#FFFF66;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="258" width="116" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="zHC3E1AEztnNTuiyob_b-25" value="Hasher" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;gradientColor=none;fillColor=default;strokeColor=#FFFF66;dashed=1;" parent="1" vertex="1">
+        <mxCell id="zHC3E1AEztnNTuiyob_b-25" value="GeradorDeHash" style="rounded=1;whiteSpace=wrap;html=1;fontSize=9;gradientColor=none;fillColor=default;strokeColor=#FFFF66;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="337" y="258" width="116" height="40" as="geometry" />
         </mxCell>
         <mxCell id="zHC3E1AEztnNTuiyob_b-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="zHC3E1AEztnNTuiyob_b-26" target="zHC3E1AEztnNTuiyob_b-34" edge="1">

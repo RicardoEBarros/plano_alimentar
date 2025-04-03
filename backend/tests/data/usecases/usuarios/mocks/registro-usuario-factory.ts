@@ -1,7 +1,7 @@
 import { EntidadeUsuario } from "@/src/domain/entities/usuario"
 import { RegistrarUsuario } from "@/src/domain/usecases/usuarios/registrar-usuario"
 import { UsuarioMother } from "@/tests/presentation/controllers/usuarios/mocks"
-import { EncriptadorStub, EncriptadorTypes } from "./encriptador-stub"
+import { GeradorDeHashStub, GerarHashTypes } from "./gerador-de-hash-stub"
 import { RegistroUsuario } from "@/src/data/usecases/usuarios/registro-usuario"
 import { RegistradorUsuarioRepositoryStub, RegistradorUsuarioRepositoryTypes } from "./registrador-usuario-repository-stub"
 
@@ -15,20 +15,20 @@ const makeParametrosFake = (): ParametrosFakeTypes => ({
 
 interface SutRegistroUsuarioTypes {
   sut: RegistrarUsuario
-  encriptadorStub: EncriptadorTypes
+  geradorDeHashStub: GerarHashTypes
   parametrosFake: ParametrosFakeTypes
   registradorUsuarioRepositoryStub: RegistradorUsuarioRepositoryTypes
 }
 
 export const makeRegistroUsuarioFactory = (): SutRegistroUsuarioTypes => {
   const parametrosFake = makeParametrosFake()
-  const encriptadorStub = new EncriptadorStub()
+  const geradorDeHashStub = new GeradorDeHashStub()
   const registradorUsuarioRepositoryStub = new RegistradorUsuarioRepositoryStub()
-  const sut = new RegistroUsuario(encriptadorStub, registradorUsuarioRepositoryStub)
+  const sut = new RegistroUsuario(geradorDeHashStub, registradorUsuarioRepositoryStub)
   return {
     sut, 
     parametrosFake,
-    encriptadorStub,
+    geradorDeHashStub,
     registradorUsuarioRepositoryStub
   }
 }

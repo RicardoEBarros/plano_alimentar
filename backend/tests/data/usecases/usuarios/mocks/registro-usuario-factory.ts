@@ -3,6 +3,7 @@ import { RegistrarUsuario } from "@/src/domain/usecases/usuarios/registrar-usuar
 import { UsuarioMother } from "@/tests/presentation/controllers/usuarios/mocks"
 import { EncriptadorStub, EncriptadorTypes } from "./encriptador-stub"
 import { RegistroUsuario } from "@/src/data/usecases/usuarios/registro-usuario"
+import { RegistradorUsuarioRepositoryStub, RegistradorUsuarioRepositoryTypes } from "./registrador-usuario-repository-stub"
 
 interface ParametrosFakeTypes {
   usuario: EntidadeUsuario
@@ -16,15 +17,18 @@ interface SutRegistroUsuarioTypes {
   sut: RegistrarUsuario
   encriptadorStub: EncriptadorTypes
   parametrosFake: ParametrosFakeTypes
+  registradorUsuarioRepositoryStub: RegistradorUsuarioRepositoryTypes
 }
 
 export const makeRegistroUsuarioFactory = (): SutRegistroUsuarioTypes => {
   const parametrosFake = makeParametrosFake()
   const encriptadorStub = new EncriptadorStub()
-  const sut = new RegistroUsuario(encriptadorStub)
+  const registradorUsuarioRepositoryStub = new RegistradorUsuarioRepositoryStub()
+  const sut = new RegistroUsuario(encriptadorStub, registradorUsuarioRepositoryStub)
   return {
     sut, 
     parametrosFake,
-    encriptadorStub
+    encriptadorStub,
+    registradorUsuarioRepositoryStub
   }
 }

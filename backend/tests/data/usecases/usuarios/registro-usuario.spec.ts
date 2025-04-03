@@ -23,7 +23,20 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test.todo("Deve chamar RegistradorUsuario com os parâmetros corretos")
+  test("Deve chamar RegistradorUsuario com os parâmetros corretos", async () => {
+
+    const { sut, parametrosFake, encriptadorStub, registradorUsuarioRepositoryStub } = makeRegistroUsuarioFactory()
+    const registrarSpy = jest.spyOn(registradorUsuarioRepositoryStub, "registrar")
+    await sut.registrar(parametrosFake.usuario)
+
+    expect(registrarSpy).toHaveBeenCalledTimes(1)
+    expect(registrarSpy).toHaveBeenCalledWith({ 
+      ...parametrosFake.usuario, 
+      password: encriptadorStub.passwordEncriptado 
+    })
+
+  })
+
   test.todo("Deve lançar uma exceção se RegistradorUsuario lançar um erro")
   test.todo("Deve chamar GeradorToken com os parâmetros corretos")
   test.todo("Deve lançar uma exceção se GeradorToken lançar um erro")

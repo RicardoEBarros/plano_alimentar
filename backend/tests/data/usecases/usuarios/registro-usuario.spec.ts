@@ -23,7 +23,7 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test("Deve chamar RegistradorUsuario com os parâmetros corretos", async () => {
+  test("Deve chamar registradorUsuarioRepository com os parâmetros corretos", async () => {
 
     const { sut, parametrosFake, geradorDeHashStub, registradorUsuarioRepositoryStub } = makeRegistroUsuarioFactory()
     const registrarSpy = jest.spyOn(registradorUsuarioRepositoryStub, "registrar")
@@ -37,7 +37,16 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test.todo("Deve lançar uma exceção se RegistradorUsuario lançar um erro")
+  test("Deve lançar uma exceção se registradorUsuarioRepository lançar um erro", async () => {
+
+    const { sut, parametrosFake, registradorUsuarioRepositoryStub } = makeRegistroUsuarioFactory()
+    jest.spyOn(registradorUsuarioRepositoryStub, "registrar").mockImplementationOnce(() => { throw new Error() })
+    const promise = sut.registrar(parametrosFake.usuario)
+
+    await expect(promise).rejects.toThrow(new Error())
+
+  })
+
   test.todo("Deve chamar GeradorToken com os parâmetros corretos")
   test.todo("Deve lançar uma exceção se GeradorToken lançar um erro")
   test.todo("Deve retornar o token de acesso se tudo der certo")

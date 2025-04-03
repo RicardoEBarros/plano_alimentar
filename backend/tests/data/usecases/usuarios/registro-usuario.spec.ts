@@ -68,6 +68,13 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test.todo("Deve retornar o token de acesso se tudo der certo")
+  test("Deve retornar o token de acesso se tudo der certo", async () => {
+
+    const { sut, parametrosFake, geradorTokenStub } = makeRegistroUsuarioFactory()
+    const tokenAcesso = await sut.registrar(parametrosFake.usuario)
+
+    expect(tokenAcesso).toBe(geradorTokenStub.tokenAcesso)
+
+  })
 
 })

@@ -47,7 +47,17 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test.todo("Deve chamar GeradorToken com os parâmetros corretos")
+  test("Deve chamar GeradorToken com os parâmetros corretos", async () => {
+
+    const { sut, parametrosFake, registradorUsuarioRepositoryStub, geradorTokenStub } = makeRegistroUsuarioFactory()
+    const gerarSpy = jest.spyOn(geradorTokenStub, "gerar")
+    await sut.registrar(parametrosFake.usuario)
+
+    expect(gerarSpy).toHaveBeenCalledTimes(1)
+    expect(gerarSpy).toHaveBeenCalledWith(registradorUsuarioRepositoryStub.uuid)
+
+  })
+
   test.todo("Deve lançar uma exceção se GeradorToken lançar um erro")
   test.todo("Deve retornar o token de acesso se tudo der certo")
 

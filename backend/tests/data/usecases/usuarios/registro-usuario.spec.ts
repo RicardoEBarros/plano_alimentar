@@ -58,7 +58,16 @@ describe("Registro Usuário Suíte", () => {
 
   })
 
-  test.todo("Deve lançar uma exceção se GeradorToken lançar um erro")
+  test("Deve lançar uma exceção se GeradorToken lançar um erro", async () => {
+
+    const { sut, parametrosFake, geradorTokenStub } = makeRegistroUsuarioFactory()
+    jest.spyOn(geradorTokenStub, "gerar").mockImplementationOnce(() => { throw new Error() })
+    const promise = sut.registrar(parametrosFake.usuario)
+
+    await expect(promise).rejects.toThrow(new Error())
+
+  })
+
   test.todo("Deve retornar o token de acesso se tudo der certo")
 
 })

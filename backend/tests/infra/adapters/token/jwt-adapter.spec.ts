@@ -28,7 +28,16 @@ describe("JWT Adapter Suíte", () => {
 
   })
   
-  test.todo("Deve lançar uma exceção se jsonwebtoken lançar um erro")
+  test("Deve lançar uma exceção se jsonwebtoken lançar um erro", () => {
+
+    const { sut, parametrosFake } = makeJwtAdapterFactory()
+    jest.spyOn(jwt, "sign").mockImplementationOnce(() => { throw new Error() })
+    const gerarFN = () => sut.gerar(parametrosFake.payload)
+
+    expect(gerarFN).toThrow(new Error())
+
+  })
+
   test.todo("Deve retorne o token se tudo der certo")
 
 })

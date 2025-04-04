@@ -7,21 +7,18 @@ interface ParametrosFake {
   passwordParaHashear: string
 }
 
-const makeParametrosFake = (): ParametrosFake => ({
+export const makeParametrosFake = (): ParametrosFake => ({
   salt: faker.random.number(),
   passwordParaHashear: faker.internet.password()
 })
 
 interface SutBcriptAdapterTypes {
   sut: GerarHash
-  parametrosFake: any
 }
 
-export const makeBcryptAdapterFactory = (): SutBcriptAdapterTypes => {
-  const parametrosFake = makeParametrosFake()
-  const sut = new BcryptAdapter(parametrosFake.salt)
+export const makeBcryptAdapterFactory = (salt?: number): SutBcriptAdapterTypes => {
+  const sut = new BcryptAdapter(salt)
   return {
-    sut, 
-    parametrosFake
+    sut
   }
 }

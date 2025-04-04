@@ -1,4 +1,6 @@
-import { makeBcryptAdapterFactory } from "./mocks/bcrypt-adapter-factory"
+import envUtils from "@/src/config/env-utils"
+import { BcryptAdapter } from "@/src/infra/adapters/hash/bcrypt-adapter"
+import { makeBcryptAdapterFactory, makeParametrosFake } from "./mocks/bcrypt-adapter-factory"
 import bcrypt from "bcrypt"
 import faker from "faker"
 
@@ -14,16 +16,42 @@ const mockedBcrypt = bcrypt as jest.Mocked<typeof bcrypt>
 
 describe("Bcrypt Adapter Suíte", () => {
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   test("Deve chamar bcrypt com os parâmetros corretos", async () => {
 
-    const { sut, parametrosFake } = makeBcryptAdapterFactory()
-    const { salt, passwordParaHashear } = parametrosFake
+    const { salt, passwordParaHashear } = makeParametrosFake()
+    const { sut } = makeBcryptAdapterFactory(salt)
     await sut.hash(passwordParaHashear)
 
     expect(mockedBcrypt.hash).toHaveBeenCalledTimes(1)
     expect(mockedBcrypt.hash).toHaveBeenCalledWith(passwordParaHashear, salt)
 
   })
+
+  test("Deve chamar o bcrypt com o salt padrão se salt não for informado", async () => {
+
+    const { passwordParaHashear } = makeParametrosFake()
+    const { sut } = makeBcryptAdapterFactory()
+    await sut.hash(passwordParaHashear)
+
+    expect(mockedBcrypt.hash.mock.calls[0][1]).toBe(envUtils.SALT_PARA_HASH)
+
+  })
+
+  test("Deve chamar o bcrypt com o salt padrão se salt for null", async () => {
+
+    const { passwordParaHashear } = makeParametrosFake()
+    const saltNull = null
+    const { sut } = makeBcryptAdapterFactory(saltNull)
+    await sut.hash(passwordParaHashear)
+
+    expect(mockedBcrypt.hash.mock.calls[0][1]).toBe(envUtils.SALT_PARA_HASH)
+
+  })
+
 
   test.todo("Deve lançar uma exceção se bcrypt lançar um erro")
   test.todo("Deve retornar o parâmetro hasheado")

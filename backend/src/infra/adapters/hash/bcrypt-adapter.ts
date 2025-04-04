@@ -4,10 +4,11 @@ import bcrypt from "bcrypt"
 
 export class BcryptAdapter implements GerarHash {
   
-  constructor(private readonly salt: number = envUtils.SALT_PARA_HASH) {}
+  constructor(private readonly salt: number) {}
 
   async hash(texto: string): Promise<string> {
-    return bcrypt.hash(texto, this.salt)
+    const salt = this.salt || envUtils.SALT_PARA_HASH
+    return bcrypt.hash(texto, salt)
   }
 
 }

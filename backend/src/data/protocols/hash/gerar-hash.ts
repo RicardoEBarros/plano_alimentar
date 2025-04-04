@@ -1,3 +1,3 @@
 export interface GerarHash {
-  hash(texto: string): string
+  hash(texto: string): Promise<string>
 }

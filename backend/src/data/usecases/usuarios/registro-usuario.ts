@@ -15,7 +15,7 @@ export class RegistroUsuario implements RegistrarUsuario {
   async registrar(usuario: EntidadeUsuario): Promise<string> {
 
     const { password } = usuario
-    const passwordHasheado = this.geradorDeHash.hash(password)
+    const passwordHasheado = await this.geradorDeHash.hash(password)
     const uuid = await this.registradorUsuario.registrar({ ...usuario, password: passwordHasheado })
     return this.geradorToken.gerar(uuid)
     

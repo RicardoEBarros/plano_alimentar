@@ -9,7 +9,7 @@ export class GeradorDeHashStub implements GerarHashTypes {
   
   public textoHasheado: string
 
-  hash(texto: string): string {
+  async hash(texto: string): Promise<string> {
     this.textoHasheado = faker.random.uuid()
     return this.textoHasheado
   }

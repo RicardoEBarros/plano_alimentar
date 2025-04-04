@@ -1,14 +1,13 @@
 import envUtils from "@/src/config/env-utils"
-import { BcryptAdapter } from "@/src/infra/adapters/hash/bcrypt-adapter"
 import { makeBcryptAdapterFactory, makeParametrosFake } from "./mocks/bcrypt-adapter-factory"
 import bcrypt from "bcrypt"
 import faker from "faker"
 
-const mockPassword = faker.random.uuid()
+const passwordHasheadoPeloBcrypt = faker.random.uuid()
 
 jest.mock("bcrypt", () => ({
   hash: jest.fn(() => {
-    return mockPassword
+    return passwordHasheadoPeloBcrypt
   })
 }))
 
@@ -63,6 +62,14 @@ describe("Bcrypt Adapter Suíte", () => {
       
   })
 
-  test.todo("Deve retornar o parâmetro hasheado")
+  test("Deve retornar o parâmetro hasheado se tudo der certo", async () => {
+
+    const { salt, passwordParaHashear } = makeParametrosFake()
+    const { sut } = makeBcryptAdapterFactory(salt)
+    const tokenAcesso = await sut.hash(passwordParaHashear)
+
+    expect(tokenAcesso).toBe(passwordHasheadoPeloBcrypt)
+
+  })
 
 })

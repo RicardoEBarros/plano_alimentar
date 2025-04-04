@@ -52,8 +52,17 @@ describe("Bcrypt Adapter Suíte", () => {
 
   })
 
+  test("Deve lançar uma exceção se bcrypt lançar um erro", async () => {
 
-  test.todo("Deve lançar uma exceção se bcrypt lançar um erro")
+    const { salt, passwordParaHashear } = makeParametrosFake()
+    const { sut } = makeBcryptAdapterFactory(salt)
+    jest.spyOn(mockedBcrypt, "hash").mockImplementationOnce(() => { throw new Error() })
+    const promise = sut.hash(passwordParaHashear)
+
+    await expect(promise).rejects.toThrow(new Error())
+      
+  })
+
   test.todo("Deve retornar o parâmetro hasheado")
 
 })

@@ -7,6 +7,7 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:staged": "npm test -- --findRelatedTests ./src",
     "test:ci": "npm test -- --coverage",
+    "test:verbose": "jest --passWithNoTests --runInBand --no-cache",
     "prepare": "husky"
   },
   "keywords": [],
@@ -29,6 +30,7 @@
     "typescript-eslint": "^8.28.0"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2"
   }
 }

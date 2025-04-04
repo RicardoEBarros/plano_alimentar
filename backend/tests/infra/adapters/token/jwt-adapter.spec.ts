@@ -3,9 +3,11 @@ import { makeJwtAdapterFactory } from "./mocks/jwt-adapter-factory"
 import jwt from "jsonwebtoken"
 import faker from "faker"
 
+const tokenAcessoGeradoPeloJsonWebToken = faker.random.uuid()
+
 jest.mock("jsonwebtoken", () => ({
   sign: jest.fn(() => {
-    return faker.random.uuid()
+    return tokenAcessoGeradoPeloJsonWebToken
   })
 }))
 
@@ -38,6 +40,13 @@ describe("JWT Adapter Suíte", () => {
 
   })
 
-  test.todo("Deve retorne o token se tudo der certo")
+  test("Deve retorne o token se tudo der certo", () => {
+
+    const { sut, parametrosFake } = makeJwtAdapterFactory()
+    const tokenAcesso = sut.gerar(parametrosFake.payload)
+
+    expect(tokenAcesso).toBe(tokenAcessoGeradoPeloJsonWebToken)
+
+  })
 
 })

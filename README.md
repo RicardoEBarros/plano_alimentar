@@ -1,3 +1,4 @@
+[![Teste do Projeto](https://github.com/RicardoEBarros/plano_alimentar/actions/workflows/testes.yml/badge.svg)](https://github.com/RicardoEBarros/plano_alimentar/actions/workflows/testes.yml)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)
 ![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)

@@ -17,6 +17,17 @@ describe("Mongo Helper Suíte", () => {
 
   })
 
+  test("Deve definir client com o valor correto", async () => {
+
+    const uri = faker.lorem.word()
+    const mockClient = { isConnected: () => true } as unknown as MongoClient
+    (MongoClient.connect as jest.Mock).mockResolvedValueOnce(mockClient)
+    await MongoHelper.conectar(uri)
+
+    expect(MongoHelper.client).toBe(mockClient)
+
+  })
+
   test.todo("Deve lançar uma exceção se conectar lançar um erro")
 
 })

@@ -7,27 +7,43 @@ const mockedMongoClient = MongoClient as jest.Mocked<typeof MongoClient>
 
 describe("Mongo Helper Suíte", () => {
 
-  test("Deve conectar ao mongo com a uri correta", async () => {
-
-    const uri = faker.lorem.word()
-    await MongoHelper.conectar(uri)
-
-    expect(MongoHelper.uri).toBe(uri)
-    expect(mockedMongoClient.connect).toHaveBeenCalledWith(uri)
-
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
-  test("Deve definir client com o valor correto", async () => {
+  describe("Conectar Suíte", () => {
 
-    const uri = faker.lorem.word()
-    const mockClient = { isConnected: () => true } as unknown as MongoClient
-    (MongoClient.connect as jest.Mock).mockResolvedValueOnce(mockClient)
-    await MongoHelper.conectar(uri)
+    test("Deve conectar ao mongo com a uri correta", async () => {
 
-    expect(MongoHelper.client).toBe(mockClient)
+      const uri = faker.lorem.word()
+      await MongoHelper.conectar(uri)
+  
+      expect(MongoHelper.uri).toBe(uri)
+      expect(mockedMongoClient.connect).toHaveBeenCalledWith(uri)
+  
+    })
+  
+    test("Deve definir client com o valor correto", async () => {
+  
+      const uri = faker.lorem.word()
+      const mockClient = { isConnected: () => true } as unknown as MongoClient
+      jest.spyOn(MongoClient, "connect").mockResolvedValueOnce(mockClient)
+      await MongoHelper.conectar(uri)
+  
+      expect(MongoHelper.client).toBe(mockClient)
+  
+    })
+  
+    test("Deve lançar uma exceção se MongoClient.connect lançar um erro", async () => {
+
+      const uri = faker.lorem.word()
+      jest.spyOn(MongoClient, "connect").mockRejectedValueOnce(new Error())
+      const promise = MongoHelper.conectar(uri)
+
+      expect(promise).rejects.toThrow(new Error())
+
+    })
 
   })
-
-  test.todo("Deve lançar uma exceção se conectar lançar um erro")
 
 })

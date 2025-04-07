@@ -1,0 +1,6 @@
+{
+  "backend/**/*.ts": [
+    "eslint --config backend/eslint.config.mjs --fix",
+    "npm run test:staged"
+  ]
+}

@@ -8,12 +8,17 @@
     "backend"
   ],
   "scripts": {
-    "test:all": "npm run test --workspace=backend"
+    "test:all": "npm run test --workspace=backend",
+    "test:staged": "npm run test:staged --workspace=backend",
+    "test:ci": "npm run test:ci --workspace=backend",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "ricardo_barros",
   "license": "ISC",
   "devDependencies": {
-    "git-commit-msg-linter": "^5.0.8"
+    "git-commit-msg-linter": "^5.0.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0"
   }
 }

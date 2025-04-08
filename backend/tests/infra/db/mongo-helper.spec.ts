@@ -60,7 +60,17 @@ describe("Mongo Helper Suíte", () => {
 
     })
 
-    test.todo("Deve lançar uma exceção se MongoClient.close lançar um erro")
+    test("Deve lançar uma exceção se MongoClient.close lançar um erro", async () => {
+
+      const mockClient = { close: jest.fn().mockRejectedValueOnce(new Error()) } as unknown as MongoClient
+      const uri = faker.lorem.word()
+      jest.spyOn(MongoClient, "connect").mockResolvedValueOnce(mockClient)
+      await MongoHelper.conectar(uri)
+      const promise = MongoHelper.disconectar()   
+
+      expect(promise).rejects.toThrow(new Error())
+
+    })
 
   })
 

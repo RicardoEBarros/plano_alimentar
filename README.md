@@ -2,7 +2,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)
 ![Jest](https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white)
-![TDD](https://img.shields.io/badge/enabled-TDD-brightgreen)
+![TDD](https://img.shields.io/badge/TDD-enabled-brightgreen)
 ![MongoDB](https://img.shields.io/badge/MongoDB-023430?logo=mongodb&logoColor=white)
 
 

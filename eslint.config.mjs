@@ -26,9 +26,22 @@ export default tseslint.config(
   },
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      "semi": ["error", "never"],
+      "eqeqeq": "error",
+      "no-eval": "error",
+      "curly": ["warn", "all"],
+      "no-var": "warn",
+      "indent": ["error", 2],
+      "prefer-const": "warn",
+      "quotes": ["error", "double"],
+      "eol-last": ["error", "always"],
+      "arrow-spacing": ["error", { before: true, after: true }],
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@stylistic/ts/function-call-spacing": ["error", "never"],
+      "@stylistic/ts/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-empty-object-type": "off"
     },
   },
 );

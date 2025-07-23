@@ -3,10 +3,15 @@ import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import stylisticTs from '@stylistic/eslint-plugin-ts'
 
 export default tseslint.config(
   {
     ignores: ['eslint.config.mjs'],
+    files: ["src/**/*.{js,mjs,cjs,ts}", "tests/**/*.ts"],
+    plugins: {
+      '@stylistic/ts': stylisticTs
+    },
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -31,9 +36,7 @@ export default tseslint.config(
       "no-eval": "error",
       "curly": ["warn", "all"],
       "no-var": "warn",
-      "indent": ["error", 2],
       "prefer-const": "warn",
-      "quotes": ["error", "double"],
       "eol-last": ["error", "always"],
       "arrow-spacing": ["error", { before: true, after: true }],
       "@typescript-eslint/strict-boolean-expressions": "off",

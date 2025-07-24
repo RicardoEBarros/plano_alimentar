@@ -3,15 +3,12 @@ import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import stylistic from '@stylistic/eslint-plugin';
+import stylistic from '@stylistic/eslint-plugin'
 
 export default tseslint.config(
   {
     ignores: ['eslint.config.mjs'],
     files: ["src/**/*.{js,mjs,cjs,ts}", "tests/**/*.ts"],
-    plugins: {
-      '@stylistic': stylistic
-    },
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -30,6 +27,9 @@ export default tseslint.config(
     },
   },
   {
+    plugins: {
+      '@stylistic': stylistic
+    },
     rules: {
       "semi": ["error", "never"],
       "eqeqeq": "error",
@@ -44,7 +44,8 @@ export default tseslint.config(
       "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": "off",
-      "@typescript-eslint/no-empty-object-type": "off"
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-floating-promises": "off"
     },
   },
 );

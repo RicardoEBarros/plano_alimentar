@@ -23,9 +23,9 @@ export class UserRegistrationController {
     }
 
     user.password = this.passwordHasher.hash(user.password)
-    await this.userCreatorService.create(user)
-
-    return ''
+    const uuid = await this.userCreatorService.create(user)
+    
+    return uuid
 
   }
 }

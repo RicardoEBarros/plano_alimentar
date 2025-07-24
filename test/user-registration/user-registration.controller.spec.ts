@@ -89,7 +89,15 @@ describe('User Registration Controller Suite', () => {
 
     })
 
-    test.todo('Should returns 500 if createUser fails')
+    test('Should throws an error if userCreatorService fails', async () => {
+
+      const { sut, fakeParameters, userCreatorService } = await makeUserRegistrationControllerFactory()
+      jest.spyOn(userCreatorService, 'create').mockImplementationOnce(() => { throw new Error() })
+      const promise = sut.create(fakeParameters.user)
+
+      await expect(promise).rejects.toThrow()
+
+    })
     test.todo('Should returns the created registration code')
   })
 })

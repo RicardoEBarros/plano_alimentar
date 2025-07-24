@@ -54,7 +54,7 @@ describe('User Registration Controller Suite', () => {
 
     })
 
-    test('Should calls hashPassword with correct value', async () => {
+    test('Should calls passwordHasher with correct value', async () => {
 
       const { sut, fakeParameters, passwordHasher } = await makeUserRegistrationControllerFactory(true)
       const { password } = fakeParameters.user
@@ -65,7 +65,16 @@ describe('User Registration Controller Suite', () => {
       expect(hashSpy).toHaveBeenCalledWith(password)
 
     })
-    test.todo('Should returns 500 if hashPassword fails')
+    test('Should throws an error if passwordHasher fails', async () => {
+
+      const { sut, fakeParameters, passwordHasher } = await makeUserRegistrationControllerFactory()
+      jest.spyOn(passwordHasher, 'hash').mockImplementationOnce(() => { throw new Error() })
+      const promise = sut.create(fakeParameters.user)
+
+      await expect(promise).rejects.toThrow()
+
+    })
+
     test.todo('Should calls createUser with correct values')
     test.todo('Should returns 500 if createUser fails')
     test.todo('Should returns the created registration code')

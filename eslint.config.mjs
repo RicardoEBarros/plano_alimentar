@@ -29,7 +29,6 @@ export default tseslint.config(
       '@stylistic': stylistic
     },
     rules: {
-      "semi": ["error", "never"],
       "eqeqeq": "error",
       "no-eval": "error",
       "curly": ["warn", "all"],
@@ -38,6 +37,8 @@ export default tseslint.config(
       "eol-last": ["error", "always"],
       "arrow-spacing": ["error", { before: true, after: true }],
       "@typescript-eslint/strict-boolean-expressions": "off",
+      "@stylistic/semi": ["error", "never"],
+      "@stylistic/quotes": ["error", "single"],
       "@stylistic/function-call-spacing": ["error", "never"],
       "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "@typescript-eslint/no-explicit-any": "off",

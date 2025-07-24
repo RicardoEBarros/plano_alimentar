@@ -98,6 +98,13 @@ describe('User Registration Controller Suite', () => {
       await expect(promise).rejects.toThrow()
 
     })
-    test.todo('Should returns the created registration code')
+    test('Should returns the created registration code', async () => {
+
+      const { sut, fakeParameters, userCreatorService } = await makeUserRegistrationControllerFactory(true)
+      const uuid = await sut.create(fakeParameters.user)
+
+      expect(uuid).toBe(userCreatorService.userCreated.id)
+
+    })
   })
 })

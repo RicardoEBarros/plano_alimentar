@@ -1,39 +1,58 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { CreateUser } from '@/src/user-registration/interfaces/create-user.abstract'
 import { UserRegistrationController } from '@/src/user-registration/user-registration.controller'
-import { UserRegistrationService } from '@/src/user-registration/user-registration.service'
 import { UserRegistrationServiceStub } from './user-registration.service.stub'
+import { UserClientMother } from '@/test/shared/user-client.mother'
+import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
+import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
 
-const makeSut = async (): Promise<TestingModule> => {
+interface UserRegistrationControllerTypes {
+  user: CreateUserDTO
+}
+
+const makeFakeParameters = (): UserRegistrationControllerTypes => ({
+  user: UserClientMother.valid(),
+})
+
+const makeSut = async (
+  userRegistrationService: UserRegistrationServiceStub,
+): Promise<TestingModule> => {
   return Test.createTestingModule({
     controllers: [UserRegistrationController],
     providers: [
-      UserRegistrationService,
       {
-        provide: CreateUser,
-        useClass: UserRegistrationServiceStub,
+        provide: FindUserByEmail,
+        useValue: userRegistrationService,
       },
     ],
   }).compile()
 }
 
-const makeUserRegistrationService = (
+const makeUserRegistrationServiceStub = (): UserRegistrationServiceStub => {
+  return new UserRegistrationServiceStub()
+}
+
+const makeUserRegistrationController = (
   module: TestingModule,
-): UserRegistrationService => {
-  return module.get<UserRegistrationService>(UserRegistrationService)
+): UserRegistrationController => {
+  return module.get<UserRegistrationController>(UserRegistrationController)
 }
 
 interface SutUserRegistrationControllerTypes {
-  sut: TestingModule
-  userRegistrationService: UserRegistrationService
+  sut: UserRegistrationController
+  fakeParameters: UserRegistrationControllerTypes
+  userRegistrationServiceStub: FindUserByEmail
 }
 
 export const makeUserRegistrationControllerFactory =
   async (): Promise<SutUserRegistrationControllerTypes> => {
-    const sut = await makeSut()
-    const userRegistrationService = makeUserRegistrationService(sut)
+    const userRegistrationServiceStub = makeUserRegistrationServiceStub()
+    const module = await makeSut(userRegistrationServiceStub)
+    const sut = makeUserRegistrationController(module)
+    const fakeParameters = makeFakeParameters()
     return {
       sut,
-      userRegistrationService,
+      fakeParameters,
+      userRegistrationServiceStub,
     }
   }

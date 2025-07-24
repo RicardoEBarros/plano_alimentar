@@ -1,7 +1,8 @@
-import { CreateUser } from 'src/user-registration/interfaces/create-user.abstract'
+import { User } from '@/src/user-registration/entities/user.entity'
+import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
 
-export class UserRegistrationServiceStub implements CreateUser {
-  async create(): Promise<string> {
-    return Promise.resolve('')
+export class UserRegistrationServiceStub implements FindUserByEmail {
+  async findByEmail(email: string): Promise<User> {
+    return Promise.resolve(null as unknown as User)
   }
 }

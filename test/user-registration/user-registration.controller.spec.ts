@@ -2,13 +2,24 @@ import { makeUserRegistrationControllerFactory } from './mocks/user-registration
 
 describe('User Registration Controller Suite', () => {
   describe('Create User Suite', () => {
-
     test('Should instantiate a new Controller successfully', async () => {
       const { sut } = await makeUserRegistrationControllerFactory()
       expect(sut).toBeDefined()
     })
 
-    test.todo('Should calls findByEmail with correctly values')
+    test('Should calls findByEmail with correctly values', async () => {
+      const { sut, fakeParameters, userRegistrationServiceStub } =
+        await makeUserRegistrationControllerFactory()
+      const findByEmailSpy = jest.spyOn(
+        userRegistrationServiceStub,
+        'findByEmail',
+      )
+      await sut.create(fakeParameters.user)
+
+      expect(findByEmailSpy).toHaveBeenCalled()
+      expect(findByEmailSpy).toHaveBeenCalledWith(fakeParameters.user.email)
+    })
+
     test.todo('Should returns 500 if findByEmail throws an exception')
     test.todo('Should returns 409 if user already exists')
     test.todo('Should calls hashPassword with correct value')

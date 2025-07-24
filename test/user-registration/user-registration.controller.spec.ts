@@ -20,7 +20,18 @@ describe('User Registration Controller Suite', () => {
       expect(findByEmailSpy).toHaveBeenCalledWith(fakeParameters.user.email)
     })
 
-    test.todo('Should returns 500 if findByEmail throws an exception')
+    test('Should throws an error if findByEmail throws an exception', async () => {
+      const { sut, fakeParameters, userRegistrationServiceStub } =
+        await makeUserRegistrationControllerFactory()
+      jest
+        .spyOn(userRegistrationServiceStub, 'findByEmail')
+        .mockImplementationOnce(() => {
+          throw new Error()
+        })
+      const promise = sut.create(fakeParameters.user)
+
+      await expect(promise).rejects.toThrow()
+    })
     test.todo('Should returns 409 if user already exists')
     test.todo('Should calls hashPassword with correct value')
     test.todo('Should returns 500 if hashPassword fails')

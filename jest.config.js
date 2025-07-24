@@ -5,7 +5,8 @@ module.exports = {
     "<rootDir>/src/**/*.ts",
     "!**/interfaces/**",
     "!**/test/**",
-    "!**/*\\.interfaces.ts"
+    "!**/*\.interfaces\.ts",
+    "!**/schema/**"
   ],
   coverageDirectory: "coverage",
   transform: {

@@ -17,7 +17,7 @@ describe('User Registration Controller Suite', () => {
     })
 
     test('Should calls findByEmail with correctly values', async () => {
-      const { sut, fakeParameters, userRegistrationServiceStub } =
+      const { sut, fakeParameters, userRegistrationServiceStub } = 
         await makeUserRegistrationControllerFactory(true)
       const findByEmailSpy = jest.spyOn(
         userRegistrationServiceStub,
@@ -75,7 +75,20 @@ describe('User Registration Controller Suite', () => {
 
     })
 
-    test.todo('Should calls createUser with correct values')
+    test('Should calls userCreatorService with correct values', async () => {
+
+      const { sut, fakeParameters, passwordHasher, userCreatorService } = await makeUserRegistrationControllerFactory(true)
+      const createSpy = jest.spyOn(userCreatorService, 'create')
+      await sut.create(fakeParameters.user)
+
+      expect(createSpy).toHaveBeenCalledOnce()
+      expect(createSpy).toHaveBeenCalledWith({ 
+        ...fakeParameters.user,
+        password: passwordHasher.passwordHashed
+      })
+
+    })
+
     test.todo('Should returns 500 if createUser fails')
     test.todo('Should returns the created registration code')
   })

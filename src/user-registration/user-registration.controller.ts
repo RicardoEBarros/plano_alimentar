@@ -1,13 +1,15 @@
-import { Controller, Get } from '@nestjs/common'
-import { CreateUser } from './interfaces/create-user.abstract'
+import { Controller, Post } from '@nestjs/common'
 import { CreateUserDTO } from './dtos/create-user.dto'
+import { FindUserByEmail } from './interfaces/find-user-by-email.abstract'
 
 @Controller('user-registration')
-export class UserRegistrationController implements CreateUser {
+export class UserRegistrationController {
+  constructor(private readonly findUserByEmailService: FindUserByEmail) {}
 
-  @Get()
-  create(user: CreateUserDTO): Promise<string> {
-    return Promise.resolve('')
+  @Post()
+  async create(user: CreateUserDTO): Promise<string> {
+    await this.findUserByEmailService.findByEmail(user.email)
+
+    return ''
   }
-
 }

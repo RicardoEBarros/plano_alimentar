@@ -3,14 +3,14 @@ import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import stylisticTs from '@stylistic/eslint-plugin-ts'
+import stylistic from '@stylistic/eslint-plugin';
 
 export default tseslint.config(
   {
     ignores: ['eslint.config.mjs'],
     files: ["src/**/*.{js,mjs,cjs,ts}", "tests/**/*.ts"],
     plugins: {
-      '@stylistic/ts': stylisticTs
+      '@stylistic': stylistic
     },
   },
   eslint.configs.recommended,
@@ -40,8 +40,8 @@ export default tseslint.config(
       "eol-last": ["error", "always"],
       "arrow-spacing": ["error", { before: true, after: true }],
       "@typescript-eslint/strict-boolean-expressions": "off",
-      "@stylistic/ts/function-call-spacing": ["error", "never"],
-      "@stylistic/ts/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+      "@stylistic/function-call-spacing": ["error", "never"],
+      "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-empty-object-type": "off"

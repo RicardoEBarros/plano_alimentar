@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { CreateUser } from '@/src/user-registration/interfaces/create-user.abstract'
 import { UserRegistrationController } from '@/src/user-registration/user-registration.controller'
-import { UserRegistrationServiceStub } from './user-registration.service.stub'
+import { UserRegistrationServiceStub, UserRegistrationServiceTypes } from './user-registration.service.stub'
 import { UserClientMother } from '@/test/shared/user-client.mother'
 import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
 import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
@@ -41,7 +41,7 @@ const makeUserRegistrationController = (
 interface SutUserRegistrationControllerTypes {
   sut: UserRegistrationController
   fakeParameters: UserRegistrationControllerTypes
-  userRegistrationServiceStub: FindUserByEmail
+  userRegistrationServiceStub: UserRegistrationServiceTypes
 }
 
 export const makeUserRegistrationControllerFactory =

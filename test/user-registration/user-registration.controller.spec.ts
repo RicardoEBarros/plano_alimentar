@@ -1,4 +1,8 @@
+import { ConflictException } from '@nestjs/common'
 import { makeUserRegistrationControllerFactory } from './mocks/user-registration.controller.factory'
+import { User } from '@/src/user-registration/entities/user.entity'
+import { CLIENT_ERROR_MESSAGES } from '@/src/user-registration/constants/messages.constant'
+import { ErrorHandler } from '@nestjs/common/interfaces'
 
 describe('User Registration Controller Suite', () => {
   describe('Create User Suite', () => {
@@ -13,7 +17,7 @@ describe('User Registration Controller Suite', () => {
       const findByEmailSpy = jest.spyOn(
         userRegistrationServiceStub,
         'findByEmail',
-      )
+      ).mockResolvedValueOnce(null as unknown as User)
       await sut.create(fakeParameters.user)
 
       expect(findByEmailSpy).toHaveBeenCalled()
@@ -32,7 +36,19 @@ describe('User Registration Controller Suite', () => {
 
       await expect(promise).rejects.toThrow()
     })
-    test.todo('Should returns 409 if user already exists')
+
+    test('Should returns ConflictException if user already exists', async () => {
+
+      const { sut, fakeParameters, userRegistrationServiceStub } = await makeUserRegistrationControllerFactory()
+      
+      await expect(sut.create(fakeParameters.user)).rejects.toThrow(
+        new ConflictException(
+          CLIENT_ERROR_MESSAGES.email_already_exists(userRegistrationServiceStub.user.email)
+        )
+      )              
+
+    })
+
     test.todo('Should calls hashPassword with correct value')
     test.todo('Should returns 500 if hashPassword fails')
     test.todo('Should calls createUser with correct values')

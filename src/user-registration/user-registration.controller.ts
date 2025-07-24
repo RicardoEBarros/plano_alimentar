@@ -3,12 +3,14 @@ import { CreateUserDTO } from './dtos/create-user.dto'
 import { FindUserByEmail } from './interfaces/find-user-by-email.abstract'
 import { CLIENT_ERROR_MESSAGES } from './constants/messages.constant'
 import { HashValue } from './interfaces/hash-value.abstract'
+import { CreateUser } from './interfaces/create-user.abstract'
 
 @Controller('user-registration')
 export class UserRegistrationController {
   constructor(
     private readonly findUserByEmailService: FindUserByEmail,
-    private readonly passwordHasher: HashValue
+    private readonly passwordHasher: HashValue,
+    private readonly userCreatorService: CreateUser
   ) {}
 
   @Post()
@@ -21,6 +23,7 @@ export class UserRegistrationController {
     }
 
     user.password = this.passwordHasher.hash(user.password)
+    await this.userCreatorService.create(user)
 
     return ''
 

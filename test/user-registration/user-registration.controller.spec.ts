@@ -5,6 +5,11 @@ import { CLIENT_ERROR_MESSAGES } from '@/src/user-registration/constants/message
 import { ErrorHandler } from '@nestjs/common/interfaces'
 
 describe('User Registration Controller Suite', () => {
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe('Create User Suite', () => {
     test('Should instantiate a new Controller successfully', async () => {
       const { sut } = await makeUserRegistrationControllerFactory()
@@ -13,11 +18,11 @@ describe('User Registration Controller Suite', () => {
 
     test('Should calls findByEmail with correctly values', async () => {
       const { sut, fakeParameters, userRegistrationServiceStub } =
-        await makeUserRegistrationControllerFactory()
+        await makeUserRegistrationControllerFactory(true)
       const findByEmailSpy = jest.spyOn(
         userRegistrationServiceStub,
         'findByEmail',
-      ).mockResolvedValueOnce(null as unknown as User)
+      )
       await sut.create(fakeParameters.user)
 
       expect(findByEmailSpy).toHaveBeenCalled()
@@ -49,7 +54,17 @@ describe('User Registration Controller Suite', () => {
 
     })
 
-    test.todo('Should calls hashPassword with correct value')
+    test('Should calls hashPassword with correct value', async () => {
+
+      const { sut, fakeParameters, passwordHasher } = await makeUserRegistrationControllerFactory(true)
+      const { password } = fakeParameters.user
+      const hashSpy = jest.spyOn(passwordHasher, 'hash')
+      await sut.create(fakeParameters.user)
+
+      expect(hashSpy).toHaveBeenCalled()
+      expect(hashSpy).toHaveBeenCalledWith(password)
+
+    })
     test.todo('Should returns 500 if hashPassword fails')
     test.todo('Should calls createUser with correct values')
     test.todo('Should returns 500 if createUser fails')

@@ -3,14 +3,16 @@ import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by
 import { UserClientMother } from '@/test/shared/user-client.mother'
 
 export interface UserRegistrationServiceTypes extends FindUserByEmail {
-  user: User;
+  user: User
 }
 
 export class UserRegistrationServiceStub implements UserRegistrationServiceTypes {
   public user: User
 
+  constructor(private readonly withoutUserByEmail: boolean) {}
+
   async findByEmail(email: string): Promise<User> {
-    this.user = UserClientMother.valid()
-    return Promise.resolve(this.user)
+    this.user = (this.withoutUserByEmail ? null : UserClientMother.valid()) as unknown as User
+    return Promise.resolve(this.user as unknown as User)
   }
 }

@@ -1,8 +1,6 @@
 import { ConflictException } from '@nestjs/common'
 import { makeUserRegistrationControllerFactory } from './mocks/user-registration.controller.factory'
-import { User } from '@/src/user-registration/entities/user.entity'
 import { CLIENT_ERROR_MESSAGES } from '@/src/user-registration/constants/messages.constant'
-import { ErrorHandler } from '@nestjs/common/interfaces'
 
 describe('User Registration Controller Suite', () => {
 

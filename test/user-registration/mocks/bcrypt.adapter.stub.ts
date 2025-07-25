@@ -9,9 +9,9 @@ export class BcryptAdapterStub {
 
   public passwordHashed: string
 
-  hash(): string {
+  async hash(): Promise<string> {
     this.passwordHashed = faker.string.hexadecimal({ length: 32, casing: 'lower', prefix: '' })
-    return this.passwordHashed
+    return Promise.resolve(this.passwordHashed)
   }
 
 }

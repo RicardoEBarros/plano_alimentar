@@ -4,7 +4,7 @@ import { UserRegistrationServiceStub, UserRegistrationServiceTypes } from './use
 import { UserClientMother } from '@/test/shared/user-client.mother'
 import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
 import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
-import { BcryptAdapterStub, BcryptAdapterTypes } from './bcrypt-adapter.stub'
+import { BcryptAdapterStub, BcryptAdapterTypes } from './bcrypt.adapter.stub'
 import { HashValue } from '@/src/user-registration/interfaces/hash-value.abstract'
 import { UserCreatorStub, UserCreatorTypes } from './user-creator.service.stub'
 import { CreateUser } from '@/src/user-registration/interfaces/create-user.abstract'

@@ -40,7 +40,7 @@ describe('Bcrypt Adapter Suite', () => {
 
   })
 
-  test('Should throws en erro if bcrypt throws', async () => {
+  test('Should throws en error if bcrypt throws', async () => {
 
     const { sut, fakeParameters } = await makeBcryptAdapterFactory()
     jest.spyOn(bcryptMocked, 'hash').mockImplementationOnce(() => { throw new Error() })
@@ -50,6 +50,16 @@ describe('Bcrypt Adapter Suite', () => {
 
   })
 
-  test.todo('Should returns a password hashed')
+  test('Should returns a password hashed', async () => {
+
+    const passwordReturnedFromBcrypt = faker.string.hexadecimal({ length: 16 })
+    const { sut, fakeParameters } = await makeBcryptAdapterFactory()
+    jest.spyOn(bcryptMocked, 'hash').mockImplementationOnce(() => passwordReturnedFromBcrypt)
+    const passwordHashed = await sut.hash(fakeParameters.passwordWithoutHash)
+    
+    expect(passwordHashed).toBeTruthy()
+    expect(passwordHashed).toBe(passwordReturnedFromBcrypt)
+
+  })
 
 })

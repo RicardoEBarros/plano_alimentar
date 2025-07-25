@@ -1,0 +1,1 @@
+export const DEFAULT_NUMBER_OF_SALTS_FOR_THE_HASH = 12

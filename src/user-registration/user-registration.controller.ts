@@ -22,7 +22,7 @@ export class UserRegistrationController {
       throw new ConflictException(CLIENT_ERROR_MESSAGES.email_already_exists(userByEmail.email))
     }
 
-    user.password = this.passwordHasher.hash(user.password)
+    user.password = await this.passwordHasher.hash(user.password)
     const uuid = await this.userCreatorService.create(user)
     
     return uuid

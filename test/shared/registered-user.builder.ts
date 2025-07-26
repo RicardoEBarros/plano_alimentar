@@ -1,10 +1,10 @@
-import { User } from '@/src/user-registration/entities/user.entity'
+import { UserEntity } from '@/src/user-registration/entities/user.entity'
 import { UserClientMother } from './user-client.mother'
 import { faker } from '@faker-js/faker/.'
 
 export class RegisteredUserBuilder {
 
-  private registeredUser: User
+  private registeredUser: UserEntity
 
   constructor() {
     const basicUser = UserClientMother.valid()
@@ -18,7 +18,7 @@ export class RegisteredUserBuilder {
     return new RegisteredUserBuilder()
   }
 
-  build(): User {
+  build(): UserEntity {
     return this.registeredUser
   }
 

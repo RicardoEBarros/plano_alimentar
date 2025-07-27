@@ -45,7 +45,7 @@ const makeSut = (module: TestingModule): UserRegistrationService => {
   return module.get<UserRegistrationService>(UserRegistrationService)
 }
 
-const makeConnectionOnMongoose = (module: TestingModule): Connection => {
+const makeConnectionWithMongoose = (module: TestingModule): Connection => {
   return module.get<Connection>(getConnectionToken())
 }
 
@@ -53,19 +53,19 @@ export interface SutUserRegistrationServiceTypes {
   sut: FindUserByEmail
   mockUserModel: mockUserModelTypes
   fakeParameters: FakeParametersTypes
-  connectionOnMongoose: Connection
+  connectionWithMongoose: Connection
 }
 
 export const makeUserRegistrationServiceFactory = async (): Promise<SutUserRegistrationServiceTypes> => {
   const mockUserModel = makeMockUserModel()
   const module = await makeModule(mockUserModel)
   const sut = makeSut(module)
-  const connectionOnMongoose = makeConnectionOnMongoose(module)
+  const connectionWithMongoose = makeConnectionWithMongoose(module)
   const fakeParameters = makeFakeParameters()
   return {
     sut, 
     mockUserModel,
     fakeParameters,
-    connectionOnMongoose
+    connectionWithMongoose
   }
 }

@@ -12,7 +12,7 @@ describe('User Registration Service Suite', () => {
     })
 
     afterAll(async () => {
-      await userServiceMocks.connectionOnMongoose.close()
+      await userServiceMocks.connectionWithMongoose.close()
     })
 
     test('Should calls UserRepository with correct values', async () => {

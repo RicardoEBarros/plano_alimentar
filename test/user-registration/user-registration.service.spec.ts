@@ -6,9 +6,12 @@ describe('User Registration Service Suite', () => {
 
     let userServiceMocks: SutUserRegistrationServiceTypes
 
-    beforeEach(async () => {
-      jest.clearAllMocks()
+    beforeAll(async () => {
       userServiceMocks = await makeUserRegistrationServiceFactory()
+    })
+
+    afterEach(() => {
+      jest.clearAllMocks()
     })
 
     afterAll(async () => {
@@ -26,7 +29,17 @@ describe('User Registration Service Suite', () => {
 
     })
 
-    test.todo('Should throws an error if UserRepository fails')
+    test('Should throws an error if findOne fails', async () => {
+
+      const { sut, fakeParameters, mockUserModel } = userServiceMocks
+      const { email } = fakeParameters
+      mockUserModel.findOne.mockImplementationOnce(() => { throw new Error() })
+      const promise = sut.findByEmail(email)
+
+      await expect(promise).rejects.toThrow()
+
+    })
+
     test.todo('Should returns an user if everything goes well')
 
   })

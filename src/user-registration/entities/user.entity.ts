@@ -1,7 +1,5 @@
-export interface UserEntity {
+import { User } from '../schema/user.shema'
+
+export interface UserEntity extends Omit<User, 'password'> {
   id: string
-  first_name: string
-  last_name: string
-  email: string
-  password: string
 }

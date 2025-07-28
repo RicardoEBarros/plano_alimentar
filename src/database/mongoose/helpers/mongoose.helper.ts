@@ -1,7 +1,7 @@
 import { Document } from 'mongoose'
 import { ReplaceIdentifier } from '../../contracts/replace-identifier.contract'
 
-export class MongooseMapper implements ReplaceIdentifier {
+export class MongooseHelper implements ReplaceIdentifier {
 
   replaceId<T extends Partial<Document>, R>(data: T): R {
 

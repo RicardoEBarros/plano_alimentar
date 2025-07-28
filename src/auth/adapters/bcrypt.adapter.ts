@@ -1,4 +1,4 @@
-import { HashValue } from '@/src/user-registration/interfaces/hash-value.abstract'
+import { HashValue } from '@/src/user-registration/contracts/hash-value.contract'
 import { DEFAULT_NUMBER_OF_SALTS_FOR_THE_HASH } from '../constants/hash.constant'
 import * as bcrypt from 'bcrypt'
 

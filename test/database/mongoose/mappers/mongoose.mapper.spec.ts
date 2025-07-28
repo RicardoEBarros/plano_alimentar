@@ -1,13 +1,21 @@
+import { ReplaceIdentifier } from '@/src/database/contracts/replace-identifier.contract'
 import { MongooseMapper } from '@/src/database/mongoose/mappers/mongoose.mapper'
+import { UserEntity } from '@/src/user-registration/entities/user.entity'
+import { UserDocument } from '@/src/user-registration/schema/user.shema'
+import { UserDocumentMother } from '@/test/shared/object-mothers/user.document.mother'
 import { Document } from 'mongoose'
 
 describe('Mongoose Mapper Suite', () => {
 
   describe('Replace Id Suite', () => {
 
-    test('Should return null if data is invalid', () => {
+    let sut: ReplaceIdentifier
 
-      const sut = new MongooseMapper()
+    beforeEach(() => {
+      sut = new MongooseMapper()
+    })
+
+    test('Should return null if data is invalid', () => {
 
       let data = null as unknown as Document
       let dataWithReplacedId = sut.replaceId(data)
@@ -19,8 +27,16 @@ describe('Mongoose Mapper Suite', () => {
 
     })
 
-    test.todo('Should return the same data if data doens\'t have the specific identifier')
-    test.todo('Should return the replaced identifier')
+    test('Should return the replaced identifier', () => {
+
+      const data = UserDocumentMother.valid()
+      const dataWithReplacedId = sut.replaceId<Partial<UserDocument>, UserEntity>(data)
+      const { _id, ...userData } = data
+      
+      expect(dataWithReplacedId).not.toHaveProperty('_id')
+      expect(dataWithReplacedId).toEqual({ id: _id, ...userData })
+
+    })
 
   })
 

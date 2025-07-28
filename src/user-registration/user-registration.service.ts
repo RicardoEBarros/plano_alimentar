@@ -21,7 +21,7 @@ export class UserRegistrationService implements FindUserByEmail {
       return null
     }
     
-    return null
+    return {} as UserEntity
 
   }
 

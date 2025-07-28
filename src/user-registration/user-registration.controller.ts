@@ -1,9 +1,9 @@
 import { ConflictException, Controller, Post } from '@nestjs/common'
 import { CreateUserDTO } from './dtos/create-user.dto'
-import { FindUserByEmail } from './interfaces/find-user-by-email.abstract'
+import { FindUserByEmail } from './contracts/find-user-by-email.contract'
 import { CLIENT_ERROR_MESSAGES } from './constants/messages.constant'
-import { HashValue } from './interfaces/hash-value.abstract'
-import { CreateUser } from './interfaces/create-user.abstract'
+import { HashValue } from './contracts/hash-value.contract'
+import { CreateUser } from './contracts/create-user.contract'
 
 @Controller('user-registration')
 export class UserRegistrationController {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { FindUserByEmail } from './interfaces/find-user-by-email.abstract'
+import { FindUserByEmail } from './contracts/find-user-by-email.contract'
 import { UserEntity } from './entities/user.entity'
 import { InjectModel } from '@nestjs/mongoose'
-import { User, UserSchema } from './schema/user.shema'
+import { User } from './schema/user.shema'
 import { Model } from 'mongoose'
 
 @Injectable()

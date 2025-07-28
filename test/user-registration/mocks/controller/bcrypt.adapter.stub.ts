@@ -1,4 +1,4 @@
-import { HashValue } from '@/src/user-registration/interfaces/hash-value.abstract'
+import { HashValue } from '@/src/user-registration/contracts/hash-value.contract'
 import { faker } from '@faker-js/faker/.'
 
 export interface BcryptAdapterTypes extends HashValue {

@@ -72,13 +72,22 @@ describe('User Registration Service Suite', () => {
 
       const { sut, fakeParameters, idNormalizerStub } = userServiceMocks
       const idNormalizerSpy = jest.spyOn(idNormalizerStub, 'replaceId')
-      const user = await sut.findByEmail(fakeParameters.email)    
+      await sut.findByEmail(fakeParameters.email)    
       
       expect(idNormalizerSpy).toHaveBeenCalledExactlyOnceWith(fakeParameters.userDocument)      
 
     })
 
-    test.todo('Should returns an user if everything goes well')
+    test('Should returns an user if everything goes well', async () => {
+
+      const { sut, fakeParameters, idNormalizerStub } = userServiceMocks
+      const user = await sut.findByEmail(fakeParameters.email) 
+      const { password, ...dataWithoutPassword } = idNormalizerStub.dataWithIdReplaced
+      
+      expect(user).not.toHaveProperty('password')
+      expect(user).toEqual(dataWithoutPassword)
+
+    })
 
   })
 

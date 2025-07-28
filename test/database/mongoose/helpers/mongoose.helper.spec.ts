@@ -1,5 +1,5 @@
 import { ReplaceIdentifier } from '@/src/database/contracts/replace-identifier.contract'
-import { MongooseMapper } from '@/src/database/mongoose/mappers/mongoose.mapper'
+import { MongooseHelper } from '@/src/database/mongoose/helpers/mongoose.helper'
 import { UserEntity } from '@/src/user-registration/entities/user.entity'
 import { UserDocument } from '@/src/user-registration/schema/user.shema'
 import { UserDocumentMother } from '@/test/shared/object-mothers/user.document.mother'
@@ -12,7 +12,7 @@ describe('Mongoose Mapper Suite', () => {
     let sut: ReplaceIdentifier
 
     beforeEach(() => {
-      sut = new MongooseMapper()
+      sut = new MongooseHelper()
     })
 
     test('Should return null if data is invalid', () => {
@@ -30,7 +30,7 @@ describe('Mongoose Mapper Suite', () => {
     test('Should return the replaced identifier', () => {
 
       const data = UserDocumentMother.valid()
-      const dataWithReplacedId = sut.replaceId<Partial<UserDocument>, UserEntity>(data)
+      const dataWithReplacedId = sut.replaceId(data)
       const { _id, ...userData } = data
       
       expect(dataWithReplacedId).not.toHaveProperty('_id')

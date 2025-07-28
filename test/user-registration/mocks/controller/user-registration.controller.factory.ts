@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { UserRegistrationController } from '@/src/user-registration/user-registration.controller'
 import { UserRegistrationServiceStub, UserRegistrationServiceTypes } from './user-registration.service.stub'
-import { UserClientMother } from '@/test/shared/user-client.mother'
+import { UserClientMother } from '@/test/shared/object-mothers/user-client.mother'
 import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
-import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
+import { FindUserByEmail } from '@/src/user-registration/contracts/find-user-by-email.contract'
 import { BcryptAdapterStub, BcryptAdapterTypes } from './bcrypt.adapter.stub'
-import { HashValue } from '@/src/user-registration/interfaces/hash-value.abstract'
+import { HashValue } from '@/src/user-registration/contracts/hash-value.contract'
 import { UserCreatorStub, UserCreatorTypes } from './user-creator.service.stub'
-import { CreateUser } from '@/src/user-registration/interfaces/create-user.abstract'
+import { CreateUser } from '@/src/user-registration/contracts/create-user.contract'
 
 interface UserRegistrationControllerTypes {
   user: CreateUserDTO

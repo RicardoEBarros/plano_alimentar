@@ -1,4 +1,7 @@
-import { makeUserRegistrationServiceFactory, SutUserRegistrationServiceTypes } from './mocks/service/user-registration.service.factory'
+import { 
+  makeUserRegistrationServiceFactory, 
+  SutUserRegistrationServiceTypes 
+} from './mocks/service/user-registration.service.factory'
 
 describe('User Registration Service Suite', () => {
   
@@ -15,7 +18,9 @@ describe('User Registration Service Suite', () => {
     })
 
     afterAll(async () => {
-      await userServiceMocks.connectionWithMongoose.close()
+      if (userServiceMocks) {
+        await userServiceMocks.connectionWithMongoose.close()
+      }
     })
 
     test('Should calls UserRepository with correct values', async () => {
@@ -39,6 +44,19 @@ describe('User Registration Service Suite', () => {
       await expect(promise).rejects.toThrow()
 
     })
+
+    test('Should throws an error if exec fails', async () => {
+
+      const { sut, fakeParameters, mockUserModel } = userServiceMocks
+      const { email } = fakeParameters
+      mockUserModel.exec.mockImplementationOnce(() => { throw new Error() })
+      const promise = sut.findByEmail(email)
+
+      await expect(promise).rejects.toThrow()
+
+    })    
+
+    test.todo('Should call replaceId with correct values')
 
     test.todo('Should returns an user if everything goes well')
 

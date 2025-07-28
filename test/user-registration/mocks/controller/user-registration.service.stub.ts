@@ -1,6 +1,6 @@
 import { UserEntity } from '@/src/user-registration/entities/user.entity'
-import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
-import { UserClientMother } from '@/test/shared/user-client.mother'
+import { FindUserByEmail } from '@/src/user-registration/contracts/find-user-by-email.contract'
+import { UserClientMother } from '@/test/shared/object-mothers/user-client.mother'
 
 export interface UserRegistrationServiceTypes extends FindUserByEmail {
   user: UserEntity

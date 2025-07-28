@@ -1,5 +1,5 @@
 import { BcryptAdapter } from '@/src/auth/adapters/bcrypt.adapter'
-import { HashValue } from '@/src/user-registration/interfaces/hash-value.abstract'
+import { HashValue } from '@/src/user-registration/contracts/hash-value.contract'
 import { faker } from '@faker-js/faker/.'
 import { Test, TestingModule } from '@nestjs/testing'
 

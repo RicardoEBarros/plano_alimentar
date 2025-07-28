@@ -1,7 +1,7 @@
 import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
 import { UserEntity } from '@/src/user-registration/entities/user.entity'
-import { CreateUser } from '@/src/user-registration/interfaces/create-user.abstract'
-import { RegisteredUserMother } from '@/test/shared/registered-user.mother'
+import { CreateUser } from '@/src/user-registration/contracts/create-user.contract'
+import { RegisteredUserMother } from '@/test/shared/object-mothers/registered-user.mother'
 
 export interface UserCreatorTypes extends CreateUser {
   userCreated: UserEntity

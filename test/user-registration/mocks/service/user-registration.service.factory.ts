@@ -1,11 +1,11 @@
-import { FindUserByEmail } from '@/src/user-registration/interfaces/find-user-by-email.abstract'
+import { FindUserByEmail } from '@/src/user-registration/contracts/find-user-by-email.contract'
 import { User, UserSchema } from '@/src/user-registration/schema/user.shema'
 import { UserRegistrationService } from '@/src/user-registration/user-registration.service'
-import { TestDatabaseModule } from '@/test/utils/test-database.module'
-import { faker } from '@faker-js/faker/.'
+import { TestDatabaseModule } from '@/test/shared/database/test-database.module'
 import { getConnectionToken, getModelToken, MongooseModule } from '@nestjs/mongoose'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Connection } from 'mongoose'
+import { faker } from '@faker-js/faker/.'
 
 interface mockUserModelTypes {
   exec: jest.Mock<any>

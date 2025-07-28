@@ -3,13 +3,18 @@ import { ReplaceIdentifier } from '../../contracts/replace-identifier.contract'
 
 export class MongooseMapper implements ReplaceIdentifier {
 
-  replaceId<T>(data: Document): T {
+  replaceId<T extends Partial<Document>, R>(data: T): R {
 
     if (!data) {
-      return null as T
+      return null as R
     }
 
-    return {} as T
+    const { _id, ...userData } = data
+
+    return { 
+      id: _id,
+      ...userData
+    } as R
 
   } 
 

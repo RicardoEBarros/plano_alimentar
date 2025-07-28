@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
 
 export abstract class ReplaceIdentifier {
-  abstract replaceId<T>(data: Document | null): T
+  abstract replaceId<T extends Partial<Document>, R>(data: T): R
 }

@@ -7,12 +7,12 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { Connection } from 'mongoose'
 import { faker } from '@faker-js/faker/.'
 
-interface mockUserModelTypes {
+interface userModelMockedTypes {
   exec: jest.Mock<any>
   findOne: jest.Mock<any>
 }
 
-const makeMockUserModel = (): mockUserModelTypes => ({
+const makeMockUserModel = (): userModelMockedTypes => ({
   exec: jest.fn().mockReturnThis(),
   findOne: jest.fn().mockReturnThis(),
 })
@@ -25,7 +25,7 @@ const makeFakeParameters = (): FakeParametersTypes => ({
   email: faker.internet.email()
 })
 
-const makeModule = async (mockUserModel: mockUserModelTypes): Promise<TestingModule> => {
+const makeModule = async (userModelMocked: userModelMockedTypes): Promise<TestingModule> => {
   return Test.createTestingModule({
     imports: [
       TestDatabaseModule,
@@ -35,7 +35,7 @@ const makeModule = async (mockUserModel: mockUserModelTypes): Promise<TestingMod
       UserRegistrationService,
       {
         provide: getModelToken(User.name),
-        useValue: mockUserModel
+        useValue: userModelMocked
       }
     ],
   }).compile()
@@ -51,20 +51,20 @@ const makeConnectionWithMongoose = (module: TestingModule): Connection => {
 
 export interface SutUserRegistrationServiceTypes {
   sut: FindUserByEmail
-  mockUserModel: mockUserModelTypes
+  userModelMocked: userModelMockedTypes
   fakeParameters: FakeParametersTypes
   connectionWithMongoose: Connection
 }
 
 export const makeUserRegistrationServiceFactory = async (): Promise<SutUserRegistrationServiceTypes> => {
-  const mockUserModel = makeMockUserModel()
-  const module = await makeModule(mockUserModel)
+  const userModelMocked = makeMockUserModel()
+  const module = await makeModule(userModelMocked)
   const sut = makeSut(module)
   const connectionWithMongoose = makeConnectionWithMongoose(module)
   const fakeParameters = makeFakeParameters()
   return {
     sut, 
-    mockUserModel,
+    userModelMocked,
     fakeParameters,
     connectionWithMongoose
   }

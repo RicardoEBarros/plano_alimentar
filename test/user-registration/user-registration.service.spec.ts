@@ -25,20 +25,20 @@ describe('User Registration Service Suite', () => {
 
     test('Should calls UserRepository with correct values', async () => {
 
-      const { sut, fakeParameters, mockUserModel } = userServiceMocks
+      const { sut, fakeParameters, userModelMocked } = userServiceMocks
       const { email } = fakeParameters
       await sut.findByEmail(fakeParameters.email)
 
-      expect(mockUserModel.findOne).toHaveBeenCalledExactlyOnceWith({ email })
-      expect(mockUserModel.exec).toHaveBeenCalledAfter(mockUserModel.findOne)
+      expect(userModelMocked.findOne).toHaveBeenCalledExactlyOnceWith({ email })
+      expect(userModelMocked.exec).toHaveBeenCalledAfter(userModelMocked.findOne)
 
     })
 
     test('Should throws an error if findOne fails', async () => {
 
-      const { sut, fakeParameters, mockUserModel } = userServiceMocks
+      const { sut, fakeParameters, userModelMocked } = userServiceMocks
       const { email } = fakeParameters
-      mockUserModel.findOne.mockImplementationOnce(() => { throw new Error() })
+      userModelMocked.findOne.mockImplementationOnce(() => { throw new Error() })
       const promise = sut.findByEmail(email)
 
       await expect(promise).rejects.toThrow()
@@ -47,14 +47,24 @@ describe('User Registration Service Suite', () => {
 
     test('Should throws an error if exec fails', async () => {
 
-      const { sut, fakeParameters, mockUserModel } = userServiceMocks
+      const { sut, fakeParameters, userModelMocked } = userServiceMocks
       const { email } = fakeParameters
-      mockUserModel.exec.mockImplementationOnce(() => { throw new Error() })
+      userModelMocked.exec.mockImplementationOnce(() => { throw new Error() })
       const promise = sut.findByEmail(email)
 
       await expect(promise).rejects.toThrow()
 
     })    
+
+    test('Should return null if findOne returns null', async () => {
+
+      const { sut, fakeParameters, userModelMocked } = userServiceMocks
+      jest.spyOn(userModelMocked, 'exec').mockResolvedValueOnce(null)
+      const user = await sut.findByEmail(fakeParameters.email)    
+      
+      expect(user).toBeNull()
+
+    })
 
     test.todo('Should call replaceId with correct values')
 

@@ -58,15 +58,25 @@ describe('User Registration Service Suite', () => {
 
     test('Should return null if findOne returns null', async () => {
 
-      const { sut, fakeParameters, userModelMocked } = userServiceMocks
+      const { sut, fakeParameters, userModelMocked, idNormalizerStub } = userServiceMocks
       jest.spyOn(userModelMocked, 'exec').mockResolvedValueOnce(null)
+      const replaceIdSpy = jest.spyOn(idNormalizerStub, 'replaceId')
       const user = await sut.findByEmail(fakeParameters.email)    
       
       expect(user).toBeNull()
+      expect(replaceIdSpy).not.toHaveBeenCalledOnce()
 
     })
 
-    test.todo('Should call replaceId with correct values')
+    test('Should call idNormalizer with correct values', async () => {
+
+      const { sut, fakeParameters, idNormalizerStub } = userServiceMocks
+      const idNormalizerSpy = jest.spyOn(idNormalizerStub, 'replaceId')
+      const user = await sut.findByEmail(fakeParameters.email)    
+      
+      expect(idNormalizerSpy).toHaveBeenCalledExactlyOnceWith(fakeParameters.userDocument)      
+
+    })
 
     test.todo('Should returns an user if everything goes well')
 

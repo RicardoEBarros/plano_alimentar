@@ -1,5 +1,5 @@
 import { UserEntity } from '@/src/user-registration/entities/user.entity'
-import { RegisteredUserBuilder } from './registered-user.builder'
+import { RegisteredUserBuilder } from '../builders/registered-user.builder'
 
 export class RegisteredUserMother {
   static valid(): UserEntity {

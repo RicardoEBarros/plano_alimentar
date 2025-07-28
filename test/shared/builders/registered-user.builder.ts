@@ -1,5 +1,5 @@
 import { UserEntity } from '@/src/user-registration/entities/user.entity'
-import { UserClientMother } from './user-client.mother'
+import { UserClientMother } from '../object-mothers/user-client.mother'
 import { faker } from '@faker-js/faker/.'
 
 export class RegisteredUserBuilder {

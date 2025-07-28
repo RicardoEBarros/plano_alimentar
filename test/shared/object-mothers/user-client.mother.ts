@@ -1,4 +1,4 @@
-import { UserClienteBuilder } from './user-client.builder'
+import { UserClienteBuilder } from '../builders/user-client.builder'
 import { CreateUserDTO } from '@/src/user-registration/dtos/create-user.dto'
 
 export class UserClientMother {
